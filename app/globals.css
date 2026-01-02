@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-baloo: var(--font-geist-baloo);
+  --font-montserrat: var(--font-geist-montserrat);
 }
 
 body {
@@ -18,13 +20,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 
+
 @layer base {
   body {
-    @apply ;
+    @apply font-montserrat;
   } 
 
-  h1 {
-    @apply ;
+  h1, h2, h3, h4, h5 {
+    @apply font-baloo font-medium;
   }
-} */
+
+  header {
+    @apply font-baloo font-medium;
+  }
+} 
