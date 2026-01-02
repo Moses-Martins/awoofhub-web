@@ -4,13 +4,14 @@ import {
     Dialog,
     DialogPanel,
     PopoverGroup
-} from '@headlessui/react'
+} from '@headlessui/react';
 import {
     Bars3Icon,
     XMarkIcon
-} from '@heroicons/react/24/outline'
-import Image from 'next/image'
-import { useState } from 'react'
+} from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Header() {
 
@@ -18,9 +19,9 @@ export default function Header() {
 
     return (
         <header className="bg-white">
-            <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+            <nav aria-label="Global" className="mx-auto flex max-w-[1400px] items-center justify-between p-5 lg:px-8">
                 <div className="flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
+                    <Link href="#" className="-m-1.5 p-1.5">
                         <Image
                             src="/Logo.png"
                             alt="Company Logo"
@@ -29,7 +30,7 @@ export default function Header() {
                             priority
                             className="w-30 h-auto"
                         />
-                    </a>
+                    </Link>
                 </div>
                 <div className="flex lg:hidden">
                     <button
@@ -43,36 +44,36 @@ export default function Header() {
                 <PopoverGroup className="hidden lg:flex lg:gap-x-12">
 
 
-                    <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                    <Link href="#" className="text-lg/6 font-semibold text-gray-500 hover:text-orange-500">
                         For Business
-                    </a>
-                    <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                    </Link>
+                    <Link href="#" className="text-lg/6 font-semibold text-gray-500 hover:text-orange-500">
                         Browse Deals
-                    </a>
-                    <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                    </Link>
+                    <Link href="#" className="text-lg/6 font-semibold text-gray-500 hover:text-orange-500">
                         Categories
-                    </a>
-                    <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                    </Link>
+                    <Link href="#" className="text-lg/6 font-semibold text-gray-500 hover:text-orange-500">
                         How it Works
-                    </a>
+                    </Link>
                 </PopoverGroup>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div className="flex gap-4 items-center justify-center">
-                        <button className="px-6 py-3 border-2 border-[#FF5200] text-[#FF5200] font-semibold rounded-md hover:bg-orange-50 transition-colors">
+                        <button className="px-6 py-1 border-2 border-[#FE4F04] text-lg text-[#FE4F04] font-semibold rounded-sm hover:bg-orange-50 transition-colors">
                             Post a Deal
                         </button>
 
-                        <button className="px-4.5 py-3 bg-[#FF5200] text-white font-semibold rounded-md hover:bg-[#e64a00] transition-colors shadow-sm">
+                        <button className="px-4.5 py-1.5 bg-[#FE4F04] text-lg text-white font-semibold rounded-sm hover:bg-[#e64a00] transition-colors shadow-sm">
                             Browse Deals
                         </button>
                     </div>
                 </div>
             </nav>
-            <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+            <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden font-baloo">
                 <div className="fixed inset-0 z-50" />
                 <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <Link href="#" className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
                             <Image
                                 src="/Logo.png"
@@ -82,7 +83,7 @@ export default function Header() {
                                 priority
                                 className="w-30 h-auto"
                             />
-                        </a>
+                        </Link>
                         <button
                             type="button"
                             onClick={() => setMobileMenuOpen(false)}
@@ -95,41 +96,41 @@ export default function Header() {
                     <div className="mt-6 flow-root">
                         <div className="-my-6 divide-y divide-gray-500/10">
                             <div className="space-y-2 py-6">
-                                <a
+                                <Link
                                     href="#"
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-600 hover:bg-gray-50"
                                 >
                                     Features
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="#"
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-600 hover:bg-gray-50"
                                 >
                                     Marketplace
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="#"
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-600 hover:bg-gray-50"
                                 >
                                     Company
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="#"
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-600 hover:bg-gray-50"
                                 >
                                     How it Works
-                                </a>
+                                </Link>
                             </div>
 
                             <div className="flex flex-col gap-4 py-8 items-center justify-center">
 
                                 {/* Secondary Button - Outline Style */}
-                                <button className="px-6 py-3 border-2 border-[#FF5200] text-[#FF5200] font-semibold rounded-md hover:bg-orange-50 transition-colors">
+                                <button className="px-6 py-3 border-2 border-[#FE4F04] text-[#FE4F04] font-semibold rounded-sm hover:bg-orange-50 transition-colors">
                                     Post a Deal
                                 </button>
 
                                 {/* Primary Button - Solid Style */}
-                                <button className="px-4.5 py-3 bg-[#FF5200] text-white font-semibold rounded-md hover:bg-[#e64a00] transition-colors shadow-sm">
+                                <button className="px-4.5 py-3 bg-[#FE4F04] text-white font-semibold rounded-sm hover:bg-[#e64a00] transition-colors shadow-sm">
                                     Browse Deals
                                 </button>
 
