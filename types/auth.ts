@@ -1,3 +1,5 @@
+import { UserData } from "./user";
+
 export interface SignupData {
   email: string;
   password: string;
