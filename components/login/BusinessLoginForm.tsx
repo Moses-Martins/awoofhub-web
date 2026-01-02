@@ -1,23 +1,24 @@
 "use client"
-import { Button } from '@/components/form/Button';
+import { Button } from '@/components/button/Button';
 import { InputField } from '@/components/form/InputField';
+import { RoleContext } from '@/context/RoleContext';
 import { useLogin } from '@/features/auth/useLogin';
-import { LoginData } from '@/types/auth';
+import { LoginData, SignupData } from '@/types/auth';
+import { LoginFormProps } from '@/types/form-props';
 import { Mail } from 'lucide-react';
 import Link from 'next/link';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 
-export type LoginFormProps = {
-    onSuccess: () => void;
-};
-
-export const LoginForm = ({
+export const BusinessLogin = ({
     onSuccess,
 }: LoginFormProps) => {
     const login = useLogin({ onSuccess });
 
-    const { register, handleSubmit, formState } = useForm<LoginData>();
+    const { setRole } = useContext(RoleContext);
+
+    const { register, handleSubmit, formState } = useForm<SignupData>();
 
     const onSubmit = (data: LoginData) => {
         login.submit(data);
@@ -25,13 +26,12 @@ export const LoginForm = ({
 
     return (
         <>
-
             <div className="text-left">
-                <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-                    Welcome back, <span className="text-orange-600">deal hunter!</span>
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
+                    Welcome back
                 </h1>
-                <p className="mt-3 text-lg text-slate-600">
-                    Sign in to access your saved deals and <br /> personalized recommendations.
+                <p className="font-baloo mt-3 text-lg  sm:text-2xl  text-slate-600">
+                    Sign in to manage your deals and grow <br/>your business.
                 </p>
             </div>
 
@@ -39,8 +39,8 @@ export const LoginForm = ({
 
                 <InputField
                     label="Email Address"
-                    placeholder="doejohn@example.com"
-                    compulsory='True'
+                    placeholder="you@business.com"
+                    compulsory={true}
                     type="email"
                     icon={<Mail size={18} color={"gray"} />}
                     {...register('email')}
@@ -50,7 +50,7 @@ export const LoginForm = ({
                 <InputField
                     label="Password"
                     type="password"
-                    compulsory='True'
+                    compulsory={true}
                     placeholder="**************"
                     {...register('password', {
                         required: 'Password field cannot be empty',
@@ -105,20 +105,7 @@ export const LoginForm = ({
                 <div className="text-center space-y-2">
                     <p className="text-gray-600 text-sm">
                         Don't have an account yet?{' '}
-                        <a href="#" className="text-[#FF5700] font-semibold hover:underline">Create one</a>
-                    </p>
-                    <p className="text-gray-500 text-sm">
-                        Are you a business?{' '}
-                        <a href="#" className="text-[#FF5700] font-semibold hover:underline">Sign in as business</a>
-                    </p>
-                </div>
-
-                {/* Guest Tip Box */}
-                <div className="w-full mt-4 p-4 bg-[#FFF8F6] border border-gray-400 rounded-2xl flex items-center justify-center">
-                    <p className="text-gray-600 text-sm text-center ">
-                        <span className="mr-2">💡</span>
-                        Tip: You can browse deals without signing in.{' '}
-                        <Link href="#" className="text-[#FF5700] font-medium hover:underline">Continue as guest</Link>
+                        <Link onClick={() => setRole("Business")} href="/signup" className="text-[#FF5700] font-semibold hover:underline">Create one</Link>
                     </p>
                 </div>
             </form >

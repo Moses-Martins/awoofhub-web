@@ -1,5 +1,6 @@
 'use client';
 import { Notifications } from '@/components/notifications/Notifications';
+import { RoleProvider } from '@/context/RoleContext';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactNode } from 'react';
 import ErrorBoundaryProvider from './core/error-boundary-provider';
@@ -12,10 +13,12 @@ export default function AppProvider({ children }: { children: ReactNode }) {
             <ErrorBoundaryProvider>
                 <ReactQueryProvider>
                     <ReactQueryDevtools initialIsOpen={false} />
-                    {children}
+                    <RoleProvider>
+                        {children}
+                    </RoleProvider>
                 </ReactQueryProvider>
             </ErrorBoundaryProvider>
         </>
 
-    ); 
+    );
 }
