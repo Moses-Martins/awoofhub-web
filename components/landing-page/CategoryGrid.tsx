@@ -17,7 +17,7 @@ export default function CategoryGrid() {
   return (
     <section className="max-w-[1400px] mx-auto px-6 py-16">
       {/* Header */}
-      <div className="mb-10 text-left">
+      <div className="mb-10 text-center">
         <h2 className="text-3xl font-semibold text-slate-900 mb-2">
           Choose a Category to find what you need
         </h2>
