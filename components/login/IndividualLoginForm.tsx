@@ -52,7 +52,7 @@ export const IndividualLogin = ({
                     label="Password"
                     type="password"
                     compulsory={true}
-                    placeholder="**************"
+                    placeholder="Enter your password"
                     {...register('password', {
                         required: 'Password field cannot be empty',
                     })}

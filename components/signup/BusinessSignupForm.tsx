@@ -62,7 +62,7 @@ export const BusinessSignup = ({
                     label="Password"
                     type="password"
                     compulsory={true}
-                    placeholder="**************"
+                    placeholder="Create a strong password"
                     {...register('password', {
                         required: 'Password field cannot be empty',
                     })}
