@@ -1,10 +1,13 @@
 import DynamicLayout from "@/components/layouts/auth/DynamicLayout";
+import { RoleProvider } from "@/context/RoleContext";
 import { ReactNode } from "react";
 
 export default function SignupLayout({ children }: { children: ReactNode }) {
     return (
-            <DynamicLayout>
+        <DynamicLayout>
+            <RoleProvider>
                 {children}
-            </DynamicLayout>
+            </RoleProvider>
+        </DynamicLayout>
     )
 }

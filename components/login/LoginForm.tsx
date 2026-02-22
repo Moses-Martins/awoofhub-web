@@ -11,7 +11,8 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 
-export const BusinessLogin = ({
+
+export const LoginForm = ({
     onSuccess,
 }: LoginFormProps) => {
     const login = useLogin({ onSuccess });
@@ -25,13 +26,14 @@ export const BusinessLogin = ({
     };
 
     return (
-        <>
+
+        <div className="w-100 mx-auto">
             <div className="text-left">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
-                    Welcome back
+                <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900">
+                    Welcome back, <span className="text-orange-600">deal hunter!</span>
                 </h1>
-                <p className="font-baloo mt-3 text-lg  sm:text-2xl  text-slate-600">
-                    Sign in to manage your deals and grow <br/>your business.
+                <p className="font-baloo mt-3 text-lg sm:text-2xl text-slate-600">
+                    Sign in to access your saved deals and <br /> personalized recommendations.
                 </p>
             </div>
 
@@ -39,7 +41,7 @@ export const BusinessLogin = ({
 
                 <InputField
                     label="Email Address"
-                    placeholder="you@business.com"
+                    placeholder="doejohn@example.com"
                     compulsory={true}
                     type="email"
                     icon={<Mail size={18} color={"gray"} />}
@@ -105,10 +107,21 @@ export const BusinessLogin = ({
                 <div className="text-center space-y-2">
                     <p className="text-gray-600 text-sm">
                         Don't have an account yet?{' '}
-                        <Link onClick={() => setRole("Business")} href="/signup" className="text-[#FF5700] font-semibold hover:underline">Create one</Link>
+                        <Link onClick={() => setRole("Deal Seekers")} href="/signup" className="text-[#FF5700] font-semibold hover:underline">Create one</Link>
                     </p>
                 </div>
+
+                {/* Guest Tip Box */}
+                <div className="w-full mt-4 p-4 bg-[#FFF8F6] border border-gray-400 rounded-2xl flex items-center justify-center">
+                    <p className="text-gray-600 text-sm text-center ">
+                        <span className="mr-2">💡</span>
+                        Tip: You can browse deals without signing in.{' '}
+                        <Link href="#" className="text-[#FF5700] font-medium hover:underline">Continue as guest</Link>
+                    </p>
+                </div>
+
             </form >
-        </>
+        </div>
+
     );
 };
