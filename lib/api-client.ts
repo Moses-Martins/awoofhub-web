@@ -3,7 +3,7 @@ import { notificationsStore } from "@/store/notifications/notifications";
 import axios from "axios";
 
 export const apiClient = axios.create({
-    baseURL: `${API_URL}/api/v1`,
+    baseURL: `${API_URL}/api`,
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
@@ -12,11 +12,7 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.response.use(
     (response) => {
-        // If the response is shaped like: { success, data, message }
-        if (response.data?.data !== undefined) {
-            return response.data.data;
-        }
-        return response.data; // fallback (safe)
+        return response.data; 
     },
     (error) => {
         const message = error.response?.data?.message || error.message;

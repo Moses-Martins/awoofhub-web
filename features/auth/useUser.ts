@@ -1,11 +1,11 @@
+import { getUserService } from '@/services/auth-service';
+import { User } from '@/types/user';
 import { useQuery } from '@tanstack/react-query';
 
-import { getUserService } from '@/services/auth-service';
-import { UserData } from '@/types/user';
 
-
-export const getAuthUser = (): Promise<UserData> => {
-    return getUserService();
+export const getAuthUser = async (): Promise<User> => {
+    const result = await getUserService();
+    return result.data; 
 }; 
 
 export const useUser = () => {
@@ -14,6 +14,5 @@ export const useUser = () => {
         queryFn: () => getAuthUser(),
     });
     
- 
     return { data, isLoading };
 };

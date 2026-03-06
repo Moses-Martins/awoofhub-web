@@ -1,25 +1,24 @@
 import { signupService } from "@/services/auth-service";
-import { authResponse, SignupData } from '@/types/auth';
-import { UserData } from '@/types/user';
+import { SignupData } from '@/types/auth';
+import { User } from '@/types/user';
 import { useMutation } from '@tanstack/react-query';
 
-export const signup = (data: SignupData): Promise<authResponse> => {
-    return signupService(data);
+export const signup = async (data: SignupData): Promise<User> => {
+    const result = await signupService(data);
+    return result.data;
 };
 
 type UseSignupOptions = {
-    onSuccess?: (user: UserData) => void;
+    onSuccess?: (user: User) => void;
 };
 
-export const useSignup = ({
-    onSuccess,
-}: UseSignupOptions = {}) => {
+export const useSignup = ({ onSuccess }: UseSignupOptions = {}) => {
     const { mutate: submit, isPending } = useMutation({
         mutationFn: signup,
         onSuccess: (data) => {
-            onSuccess?.(data.user);
+            onSuccess?.(data);
         },
     });
     return { submit, isPending };
-}; 
+};
 

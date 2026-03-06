@@ -1,29 +1,28 @@
 "use client"
 import { loginService } from "@/services/auth-service";
-import { authResponse, LoginData } from '@/types/auth';
-import { UserData } from '@/types/user';
+import { LoginData } from '@/types/auth';
+import { User } from '@/types/user';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const login = (data: LoginData): Promise<authResponse> => {
-  return loginService(data);
+export const login = async (data: LoginData): Promise<User> => {
+  const result = await loginService(data);
+  return result.data;
 };
 
 type UseLoginOptions = {
-  onSuccess?: (user: UserData) => void;
+  onSuccess?: (user: User) => void;
 };
-  
+
 export const useLogin = ({ onSuccess }: UseLoginOptions = {}) => {
-  const queryClient = useQueryClient(); 
+  const queryClient = useQueryClient();
 
   const { mutate: submit, isPending } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      queryClient.setQueryData(['auth-user'], data.user); 
-      onSuccess?.(data.user);
-      
+      queryClient.setQueryData(['auth-user'], data);
+      onSuccess?.(data);
     },
   });
 
   return { submit, isPending };
 };
- 
