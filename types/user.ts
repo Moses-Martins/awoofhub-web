@@ -1,10 +1,14 @@
 export interface User {
   id: string;
   email: string;
-  first_name: string;
-  last_name: string;
-  username: string;
+  name: string;
+  profileImageUrl: string | null;
+  role: "user" | "admin" | "moderator";
   bio: string | null;
-  profile_image_url: string | null;
-  date_joined: string; // ISO date string
-}
+  address: string | null;
+  website: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+

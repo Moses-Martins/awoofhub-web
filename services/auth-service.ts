@@ -18,9 +18,16 @@ export async function signupService(payload: SignupData): Promise<ApiResponse<Us
   return res;
 }
 
+// Logout
+export async function logoutService(): Promise<ApiResponse<{}>> {
+  const res: ApiResponse<{}> = await apiClient.post('/auth/logout/')
+  
+  return res;
+}
+
 // User
 export async function getUserService(): Promise<ApiResponse<User>> {
-  const res: ApiResponse<User> = await apiClient.get('/auth/user/')
+  const res: ApiResponse<User> = await apiClient.get('/users/me')
   
   return res;
 }
