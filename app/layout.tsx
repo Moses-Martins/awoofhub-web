@@ -1,4 +1,3 @@
-import Header from "@/components/header/Header";
 import AppProvider from "@/providers/app-provider";
 import type { Metadata } from "next";
 import { Baloo_2, Geist, Geist_Mono, Montserrat } from "next/font/google";
@@ -40,9 +39,8 @@ export default function RootLayout({
       <body
         className={`${baloo.variable} ${montserrat.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-         <AppProvider>
-          <Header />
-          {children}
+        <AppProvider>
+            {children}
         </AppProvider>
       </body>
     </html>
