@@ -8,17 +8,17 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 type GetOffersByCategoryOptions = {
     categorySlug: string,
     page?: number,
-    limit?: number,
+    limit: number,
 };
 
-export const getOffersByCategorySlug = ({ categorySlug, page = 1, limit = 8 }: GetOffersByCategoryOptions): Promise<ApiResponse<Offer[]>> => {
+export const getOffersByCategorySlug = ({ categorySlug, page = 1, limit }: GetOffersByCategoryOptions): Promise<ApiResponse<Offer[]>> => {
     return OfferService.getOffersByCategorySlug(categorySlug, page, limit);
 };
 
-export const useOffersByCategorySlug = ({ categorySlug, limit }: GetOffersByCategoryOptions) => {
+export const useOffersByCategorySlug = ({ categorySlug, limit = 8 }: GetOffersByCategoryOptions) => {
 
      const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
-        queryKey: ['offers', categorySlug],
+        queryKey: ['offers', categorySlug, limit],
         queryFn: ({ pageParam = 1 }) => getOffersByCategorySlug({ categorySlug, page: pageParam, limit }),
 
         getNextPageParam: (lastPage) => {

@@ -14,7 +14,7 @@ interface Props {
 export default function CategorySection({ category }: Props) {
 
     const { data, isFetching, isFetched } = useOffersByCategory({
-        categoryId: category.id,
+        categoryId: category.id, page: 1, limit: 4
     });
 
     return (

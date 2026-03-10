@@ -8,7 +8,7 @@ export async function createOffer(payload: CreateOfferData): Promise<ApiResponse
   return res;
 }
 
-export async function getAllOffers(page: number = 1, limit: number = 10): Promise<ApiResponse<Offer[]>> {
+export async function getAllOffers(page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/', {
     params: { page, limit },
   })
@@ -23,7 +23,7 @@ export async function getOfferById(id: string): Promise<ApiResponse<Offer>> {
 }
 
 
-export async function getOffersByCategory(id: string, page: number = 1, limit: number = 4): Promise<ApiResponse<Offer[]>> {
+export async function getOffersByCategory(id: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/id/${id}`, {
     params: { page, limit },
   })
@@ -32,7 +32,7 @@ export async function getOffersByCategory(id: string, page: number = 1, limit: n
 }
 
 
-export async function getOffersByCategorySlug(slug: string, page: number = 1, limit: number = 10): Promise<ApiResponse<Offer[]>> {
+export async function getOffersByCategorySlug(slug: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/slug/${slug}`, {
     params: { page, limit },
   })
@@ -41,7 +41,7 @@ export async function getOffersByCategorySlug(slug: string, page: number = 1, li
 }
 
 
-export async function getRandomOffers(page: number = 1, limit: number = 10): Promise<ApiResponse<Offer[]>> {
+export async function getRandomOffers(page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/', {
     params: { page, limit },
   })
@@ -49,7 +49,7 @@ export async function getRandomOffers(page: number = 1, limit: number = 10): Pro
   return res;
 }
 
-export async function searchOffers(query: string, page: number = 1, limit: number = 10): Promise<ApiResponse<Offer[]>> {
+export async function searchOffers(query: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/search/', {
     params: { query, page, limit },
   })

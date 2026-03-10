@@ -28,7 +28,7 @@ export default function CollectionPage({ params }: Props) {
     const { data: categories } = useCategory();
 
     const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
-        categorySlug: slug,
+        categorySlug: slug, limit: 8, 
     });
 
     const allOffers = useMemo(() => {

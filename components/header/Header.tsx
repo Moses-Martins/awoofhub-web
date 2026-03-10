@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import SearchBar from '../searchbar/SearchBar';
+import SearchInput from '../searchbar/SearchInput';
 import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 
@@ -20,7 +20,7 @@ export default function Header() {
                 </Link>
 
                 <div className="flex items-center px-8">
-                    <SearchBar onSubmit={handleSearchSubmit} />
+                    <SearchInput />
                 </div>
 
                 <div className="flex justify-end">
