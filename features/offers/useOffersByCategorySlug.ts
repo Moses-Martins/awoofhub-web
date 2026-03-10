@@ -1,22 +1,25 @@
+'use client'
 import OfferService from '@/services/offer-service';
 import { ApiResponse } from '@/types/api-response';
 import { Offer } from '@/types/offer';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 
-type GetOffersOptions = {
+type GetOffersByCategoryOptions = {
+    categorySlug: string,
     page?: number,
     limit: number,
 };
 
-export const getOffers = ({ page = 1, limit }: GetOffersOptions): Promise<ApiResponse<Offer[]>> => {
-    return OfferService.getAllOffers(page, limit);
+export const getOffersByCategorySlug = ({ categorySlug, page = 1, limit }: GetOffersByCategoryOptions): Promise<ApiResponse<Offer[]>> => {
+    return OfferService.getOffersByCategorySlug(categorySlug, page, limit);
 };
 
-export const useOffers = ({ limit = 8 }: GetOffersOptions) => {
-    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
-        queryKey: ['offers'],
-        queryFn: ({ pageParam = 1 }) => getOffers({ page: pageParam, limit }),
+export const useOffersByCategorySlug = ({ categorySlug, limit = 8 }: GetOffersByCategoryOptions) => {
+
+     const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
+        queryKey: ['offers', categorySlug, limit],
+        queryFn: ({ pageParam = 1 }) => getOffersByCategorySlug({ categorySlug, page: pageParam, limit }),
 
         getNextPageParam: (lastPage) => {
             if (!lastPage.meta) return undefined;
@@ -34,7 +37,8 @@ export const useOffers = ({ limit = 8 }: GetOffersOptions) => {
         data,
         fetchNextPage,
         hasNextPage,
-        isFetching,
+        isError, 
+        error,
         isFetchingNextPage
     };
 };

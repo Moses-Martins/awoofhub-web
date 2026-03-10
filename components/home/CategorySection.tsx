@@ -1,4 +1,5 @@
 'use client'
+import { OfferErrorComponent } from "@/app/categories/[slug]/page";
 import { useOffersByCategory } from "@/features/offers/useOffersByCategory";
 import { Category } from "@/types/category";
 import Link from 'next/link';
@@ -13,7 +14,7 @@ interface Props {
 export default function CategorySection({ category }: Props) {
 
     const { data, isFetching, isFetched } = useOffersByCategory({
-        categoryId: category.id,
+        categoryId: category.id, page: 1, limit: 4
     });
 
     return (
@@ -24,14 +25,14 @@ export default function CategorySection({ category }: Props) {
                 </h3>
 
                 <Link
-                    href={`/categories/${category.name}`}
+                    href={`/categories/${category.slug}`}
                     className="text-orange-600 font-medium flex items-center hover:underline"
                 >
                     View all
                 </Link>
             </div>
 
-            <ErrorBoundary fallback={<ErrorComponent />}>
+            <ErrorBoundary fallback={<OfferErrorComponent />}>
                 {isFetching && <OfferListSkeleton number={4} />}
                 {!isFetching && data.length === 0 && (
                     <p className="text-gray-500">No offers available.</p>
@@ -44,15 +45,3 @@ export default function CategorySection({ category }: Props) {
     );
 }
 
-
-function ErrorComponent() {
-
-    return (
-        <div className="flex flex-col items-center justify-center min-h-[50vh]">
-            <h2 className="text-xl font-bold">Oops! Something went wrong</h2>
-            <p className="mt-2 text-gray-600">
-                We couldn&apos;t load the offers. Please try again later.
-            </p>
-        </div>
-    );
-};

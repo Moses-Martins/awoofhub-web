@@ -22,6 +22,7 @@ export interface UpdateCategoryData {
 export interface Category {
     id: string;
     name: string;
+    slug: string;
     createdAt: string;
 };
 

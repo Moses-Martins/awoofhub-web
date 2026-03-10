@@ -10,7 +10,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   const onSuccess = () => {
-    const redirect = "/dashboard";
+    const redirect = "/";
     router.push(redirect);
   }
 
