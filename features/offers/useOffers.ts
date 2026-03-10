@@ -5,11 +5,11 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 
 type GetOffersOptions = {
-    page: number,
+    page?: number,
     limit: number,
 };
 
-export const getOffers = ({ page, limit }: GetOffersOptions): Promise<ApiResponse<Offer[]>> => {
+export const getOffers = ({ page = 1, limit }: GetOffersOptions): Promise<ApiResponse<Offer[]>> => {
     return OfferService.getAllOffers(page, limit);
 };
 
