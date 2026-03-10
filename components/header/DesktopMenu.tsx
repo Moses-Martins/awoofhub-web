@@ -122,7 +122,7 @@ export default function DesktopMenu() {
 
                                     {/* Logout - Special Styling */}
                                     <li>
-                                        <button onClick={() => submit()} className="w-full flex items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors text-primary">
+                                        <button onClick={() => submit()} className="cursor-pointer w-full flex items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors text-primary">
                                             <FiLogOut className="text-xl" />
                                             <span className="text-[20px] font-medium">Logout</span>
                                         </button>

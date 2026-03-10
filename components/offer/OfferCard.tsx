@@ -17,7 +17,7 @@ export default function OfferCard({ offer }: Props) {
         {/* Card Image & Wishlist */}
         <div className="relative mb-6 mt-5 flex justify-center items-center h-48 bg-white">
           <button className="absolute top-[-25] right-0 p-1 text-gray-400 hover:text-red-500 transition-colors">
-            <Heart size={30} />
+            <Heart size={27} />
           </button>
           <Image
             src={offer.imageUrl}

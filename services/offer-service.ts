@@ -23,12 +23,22 @@ export async function getOfferById(id: string): Promise<ApiResponse<Offer>> {
 }
 
 
-export async function getOffersByCategory(id: string): Promise<ApiResponse<Offer[]>> {
-  const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/${id}`)
+export async function getOffersByCategory(id: string, page: number = 1, limit: number = 4): Promise<ApiResponse<Offer[]>> {
+  const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/id/${id}`, {
+    params: { page, limit },
+  })
 
   return res;
 }
 
+
+export async function getOffersByCategorySlug(slug: string, page: number = 1, limit: number = 10): Promise<ApiResponse<Offer[]>> {
+  const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/slug/${slug}`, {
+    params: { page, limit },
+  })
+
+  return res;
+}
 
 
 export async function getRandomOffers(page: number = 1, limit: number = 10): Promise<ApiResponse<Offer[]>> {
@@ -73,6 +83,7 @@ const OfferService = {
   getAllOffers,
   getOfferById,
   getOffersByCategory,
+  getOffersByCategorySlug,
   getRandomOffers,
   searchOffers,
   filterOffers,
