@@ -84,7 +84,7 @@ export default function CollectionPage({ params }: Props) {
 
                 {/* Infinite Scroll Trigger */}
                 <div ref={ref} className="h-10 flex items-center justify-center mt-6">
-                    {isFetchingNextPage && <Spinner className="p-6 w-25 h-25 text-primary" data-testid="loading" />}
+                    {isFetchingNextPage && <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />}
                     {!hasNextPage && <p>No more offers</p>}
                 </div>
 

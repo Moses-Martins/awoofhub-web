@@ -30,7 +30,7 @@ function SearchResults({ searchParams }: SearchProps) {
 
 
     return (
-        <section className="pt-14">
+        <section className="pt-14 px-6">
             {/* Pagination */}
             {/* Offers List */}
             <div>
