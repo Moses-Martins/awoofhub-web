@@ -1,57 +1,115 @@
 import Image from 'next/image';
+import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaYoutube } from "react-icons/fa6";
+import { RiInstagramFill } from "react-icons/ri";
 
 export default function Footer() {
-  return (
-    <footer className="bg-black text-white py-10 px-6">
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+  const currentYear = new Date().getFullYear();
 
-        {/* Logo and Tagline */}
-        <div className="flex flex-col gap-4">
-          <Image
-            src="/Logo.png"
-            alt="Company Logo"
-            width={500}
-            height={500}
-            priority
-            className="w-40 h-auto"
-          />
-          <p className="text-slate-400 text-sm max-w-[200px]">
-            The marketplace where deals find customers.
+  const footerLinks = {
+    help: ["Return & Order", "Cancellations", "FAQ", "How it works", "Contact Us", "Support Center"],
+    quickLinks: ["Privacy Policy", "Terms & Conditions", "Business Registration", "Advertise with us", "Become an Affiliate"],
+    forBusiness: ["Post a Deal", "Pricing", "Business Registration"],
+    company: ["Contact Us", "About Us", "Careers"]
+  };
+
+  return (
+    <footer className="bg-black text-white py-10 px-6 md:px-12 lg:px-10 font-sans">
+      <div className="max-w-[1440px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-14 gap-8 mb-16">
+
+          {/* Brand Column */}
+          <div className="lg:col-span-3">
+            <Image
+              src="/LogoWhite.png"
+              alt="Logo"
+              width={500}
+              height={500}
+              priority
+              className="w-40 h-auto"
+            />
+            <p className="text-gray-400 text-sm mt-2 mb-6 max-w-xs">
+              The marketplace where deals find customers
+            </p>
+            <div className="flex gap-5">
+              <FaTwitter className="w-5 h-5 cursor-pointer hover:text-gray-400 transition-colors" />
+              <FaFacebook className="w-5 h-5 cursor-pointer hover:text-gray-400 transition-colors" />
+              <FaLinkedinIn className="w-5 h-5 cursor-pointer hover:text-gray-400 transition-colors" />
+              <RiInstagramFill className="w-5 h-5 cursor-pointer hover:text-gray-400 transition-colors" />
+              <FaYoutube className="w-5 h-5 cursor-pointer hover:text-gray-400 transition-colors" />
+            </div>
+          </div>
+
+          {/* Links Columns */}
+          <div className="lg:col-span-2">
+            <h3 className="font-semibold mb-6">Help</h3>
+            <ul className="space-y-4 text-sm text-gray-300">
+              {footerLinks.help.map(link => <li key={link} className="hover:text-white cursor-pointer">{link}</li>)}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h3 className="font-semibold mb-6">Quick Link</h3>
+            <ul className="space-y-4 text-sm text-gray-300">
+              {footerLinks.quickLinks.map(link => <li key={link} className="hover:text-white cursor-pointer">{link}</li>)}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h3 className="font-semibold mb-6">For Business</h3>
+            <ul className="space-y-4 text-sm text-gray-300">
+              {footerLinks.forBusiness.map(link => <li key={link} className="hover:text-white cursor-pointer">{link}</li>)}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h3 className="font-semibold mb-6">Company</h3>
+            <ul className="space-y-4 text-sm text-gray-300">
+              {footerLinks.company.map(link => <li key={link} className="hover:text-white cursor-pointer">{link}</li>)}
+            </ul>
+          </div>
+
+          {/* App Download Column */}
+          <div className="lg:col-span-3">
+            <h3 className="text-xl font-semibold mb-2">Download App</h3>
+            <p className="text-xs text-gray-400 mb-4">More discounts for New App User Only</p>
+            <div className="flex items-start gap-3">
+              {/* QR Code Placeholder */}
+              <Image
+                src="/QrCode.png"
+                alt="QrCode"
+                width={500}
+                height={500}
+                className="w-20 h-20"
+              />
+              <div className="flex flex-col gap-2">
+                <Image
+                  src="/getPlayStore.png"
+                  alt="PlayStore"
+                  width={500}
+                  height={500}
+                  className="w-30 h-9"
+                />
+                <Image
+                  src="/getAppStore.png"
+                  alt="AppStore"
+                  width={500}
+                  height={500}
+                  className="w-30 h-9"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 pt-8 text-center">
+          <p className="text-xs text-gray-400">
+            All right reserved &copy;{currentYear} AwoofHub.com.
           </p>
         </div>
-
-        {/* For Business Column */}
-        <div>
-          <h4 className="font-bold mb-4">For Business</h4>
-          <ul className="flex flex-col gap-4 text-slate-400 text-sm">
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Post a Deal</li>
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Pricing</li>
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Analytics</li>
-          </ul>
-        </div>
-
-        {/* For Users Column */}
-        <div>
-          <h4 className="font-bold mb-4">For Users</h4>
-          <ul className="flex flex-col gap-4 text-slate-400 text-sm">
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Browse Deals</li>
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Categories</li>
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">How it Works</li>
-          </ul>
-        </div>
-
-        {/* Company Column */}
-        <div>
-          <h4 className="font-bold mb-4">Company</h4>
-          <ul className="flex flex-col gap-4 text-slate-400 text-sm">
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">About Us</li>
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Contact</li>
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Terms of Service</li>
-            <li className="hover:text-[#FF5C00] cursor-pointer transition-colors">Privacy Policy</li>
-          </ul>
-        </div>
-
       </div>
     </footer>
   );
-}
+};
+

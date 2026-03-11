@@ -1,16 +1,11 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import SearchInput from '../searchbar/SearchInput';
 import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 
 export default function Header() {
-    const router = useRouter();
-    const handleSearchSubmit = (searchText: string) => {
-        router.push(`/search?keyword=${searchText}`);
-    };
 
     return (
         <header className="sticky top-0 left-0 z-[99] bg-white shadow-lg shadow-black/5 lg:p-0">
