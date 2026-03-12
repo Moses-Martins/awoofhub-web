@@ -3,6 +3,7 @@ import { useOffersByCategory } from "@/features/offers/useOffersByCategory";
 import { Category } from "@/types/category";
 import Link from 'next/link';
 import { ErrorBoundary } from "react-error-boundary";
+import { FiArrowRight } from "react-icons/fi";
 import { OfferError } from "../offer/OfferError";
 import OfferList from "../offer/OfferList";
 import OfferListSkeleton from "../offer/OfferListSkeleton";
@@ -26,9 +27,11 @@ export default function CategorySection({ category }: Props) {
 
                 <Link
                     href={`/categories/${category.slug}`}
-                    className="text-orange-600 font-medium flex items-center hover:underline"
+                    className="group inline-flex items-center gap-2 text-orange-600 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                    aria-label={`View all offers in ${category.name}`}
                 >
-                    View all
+                    <span>View all</span>
+                    <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
             </div>
 

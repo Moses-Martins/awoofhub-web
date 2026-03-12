@@ -1,8 +1,8 @@
 export interface CreateOfferData {
     title: string;
+    highlight: string;
     description: string;
     category: string;
-    price?: number;
     imageUrl?: string;
     location?: string;
     endDate: string;
@@ -11,10 +11,10 @@ export interface CreateOfferData {
 
 export interface UpdateOfferData {
     title?: string;
+    highlight?: string
     description?: string;
     category?: string;
-    price?: number;
-    image_url?: string;
+    imageUrl?: string;
     location?: string;
 };
 
@@ -38,5 +38,7 @@ export interface Offer {
     approvedAt: string | null;
     createdAt: string;
     endDate: string;
+    avgRating: number,
+    reviewCount: number,
 };
 

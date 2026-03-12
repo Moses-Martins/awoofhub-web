@@ -39,8 +39,8 @@ export default function OfferCard({ offer }: Props) {
         <div className="flex items-center gap-1 mb-4">
           <Rating
             name="readonly"
-            value={3}
-            readOnly
+            value={offer.avgRating}
+            readOnly 
             sx={{
               '& .MuiRating-icon': {
                 marginRight: '-7px', // tighter spacing
@@ -53,7 +53,7 @@ export default function OfferCard({ offer }: Props) {
               },
             }}
           />
-          <span className="text-[12px] text-gray-400 ml-1">(54)</span>
+          <span className="text-[15px] text-gray-400 ml-1">({offer.reviewCount})</span>
         </div>
       </div>
 
