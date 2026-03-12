@@ -1,9 +1,9 @@
 'use client'
-import { OfferErrorComponent } from "@/app/categories/[slug]/page";
 import { useOffersByCategory } from "@/features/offers/useOffersByCategory";
 import { Category } from "@/types/category";
 import Link from 'next/link';
 import { ErrorBoundary } from "react-error-boundary";
+import { OfferError } from "../offer/OfferError";
 import OfferList from "../offer/OfferList";
 import OfferListSkeleton from "../offer/OfferListSkeleton";
 
@@ -32,7 +32,7 @@ export default function CategorySection({ category }: Props) {
                 </Link>
             </div>
 
-            <ErrorBoundary fallback={<OfferErrorComponent />}>
+            <ErrorBoundary fallback={<OfferError />}>
                 {isFetching && <OfferListSkeleton number={4} />}
                 {!isFetching && data.length === 0 && (
                     <p className="text-gray-500">No offers available.</p>

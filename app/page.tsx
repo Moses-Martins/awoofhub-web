@@ -6,14 +6,19 @@ import Loading from "@/components/loading/Loading";
 import { useCategory } from "@/features/category/useCategories";
 
 export default function Home() {
-  
-  const {data, isFetching, isFetched } = useCategory()
+
+  const { data, isFetching, isFetched } = useCategory()
 
   return (
     <>
       <Hero />
       {isFetching && <Loading />}
-      {isFetched && <FeaturedOffers categories={data} />}
+      {isFetched && data && data.length > 0 && (
+        <FeaturedOffers categories={data} />
+      )}
+      {isFetched && (!data || data.length === 0) && (
+        <p className="text-center text-gray-500">No offers available.</p>
+      )}
       <Footer />
     </>
   );

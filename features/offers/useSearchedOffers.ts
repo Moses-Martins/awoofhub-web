@@ -15,7 +15,7 @@ export const getSearchedOffers = ({ query, page = 1, limit }: GetSearchOffersOpt
 };
 
 export const useSearchedOffers = ({ query, limit = 8 }: GetSearchOffersOptions) => {
-    const {  data, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
+    const {  data, isFetchingNextPage, isFetching, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
         queryKey: ['offers', query, limit],
         queryFn: ({ pageParam = 1 }) => getSearchedOffers({ query, page: pageParam, limit }),
 
@@ -33,6 +33,7 @@ export const useSearchedOffers = ({ query, limit = 8 }: GetSearchOffersOptions) 
 
     return {
         data,
+        isFetching,
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,

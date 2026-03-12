@@ -1,5 +1,6 @@
 "use client";
 
+import { OfferError } from "@/components/offer/OfferError";
 import OfferList from "@/components/offer/OfferList";
 import { useCategory } from "@/features/category/useCategories";
 import { useOffersByCategorySlug } from "@/features/offers/useOffersByCategorySlug";
@@ -27,20 +28,21 @@ export default function CollectionPage({ params }: Props) {
 
     const { data: categories } = useCategory();
 
-    const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
-        categorySlug: slug, limit: 8, 
+    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
+        categorySlug: slug, limit: 8,
     });
 
     const allOffers = useMemo(() => {
-            return data?.pages.flatMap((page) => page.data) ?? [];
-        }, [data]);
+        return data?.pages.flatMap((page) => page.data) ?? [];
+    }, [data]);
 
 
+    // Trigger next page load when in view
     useEffect(() => {
-        if (inView && hasNextPage) {
+        if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
         }
-    }, [inView, hasNextPage, fetchNextPage]);
+    }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
 
 
     const [currentSlug, setCurrentSlug] = useState(slug);
@@ -52,8 +54,32 @@ export default function CollectionPage({ params }: Props) {
         router.push(`/categories/${newSlug}`);
     };
 
+    // Early returns make JSX cleaner
+    if (isFetching && allOffers.length === 0) {
+        return (
+            <section className="pt-14 flex justify-center">
+                <Spinner className="mt-5 w-17 h-17 text-primary" />
+            </section>
+        );
+    }
+
+    if (isError) {
+        return <div>{error?.message}</div>
+    }
+
+    if (!allOffers.length) {
+        return (
+            <section className="pt-14 px-6">
+                <p className="text-center text-gray-500">No offers found.</p>
+            </section>
+        );
+    }
+
+
+
+
     return (
-        <ErrorBoundary fallback={<OfferErrorComponent />}>
+        <ErrorBoundary fallback={<OfferError />}>
             <section className="p-6">
                 <FormControl className="w-50 h-20">
                     <InputLabel>Category</InputLabel>
@@ -71,35 +97,15 @@ export default function CollectionPage({ params }: Props) {
                     </Select>
                 </FormControl>
 
-
-                {/* Pagination */}
                 {/* Offers List */}
-                <div>
-                    {isError ? (
-                        <div>{error?.message}</div>
-                    ) : (
-                      <OfferList offers={allOffers} />
-                    )}
-                </div>
-
-                {/* Infinite Scroll Trigger */}
+                <OfferList offers={allOffers} />
                 <div ref={ref} className="h-10 flex items-center justify-center mt-6">
-                    {isFetchingNextPage && <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />}
-                    {!hasNextPage && <p>No more offers</p>}
+                    {isFetchingNextPage && (
+                        <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />
+                    )}
+                    {!hasNextPage && allOffers.length > 0 && <p className="text-center">No more offers</p>}
                 </div>
-
             </section>
         </ErrorBoundary>
-    );
-}
-
-export function OfferErrorComponent() {
-    return (
-        <div className="flex flex-col items-center justify-center min-h-[50vh]">
-            <h2 className="text-xl font-bold">Oops! Something went wrong</h2>
-            <p className="mt-2 text-gray-600">
-                We couldn&apos;t load the offers. Please try again later.
-            </p>
-        </div>
     );
 }
