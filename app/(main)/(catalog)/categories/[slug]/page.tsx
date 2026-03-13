@@ -2,6 +2,7 @@
 
 import { OfferError } from "@/components/offers/OfferError";
 import OfferList from "@/components/offers/OfferList";
+import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import { useCategory } from "@/features/category/useCategories";
 import { useOffersByCategorySlug } from "@/features/offers/useOffersByCategorySlug";
 import { Spinner } from "@chakra-ui/react";
@@ -57,8 +58,8 @@ export default function CollectionPage({ params }: Props) {
     // Early returns make JSX cleaner
     if (isFetching && allOffers.length === 0) {
         return (
-            <section className="pt-14 flex justify-center">
-                <Spinner className="mt-5 w-17 h-17 text-primary" />
+            <section className="pt-14 px-6">
+                <OfferListSkeleton number={4} />
             </section>
         );
     }
