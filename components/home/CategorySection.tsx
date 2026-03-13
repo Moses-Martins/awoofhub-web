@@ -1,9 +1,10 @@
 'use client'
-import { OfferErrorComponent } from "@/app/categories/[slug]/page";
 import { useOffersByCategory } from "@/features/offers/useOffersByCategory";
 import { Category } from "@/types/category";
 import Link from 'next/link';
 import { ErrorBoundary } from "react-error-boundary";
+import { FiArrowRight } from "react-icons/fi";
+import { OfferError } from "../offer/OfferError";
 import OfferList from "../offer/OfferList";
 import OfferListSkeleton from "../offer/OfferListSkeleton";
 
@@ -18,7 +19,7 @@ export default function CategorySection({ category }: Props) {
     });
 
     return (
-        <section id={category.id} className="mb-16">
+        <section id={category.id} className="mb-16 px-6 md:px-12">
             <div className="flex justify-between items-center">
                 <h3 className="text-2xl font-bold mb-6">
                     {category.name}
@@ -26,13 +27,15 @@ export default function CategorySection({ category }: Props) {
 
                 <Link
                     href={`/categories/${category.slug}`}
-                    className="text-orange-600 font-medium flex items-center hover:underline"
+                    className="group inline-flex items-center gap-2 text-orange-600 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                    aria-label={`View all offers in ${category.name}`}
                 >
-                    View all
+                    <span>View all</span>
+                    <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
             </div>
 
-            <ErrorBoundary fallback={<OfferErrorComponent />}>
+            <ErrorBoundary fallback={<OfferError />}>
                 {isFetching && <OfferListSkeleton number={4} />}
                 {!isFetching && data.length === 0 && (
                     <p className="text-gray-500">No offers available.</p>

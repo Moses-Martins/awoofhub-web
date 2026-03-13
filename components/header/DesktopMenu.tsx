@@ -62,13 +62,13 @@ export default function DesktopMenu() {
                     </li>
 
                     <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
-                        <Link href="/message">
+                        <Link href="/wishlist">
                             <PiHeart size={28} />
                         </Link>
                     </li>
 
                     <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
-                        <Link href="/message">
+                        <Link href="/notifcations">
                             <IoNotificationsOutline size={28} />
                         </Link>
                     </li>

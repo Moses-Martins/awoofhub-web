@@ -17,7 +17,7 @@ export const getOffersByCategorySlug = ({ categorySlug, page = 1, limit }: GetOf
 
 export const useOffersByCategorySlug = ({ categorySlug, limit = 8 }: GetOffersByCategoryOptions) => {
 
-     const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
+     const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
         queryKey: ['offers', categorySlug, limit],
         queryFn: ({ pageParam = 1 }) => getOffersByCategorySlug({ categorySlug, page: pageParam, limit }),
 
@@ -35,6 +35,7 @@ export const useOffersByCategorySlug = ({ categorySlug, limit = 8 }: GetOffersBy
 
     return {
         data,
+        isFetching,
         fetchNextPage,
         hasNextPage,
         isError, 
