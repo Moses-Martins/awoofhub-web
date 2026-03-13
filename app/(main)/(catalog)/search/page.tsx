@@ -5,8 +5,8 @@ import { Suspense, use, useEffect, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useInView } from "react-intersection-observer";
 
-import { OfferError } from "@/components/offer/OfferError";
-import OfferList from "@/components/offer/OfferList";
+import { OfferError } from "@/components/offers/OfferError";
+import OfferList from "@/components/offers/OfferList";
 import { useSearchedOffers } from "@/features/offers/useSearchedOffers";
 
 interface SearchProps {

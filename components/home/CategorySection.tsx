@@ -4,9 +4,9 @@ import { Category } from "@/types/category";
 import Link from 'next/link';
 import { ErrorBoundary } from "react-error-boundary";
 import { FiArrowRight } from "react-icons/fi";
-import { OfferError } from "../offer/OfferError";
-import OfferList from "../offer/OfferList";
-import OfferListSkeleton from "../offer/OfferListSkeleton";
+import { OfferError } from "../offers/OfferError";
+import OfferList from "../offers/OfferList";
+import OfferListSkeleton from "../offers/OfferListSkeleton";
 
 interface Props {
     category: Category;
@@ -19,7 +19,7 @@ export default function CategorySection({ category }: Props) {
     });
 
     return (
-        <section id={category.id} className="mb-16 px-6 md:px-12">
+        <section id={category.id} className="pb-16 px-6 md:px-12">
             <div className="flex justify-between items-center">
                 <h3 className="text-2xl font-bold mb-6">
                     {category.name}

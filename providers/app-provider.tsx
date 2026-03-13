@@ -1,5 +1,4 @@
 'use client';
-import Header from '@/components/header/Header';
 import { Notifications } from '@/components/notifications/Notifications';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactNode } from 'react';
@@ -13,7 +12,6 @@ export default function AppProvider({ children }: { children: ReactNode }) {
             <ErrorBoundaryProvider>
                 <ReactQueryProvider>
                     <ReactQueryDevtools initialIsOpen={false} />
-                    <Header />
                     {children}
                 </ReactQueryProvider>
             </ErrorBoundaryProvider>

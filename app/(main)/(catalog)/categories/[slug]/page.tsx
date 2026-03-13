@@ -1,7 +1,7 @@
 "use client";
 
-import { OfferError } from "@/components/offer/OfferError";
-import OfferList from "@/components/offer/OfferList";
+import { OfferError } from "@/components/offers/OfferError";
+import OfferList from "@/components/offers/OfferList";
 import { useCategory } from "@/features/category/useCategories";
 import { useOffersByCategorySlug } from "@/features/offers/useOffersByCategorySlug";
 import { Spinner } from "@chakra-ui/react";

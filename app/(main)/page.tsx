@@ -17,7 +17,7 @@ export default function Home() {
         <FeaturedOffers categories={data} />
       )}
       {isFetched && (!data || data.length === 0) && (
-        <p className="text-center text-gray-500">No offers available.</p>
+        <p className="text-center pb-10 text-gray-500">No offers available.</p>
       )}
       <Footer />
     </>
