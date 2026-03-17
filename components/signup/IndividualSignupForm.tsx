@@ -5,11 +5,13 @@ import { RoleContext } from '@/context/RoleContext';
 import { useSignup } from '@/features/auth/useSignup';
 import { SignupData } from '@/types/auth';
 import { SignupFormProps } from '@/types/form-props';
-import { Mail, User } from 'lucide-react';
+import { Building2, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
+
+type IndividualSignupData = SignupData & { confirmPassword: string };
 
 
 export const IndividualSignup = ({
@@ -19,41 +21,49 @@ export const IndividualSignup = ({
 
     const { setRole } = useContext(RoleContext);
 
-    const { register, handleSubmit, formState } = useForm<SignupData>();
+    const { register, handleSubmit, formState, watch } = useForm<IndividualSignupData>({ mode: 'onChange' });
 
-    const onSubmit = (data: SignupData) => {
-        signup.submit(data);
+    const onSubmit = (data: IndividualSignupData) => {
+        const { confirmPassword: _, ...signupData } = data;
+        signup.submit(signupData);
     };
+ 
 
     return (
         <>
             <div className="text-left">
                 <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900">
-                    Welcome back, <span className="text-orange-600">deal hunter!</span>
+                   Join the <span className="text-orange-600">deal hunter!</span>
                 </h1>
-                <p className="font-baloo mt-3 text-lg sm:text-2xl text-slate-600">
-                    Sign in to access your saved deals and <br /> personalized recommendations.
+                <p className="font-baloo mt-3 text-lg sm:text-xl text-slate-600">
+                    Create a free account to save deals and get <br /> personalized recommendations.
                 </p>
             </div>
 
             <form className="mt-7 space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <InputField
                     label="Full Name"
-                    placeholder="What should we call you?"
+                    placeholder="Enter your name"
                     compulsory={true}
                     type="text"
-                    icon={<User size={18} color={"gray"} />}
-                    {...register('name')}
+                    icon={<Building2 size={18} color={"#FF5700"} />}
+                    {...register('name', { required: 'Full name is required' })}
                     error={formState.errors['name']}
                 />
 
                 <InputField
                     label="Email Address"
-                    placeholder="doejohn@example.com"
+                    placeholder="johndebby@gmail.com"
                     compulsory={true}
                     type="email"
-                    icon={<Mail size={18} color={"gray"} />}
-                    {...register('email')}
+                    icon={<Mail size={18} color={"#FF5700"} />}
+                    {...register('email', {
+                        required: 'Email is required',
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: 'Invalid email address',
+                        },
+                    })}
                     error={formState.errors['email']}
                 />
 
@@ -61,12 +71,28 @@ export const IndividualSignup = ({
                     label="Password"
                     type="password"
                     compulsory={true}
-                    placeholder="Create a password"
+                    placeholder="johnDEbby1234%@"
+                    icon={<Lock size={18} color={"#FF5700"} />}
                     {...register('password', {
                         required: 'Password field cannot be empty',
                     })}
                     error={formState.errors['password']}
                 />
+
+                <InputField
+                    label="Confirm Password"
+                    type="password"
+                    compulsory={true}
+                    placeholder="JohnDEbby1234%@"
+                    icon={<Lock size={18} color={"#FF5700"} />}
+                    {...register('confirmPassword', {
+                        required: 'Please confirm your password',
+                        validate: (value) =>
+                            value === watch('password') || 'Passwords do not match',
+                    })}
+                    error={formState.errors['confirmPassword']}
+                />
+
 
                 <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
@@ -87,7 +113,7 @@ export const IndividualSignup = ({
                             className="h-5 w-5 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
                         />
                         <label htmlFor="deal" className="text-xs text-slate-600">
-                            Send me the best deals weekly (you can unsubscribe anytime)
+                            Send me the <span className="text-orange-600">best deals weekly</span>  (you can unsubscribe anytime)
                         </label>
                     </div>
                 </div>
@@ -95,12 +121,15 @@ export const IndividualSignup = ({
                 <div>
                     <Button
                         isLoading={signup.isPending}
-                        isDisabled={signup.isPending}
+                        isDisabled={!formState.isValid || signup.isPending}
                         type="submit"
                     >
-                        Sign In
+                       Create Account
                     </Button>
                 </div>
+                <Button type="button" variant="outline">
+                    Continue as a guest
+                </Button>
 
                 <div className="relative my-4 w-full max-w-xs sm:max-w-lg">
                     <div className="absolute inset-0 flex items-center">
@@ -112,16 +141,16 @@ export const IndividualSignup = ({
                 </div>
 
 
-                <button className="w-full flex items-center justify-center gap-3 border border-gray-300 bg-white py-2.5 rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+                <Button type="button" variant="outline">
                     <FcGoogle size={20} />
-                    <span className="text-gray-700 font-medium">Continue with Google</span>
-                </button>
+                    Continue with Google
+                </Button>
 
 
                 <div className="text-center space-y-2 pb-17">
                     <p className="text-gray-600 text-sm">
                         Already have an account?{' '}
-                        <Link onClick={() => setRole("Deal Seekers")} href="/signin" className="text-[#FF5700] font-semibold hover:underline">Sign in</Link>
+                        <Link onClick={() => setRole("Deal Seekers")} href="/login" className="text-[#FF5700] font-semibold hover:underline">Sign in</Link>
                     </p>
                 </div>
 

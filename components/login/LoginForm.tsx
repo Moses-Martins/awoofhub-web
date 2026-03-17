@@ -7,41 +7,95 @@ import { LoginData, SignupData } from '@/types/auth';
 import { LoginFormProps } from '@/types/form-props';
 import { Mail } from 'lucide-react';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
+import { AlertTriangle, X } from 'lucide-react';
 
 
 export const LoginForm = ({
     onSuccess,
 }: LoginFormProps) => {
     const login = useLogin({ onSuccess });
+    const [showError, setShowError] =useState(false);
+
+    useEffect(() => {
+        if (login.isError) setShowError (true);
+    }, [login.isError]);
 
     const { setRole } = useContext(RoleContext);
 
-    const { register, handleSubmit, formState } = useForm<SignupData>();
+    const { register, handleSubmit, formState, reset } = useForm<SignupData>();
 
     const onSubmit = (data: LoginData) => {
         login.submit(data);
     };
 
     return (
-
         <div className="w-100 mx-auto">
             <div className="text-left">
                 <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900">
                     Welcome back, <span className="text-orange-600">deal hunter!</span>
                 </h1>
                 <p className="font-baloo mt-3 text-lg sm:text-2xl text-slate-600">
-                    Sign in to access your saved deals and <br /> personalized recommendations.
+                    Manage your offers or save offers and get personalised recommendations
                 </p>
             </div>
+
+            {/* Error Popup */}
+{showError && (
+    <div className="fixed top-6 right-6 z-50 w-80  bg-white rounded-xl shadow-xl border border-gray-100 p-4 items-center">
+        {/* Header */}
+        <div className="flex items-start justify-between gap-2">
+            <div className="flex items-center gap-2">
+                <AlertTriangle size={18} className="text-orange-600 shrink-0 mt-0.5" />
+                <p className="font-bold text-gray-900 text-sm leading-tight">
+                    Couldn&apos;t log into your account!
+                </p>
+            </div>
+            <button
+                type="button"
+                onClick={() => setShowError(false)}
+                className="text-gray-400 hover:text-gray-600"
+            >
+                <X size={16} />
+            </button>
+        </div>
+
+        {/* Error message */}
+        <p className="mt-1 ml-6 text-sm text-[#FF5700]">
+            {(login.error as Error)?.message ?? 'Incorrect password combination'}
+        </p>
+
+        {/* Action buttons */}
+        <div className="mt-4 ml-24 flex items-center gap-2">
+            <button
+                type="button"
+                onClick={() => {
+                    setShowError(false);
+                    reset();
+                }}
+                className="px-4 py-1.5 text-sm border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+                Reset
+            </button>
+            <button
+                type="button"
+                onClick={() => setShowError(false)}
+                className="px-4 py-1.5 text-sm bg-[#FF5700] text-white rounded-lg hover:bg-[#e04e00] transition-colors"
+            >
+                Try again
+            </button>
+        </div>
+    </div>
+)}
+
 
             <form className="mt-7 space-y-6" onSubmit={handleSubmit(onSubmit)}>
 
                 <InputField
                     label="Email Address"
-                    placeholder="doejohn@example.com"
+                    placeholder="debby@lookgoodcosmestics.com"
                     compulsory={true}
                     type="email"
                     icon={<Mail size={18} color={"gray"} />}
@@ -53,7 +107,7 @@ export const LoginForm = ({
                     label="Password"
                     type="password"
                     compulsory={true}
-                    placeholder="Enter your password"
+                    placeholder="********"
                     {...register('password', {
                         required: 'Password field cannot be empty',
                     })}
@@ -72,8 +126,8 @@ export const LoginForm = ({
                         </label>
                     </div>
                     <div className="flex items-center">
-                        <Link href="#" className="ml-2 text-sm text-red-500 hover:text-red-700 cursor-pointer">
-                            Forgot Password
+                        <Link href="/forgot-password " className="ml-2 text-sm text-orange-600 hover:text-red-600 cursor-pointer">
+                            Forgot Password ?
                         </Link>
                     </div>
                 </div>
@@ -98,10 +152,10 @@ export const LoginForm = ({
                 </div>
 
 
-                <button className="w-full flex items-center justify-center gap-3 border border-gray-300 bg-white py-2.5 rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+                <Button type="button" variant="outline">
                     <FcGoogle size={20} />
-                    <span className="text-gray-700 font-medium">Continue with Google</span>
-                </button>
+                    Continue with Google
+                </Button>
 
 
                 <div className="text-center space-y-2">
@@ -122,6 +176,5 @@ export const LoginForm = ({
 
             </form >
         </div>
-
     );
 };

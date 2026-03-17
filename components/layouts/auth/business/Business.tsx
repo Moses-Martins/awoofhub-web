@@ -23,7 +23,7 @@ export default function Business({ children }: AuthLayoutProps) {
                     className="w-50 h-auto mb-5 mx-4"
                 />
 
-                <div className="mx-auto w-full max-w-lg">
+                <div className="mx-auto w-full max-w-xl">
                     {children}
                 </div>
             </div>
