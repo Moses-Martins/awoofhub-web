@@ -2,13 +2,13 @@ import { apiClient } from "@/lib/api-client";
 import { ApiResponse } from "@/types/api-response";
 import { CreateOfferData, Offer, UpdateOfferData } from "@/types/offer";
 
-export async function createOffer(payload: CreateOfferData): Promise<ApiResponse<Offer>> {
+async function createOffer(payload: CreateOfferData): Promise<ApiResponse<Offer>> {
   const res: ApiResponse<Offer> = await apiClient.post('/offers/', payload)
 
   return res;
 }
 
-export async function getAllOffers(page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+async function getAllOffers(page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/', {
     params: { page, limit },
   })
@@ -16,14 +16,14 @@ export async function getAllOffers(page: number, limit: number): Promise<ApiResp
   return res;
 }
 
-export async function getOfferById(id: string): Promise<ApiResponse<Offer>> {
+async function getOfferById(id: string): Promise<ApiResponse<Offer>> {
   const res: ApiResponse<Offer> = await apiClient.get(`/offers/${id}`)
 
   return res;
 }
 
 
-export async function getOffersByCategory(id: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+async function getOffersByCategory(id: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/id/${id}`, {
     params: { page, limit },
   })
@@ -32,7 +32,7 @@ export async function getOffersByCategory(id: string, page: number, limit: numbe
 }
 
 
-export async function getOffersByCategorySlug(slug: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+async function getOffersByCategorySlug(slug: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/slug/${slug}`, {
     params: { page, limit },
   })
@@ -41,7 +41,7 @@ export async function getOffersByCategorySlug(slug: string, page: number, limit:
 }
 
 
-export async function getRandomOffers(page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+async function getRandomOffers(page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/', {
     params: { page, limit },
   })
@@ -49,7 +49,7 @@ export async function getRandomOffers(page: number, limit: number): Promise<ApiR
   return res;
 }
 
-export async function searchOffers(query: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+async function searchOffers(query: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/search/', {
     params: { query, page, limit },
   })
@@ -57,7 +57,7 @@ export async function searchOffers(query: string, page: number, limit: number): 
   return res;
 }
 
-export async function filterOffers(category: string, minPrice: number, maxPrice: number, minRating: number): Promise<ApiResponse<Offer[]>> {
+async function filterOffers(category: string, minPrice: number, maxPrice: number, minRating: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.post('/offers/filter/', {
     params: { category, minPrice, maxPrice, minRating },
   })
@@ -65,13 +65,13 @@ export async function filterOffers(category: string, minPrice: number, maxPrice:
   return res;
 }
 
-export async function updateOffer(id: string, payload: UpdateOfferData): Promise<ApiResponse<Offer>> {
+async function updateOffer(id: string, payload: UpdateOfferData): Promise<ApiResponse<Offer>> {
   const res: ApiResponse<Offer> = await apiClient.post(`/offers/${id}`, payload)
 
   return res;
 }
 
-export async function deleteOffer(id: string): Promise<ApiResponse<Offer>> {
+async function deleteOffer(id: string): Promise<ApiResponse<Offer>> {
   const res: ApiResponse<Offer> = await apiClient.post(`/offers/${id}`)
 
   return res;

@@ -40,6 +40,7 @@ export default function OfferCard({ offer }: Props) {
           <Rating
             name="readonly"
             value={offer.avgRating}
+            precision={0.1}
             readOnly 
             sx={{
               '& .MuiRating-icon': {

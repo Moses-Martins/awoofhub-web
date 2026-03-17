@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 
 import { OfferError } from "@/components/offers/OfferError";
 import OfferList from "@/components/offers/OfferList";
+import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import { useSearchedOffers } from "@/features/offers/useSearchedOffers";
 
 interface SearchProps {
@@ -35,8 +36,8 @@ function SearchResults({ searchParams }: SearchProps) {
     // Early returns make JSX cleaner
     if (isFetching && allOffers.length === 0) {
         return (
-            <section className="pt-14 flex justify-center">
-                <Spinner className="mt-5 w-17 h-17 text-primary" />
+            <section className="pt-14 px-6">
+                <OfferListSkeleton number={4} />
             </section>
         );
     }

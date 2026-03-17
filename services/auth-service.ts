@@ -18,6 +18,12 @@ export async function signupService(payload: SignupData): Promise<ApiResponse<Us
   return res;
 }
 
+export async function refreshTokenService(): Promise<ApiResponse<{}>> {
+  const res: ApiResponse<{}> = await apiClient.post('/auth/refresh/')
+  
+  return res;
+}
+
 // Logout
 export async function logoutService(): Promise<ApiResponse<{}>> {
   const res: ApiResponse<{}> = await apiClient.post('/auth/logout/')

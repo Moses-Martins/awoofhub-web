@@ -1,6 +1,5 @@
 "use client"
 import WishlistService from "@/services/wishlist-service";
-import { ApiResponse } from "@/types/api-response";
 import { Wishlist } from "@/types/wishlist";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -8,8 +7,9 @@ type AddToWishlistOptions = {
     offerId: string;
 };
 
-export const AddToWishlist = ({ offerId }: AddToWishlistOptions): Promise<ApiResponse<Wishlist>> => {
-    return WishlistService.addToWishlist(offerId);
+export const AddToWishlist =  async({ offerId }: AddToWishlistOptions): Promise<Wishlist> => {
+    const result = await WishlistService.addToWishlist(offerId);
+    return result.data
 };
 
 export const useAddToWishlist = ({ offerId }: AddToWishlistOptions) => {
