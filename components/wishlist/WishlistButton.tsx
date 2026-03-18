@@ -5,10 +5,11 @@ import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 interface Props {
     offerId: string;
-    button?: boolean;
+    size: number;
+    style?: string;
 }
 
-export default function WishlistButton({ offerId, button }: Props) {
+export default function WishlistButton({ offerId, size, style = "" }: Props) {
 
     const router = useRouter();
 
@@ -23,24 +24,10 @@ export default function WishlistButton({ offerId, button }: Props) {
         toggleWishlist()
     }
 
-    if (button) {
-    return (
-        <button
-            onClick={handleWishlistChange}
-            className={`w-40 cursor-pointer text-sm font-bold px-4 py-1.5 rounded-sm border transition-all 
-            ${isFavorite 
-                ? "bg-[#FF7D45] text-white border-[#FF7D45]" 
-                : "border-[#FF7D45] text-[#FF7D45]"
-            }`}
-        >
-            {isFavorite ? "Added to Wishlist" : "Add to Wishlist"}
-        </button>
-    );
-}
 
     return (
-        <button onClick={handleWishlistChange} className="cursor-pointer absolute top-[-25] right-0 p-1">
-            {isFavorite ? <MdFavorite className="text-red-500" size={27} /> : <MdFavoriteBorder className="text-[#59585880]" size={27} />}
+        <button onClick={handleWishlistChange} className={`cursor-pointer ${style}`}>
+            {isFavorite ? <MdFavorite className="text-red-500" size={size} /> : <MdFavoriteBorder className="text-[#59585880]" size={size} />}
         </button>
     )
 }

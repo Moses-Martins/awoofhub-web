@@ -13,7 +13,7 @@ export default function CommentContainer({ comments }: Props) {
             <div className="space-y-0.5">
                 {comments.map(comment => (
 
-                    <div className="rounded-lg flex flex-col p-4 bg-white max-w-2xl">
+                    <div key={comment.id} className="rounded-lg flex flex-col p-4 bg-white max-w-2xl">
                         {/* Header Section */}
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full overflow-hidden">
