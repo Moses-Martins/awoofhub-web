@@ -24,7 +24,9 @@ export type InputFieldProps = {
   error?: FieldError;
   icon?: React.ReactNode;
   placeholder?: string;
-  compulsory?: boolean
+  compulsory?: boolean;
+  labelClassName?: string;
+  errorClassName?: string;
 } & Partial<
   ReturnType<UseFormRegister<Record<string, unknown>>>
 >;
@@ -38,6 +40,8 @@ export const InputField = forwardRef(
       icon,
       placeholder,
       compulsory,
+      labelClassName,
+      errorClassName,
       ...inputProps
     } = props;
 
@@ -48,7 +52,7 @@ export const InputField = forwardRef(
     return (
       <FormControl>
         {label &&
-          <FormLabel className="font-baloo text-lg">
+          <FormLabel className={`font-baloo text-lg ${labelClassName ?? ''}`}>
             {label}
             {compulsory && <span className="text-red-500"> *</span>}
           </FormLabel>}
@@ -103,7 +107,7 @@ export const InputField = forwardRef(
           </InputGroup>
         )}
         {error && (
-          <FormHelperText className="text-red-500 text-left text-xs mt-1">
+          <FormHelperText className={`text-left text-xs mt-1 ${errorClassName ?? 'text-red-500'}`}>
             {error.message}
           </FormHelperText>
         )}
