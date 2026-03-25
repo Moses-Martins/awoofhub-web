@@ -1,4 +1,4 @@
-import { useUser } from "@/features/auth/useUser";
+import { useUser } from "@/features/user/useUser";
 import { useToggleWishlist } from "@/features/wishlist/useToggleWishlist";
 import { useRouter } from "next/navigation";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";

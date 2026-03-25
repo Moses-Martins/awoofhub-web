@@ -15,7 +15,7 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-export default function OffersPage({ params }: Props) {
+export default function OfferPage({ params }: Props) {
   const { id } = use(params);
   const [ref, inView] = useInView();
   const { data: offer, isLoading } = useOffer({ id });

@@ -1,4 +1,4 @@
-import { getUserService } from '@/services/auth-service';
+import { getUserService } from '@/services/user-service';
 import { User } from '@/types/user';
 import { useQuery } from '@tanstack/react-query';
 

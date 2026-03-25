@@ -30,10 +30,3 @@ export async function logoutService(): Promise<ApiResponse<{}>> {
   
   return res;
 }
-
-// User
-export async function getUserService(): Promise<ApiResponse<User>> {
-  const res: ApiResponse<User> = await apiClient.get('/users/me')
-  
-  return res;
-}
