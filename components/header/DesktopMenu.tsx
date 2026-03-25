@@ -1,6 +1,6 @@
 'use client'
 import { useLogout } from "@/features/auth/useLogout";
-import { useUser } from "@/features/auth/useUser";
+import { useUser } from "@/features/user/useUser";
 import { capitalizeFirstLetter, firstFiveLetters } from "@/utils/truncate";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -68,7 +68,7 @@ export default function DesktopMenu() {
                     </li>
 
                     <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
-                        <Link href="/notifcations">
+                        <Link href="/notifications">
                             <IoNotificationsOutline size={28} />
                         </Link>
                     </li>

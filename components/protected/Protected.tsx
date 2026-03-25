@@ -1,5 +1,5 @@
 "use client"
-import { useUser } from '@/features/auth/useUser';
+import { useUser } from '@/features/user/useUser';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import Loading from '../loading/Loading';
@@ -16,7 +16,7 @@ export default function Protected({ children }: ProtectedProps) {
 
     useEffect(() => {
         if (!user.data && !user.isLoading) {
-            router.replace(`/signin?redirect=${pathname}`);
+            router.replace(`/login?redirect=${pathname}`);
         }
     }, [user, pathname, router]);
 

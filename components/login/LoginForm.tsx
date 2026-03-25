@@ -84,7 +84,7 @@ export const LoginForm = ({
                         isDisabled={login.isPending}
                         type="submit"
                     >
-                        Sign In
+                        Login
                     </Button>
                 </div>
 

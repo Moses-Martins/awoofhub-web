@@ -1,5 +1,5 @@
 import { useAlert } from "@/features/alert/useAlert";
-import { useUser } from "@/features/auth/useUser";
+import { useUser } from "@/features/user/useUser";
 import { Bell } from "lucide-react";
 import { useRouter } from "next/navigation";
 
