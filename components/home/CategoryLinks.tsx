@@ -1,4 +1,5 @@
 import { Category } from "@/types/category";
+import Link from "next/link";
 
 export default function CategoryLinks({ categories }: { categories: Category[] }) {
   return (
@@ -9,13 +10,13 @@ export default function CategoryLinks({ categories }: { categories: Category[] }
 
       <div className="flex gap-2 overflow-x-auto">
         {categories.map((cat) => (
-          <a
+          <Link
             key={cat.id}
             href={`#${cat.id}`}
             className="px-5 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
           >
             {cat.name}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

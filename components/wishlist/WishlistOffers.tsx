@@ -1,7 +1,7 @@
 "use client"
 import { useWishlist } from "@/features/wishlist/useWishlist";
 import Link from 'next/link';
-import OfferList from "../offer/OfferList";
+import OfferList from "../offers/OfferList";
 
 
 export default function WishlistOffers() {

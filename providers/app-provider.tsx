@@ -1,9 +1,9 @@
 'use client';
-import Header from '@/components/header/Header';
 import { Notifications } from '@/components/notifications/Notifications';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
+import { ChatProvider } from './core/chat-provider';
 import ErrorBoundaryProvider from './core/error-boundary-provider';
 import ReactQueryProvider from './core/react-query-provider';
 
@@ -23,10 +23,11 @@ export default function AppProvider({ children }: { children: ReactNode }) {
             <ErrorBoundaryProvider>
                 <ReactQueryProvider>
                     <ReactQueryDevtools initialIsOpen={false} />
-                    {!isAuthRoute && <Header />}
-                    {children}
+                    <ChatProvider>
+                        {children} 
+                    </ChatProvider>
                 </ReactQueryProvider>
             </ErrorBoundaryProvider>
         </>
     );
-}
+} 

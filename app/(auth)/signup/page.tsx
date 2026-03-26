@@ -1,6 +1,6 @@
 "use client";
 
-import RoleToggle from "@/components/layouts/auth/RoleToggle";
+import RoleToggle from "@/components/RoleToggle";
 import { Seo } from "@/components/seo/Seo";
 import { BusinessSignup } from "@/components/signup/BusinessSignupForm";
 import { IndividualSignup } from "@/components/signup/IndividualSignupForm";
