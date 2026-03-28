@@ -51,7 +51,6 @@ export default function ChatSidebar() {
                 Preview={CustomPreview}
                 setActiveChannelOnMount={false}
             />
-
         </div>
     )
 }

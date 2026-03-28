@@ -12,5 +12,5 @@ export default function Error({ reset }: { reset: () => void }) {
         Refresh page
       </button>
     </div>
-  )
+  ) 
 }

@@ -2,22 +2,16 @@
 import { Notifications } from '@/components/notifications/Notifications';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactNode } from 'react';
-import { ChatProvider } from './core/chat-provider';
-import ErrorBoundaryProvider from './core/error-boundary-provider';
-import ReactQueryProvider from './core/react-query-provider';
+import ReactQueryProvider from './react-query-provider';
 
 export default function AppProvider({ children }: { children: ReactNode }) {
     return (
         <>
             <Notifications />
-            <ErrorBoundaryProvider>
-                <ReactQueryProvider>
-                    <ReactQueryDevtools initialIsOpen={false} />
-                    <ChatProvider>
-                        {children}
-                    </ChatProvider>
-                </ReactQueryProvider>
-            </ErrorBoundaryProvider>
+            <ReactQueryProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
+                    {children}
+            </ReactQueryProvider>
         </>
 
     );

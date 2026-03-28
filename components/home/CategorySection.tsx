@@ -20,8 +20,8 @@ export default function CategorySection({ category }: Props) {
 
     return (
         <section id={category.id} className="pb-16 px-6 md:px-12">
-            <div className="flex justify-between items-center">
-                <h3 className="text-2xl font-bold mb-6">
+            <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold">
                     {category.name}
                 </h3>
 

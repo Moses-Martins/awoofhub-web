@@ -12,7 +12,7 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full shadow-sm">
             <span className="w-3 h-3 bg-orange-600 rounded-full animate-pulse"></span>
             <span className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
-              The Marketplace Where Deals Find Customers
+              The Marketplace Where Deals Find You
             </span>
           </div>
 
