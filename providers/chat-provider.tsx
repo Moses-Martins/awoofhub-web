@@ -3,11 +3,11 @@ import useInitializeChatClient from "@/features/chat/useInitializeChatClient";
 import { ReactNode } from 'react';
 import { Chat as StreamChat } from "stream-chat-react";
 
-export function ChatProvider({ children }: { children: ReactNode }) {
+export default function ChatProvider({ children }: { children: ReactNode }) {
     const chatClient = useInitializeChatClient();
 
     if (!chatClient) {
-        return <>{children}</>;
+        return <div>Loading chat...</div>;
     }
 
     return (

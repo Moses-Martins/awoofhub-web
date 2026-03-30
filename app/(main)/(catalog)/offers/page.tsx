@@ -36,7 +36,7 @@ export default function RandomOffersPage() {
             <section className="pt-14 px-6">
                 <OfferListSkeleton number={4} />
             </section>
-        );
+        ); 
     }
 
     if (isError) {

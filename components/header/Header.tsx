@@ -1,28 +1,35 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import SearchInput from '../searchbar/SearchInput';
-import DesktopMenu from './DesktopMenu';
-import MobileMenu from './MobileMenu';
+import { useState } from 'react';
+import ExpandableSearch from '../search/ExpandableSearch';
+import SearchInput from '../search/SearchInput';
+import DesktopMenu from './desktop/DesktopMenu';
+import MobileMenu from './mobile/MobileMenu';
 
 export default function Header() {
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 left-0 z-[99] bg-white shadow-lg shadow-black/5 lg:p-0">
-            <ul className="flex justify-between items-center max-w-[1440px] mx-auto h-[80px] px-8">
+        <header className="sticky top-0 left-0 z-[99] bg-white shadow-lg shadow-black/5 relative">
+            <ul className="flex justify-between items-center max-w-[1440px] mx-auto h-[70px] lg:h-[80px] px-3 lg:px-8">
                 <Link href="/">
-                    <Image src="/Logo.png" alt="Logo" width={500} height={500} priority className="w-[180px] h-auto" />
+                    <Image src="/Logo.png" alt="Logo" width={500} height={500} priority className="w-[120px] sm:w-[160px] lg:w-[180px] h-auto" />
                 </Link>
 
-                <div className="flex items-center px-8">
-                    <SearchInput />
-                </div>
+                <SearchInput />
 
-                <div className="flex justify-end">
+                <div className="flex justify-end gap-4">
+                    <ExpandableSearch onOpen={() => setIsSearchOpen(true)} />
                     <DesktopMenu />
                     <MobileMenu />
                 </div>
             </ul>
+            <ExpandableSearch
+                isOverlay
+                isOpen={isSearchOpen}
+                onClose={() => setIsSearchOpen(false)}
+            />
         </header>
     )
 

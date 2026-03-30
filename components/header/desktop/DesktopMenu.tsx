@@ -37,7 +37,7 @@ export default function DesktopMenu() {
         setIsOpenDropdown(false);
     };
 
-    const { submit, isPending } = useLogout({
+    const { submit } = useLogout({
         onSuccess: () => {
             const redirect = "/login";
             router.push(redirect);
