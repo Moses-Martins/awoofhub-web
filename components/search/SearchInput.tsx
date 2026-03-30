@@ -20,7 +20,7 @@ function SearchInputContent() {
   );
 
   return (
-    <div className="flex items-center w-[434px] h-[46px] px-6 rounded-2xl border border-muted/30 bg-background-light">
+    <div className="hidden lg:flex items-center w-[434px] h-[46px] px-6 rounded-2xl border border-muted/30 bg-background-light">
       <FiSearch className="text-muted text-xl mr-3" size={20} />
       <input
         placeholder="Search for offers"
@@ -38,7 +38,7 @@ export default function SearchInput() {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center w-[434px] h-[46px] px-6 rounded-2xl border border-muted/30 bg-background-light">
+        <div className="hidden lg:flex items-center w-[434px] h-[46px] px-6 rounded-2xl border border-muted/30 bg-background-light">
           <FiSearch className="text-muted text-xl mr-3" size={20} />
           <input
             placeholder="Search for offers"

@@ -1,0 +1,60 @@
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback } from "react";
+import { IoMdClose } from "react-icons/io";
+import { IoSearchSharp } from "react-icons/io5";
+
+interface Props {
+    isOverlay?: boolean;
+    isOpen?: boolean;
+    onOpen?: () => void;
+    onClose?: () => void;
+}
+
+export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }: Props) {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    const handleChange = useCallback(
+        (term: string) => {
+            if (term) {
+                router.replace(`/search?q=${encodeURIComponent(term)}`);
+            } else {
+                router.replace("/search");
+            }
+        },
+        [router]
+    );
+
+    if (isOverlay) {
+        return (
+            <div
+                className={`absolute top-0 left-0 h-full w-full bg-white flex items-center transition-all duration-300 lg:hidden ${isOpen ? "opacity-100 z-[200] px-6" : "opacity-0 pointer-events-none -z-10"
+                    }`}
+            >
+                <input
+                    type="search"
+                    placeholder="Search for Offers"
+                    className="w-full outline-none text-[16px]"
+                    autoFocus={isOpen}
+                    defaultValue={searchParams.get("q")?.toString()}
+                    onChange={(e) => handleChange(e.target.value)}
+                />
+
+                <button onClick={onClose}>
+                    <IoMdClose size={20} />
+                </button>
+            </div>
+        );
+    }
+
+    // Normal icon button
+    return (
+        <button
+            onClick={onOpen}
+            className="z-[100] cursor-pointer lg:hidden pr-3 border-r border-gray-300"
+        >
+            <IoSearchSharp size={20} />
+        </button>
+    );
+}
+
