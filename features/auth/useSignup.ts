@@ -9,14 +9,14 @@ export const signup = async (data: SignupData): Promise<User> => {
 };
 
 type UseSignupOptions = {
-    onSuccess?: (user: User) => void;
+    onSuccess?: (email: string) => void;
 };
 
 export const useSignup = ({ onSuccess }: UseSignupOptions = {}) => {
     const { mutate: submit, isPending } = useMutation({
         mutationFn: signup,
         onSuccess: (data) => {
-            onSuccess?.(data);
+            onSuccess?.(data.email);
         },
     });
     return { submit, isPending };

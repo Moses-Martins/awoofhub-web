@@ -5,41 +5,40 @@ import { useContext } from "react";
 
 export type Tab = "Deal Seekers" | "Business";
 
-
 export default function RoleToggle() {
+  const { role, setRole } = useContext(RoleContext);
 
-  const {role, setRole} = useContext(RoleContext);
   return (
-    <div className="flex items-center justify-center">
-      <div className="relative flex text-sm w-55 h-9 p-1 bg-[#FF5A00] rounded-sm items-center cursor-pointer border-[#FF5A00]">
+    <div className="flex items-center justify-center mb-5">
+      <div className="relative flex text-sm w-full h-10 p-1 bg-[#FF5A00] rounded-sm items-center cursor-pointer">
 
         {/* Sliding Background Indicator */}
         <div
           className={`absolute h-[calc(100%-8px)] w-[calc(50%-4px)] bg-white rounded-sm transition-all duration-300 ease-in-out shadow-sm ${
-            role === "Business" ? "translate-x-full" : "translate-x-0"
+            role === "Deal Seekers" ? "translate-x-full" : "translate-x-0"
           }`}
         />
 
-        {/* Deal Seekers Tab */}
-        <button
-          type="button"
-          onClick={() => setRole("Deal Seekers")}
-          className={`relative z-10 flex-1 font-semibold transition-colors ${
-            role === "Deal Seekers" ? "text-black" : "text-white"
-          }`}
-        >
-          Deal Seekers
-        </button>
-
-        {/* Business Tab */}
+        {/* For Business owners Tab (left) */}
         <button
           type="button"
           onClick={() => setRole("Business")}
-          className={`relative z-10 flex-1 font-semibold transition-colors ${
+          className={`relative z-10 flex-1 text-xs font-semibold transition-colors ${
             role === "Business" ? "text-black" : "text-white"
           }`}
         >
-          Business
+          For Business owners
+        </button>
+
+        {/* For Individuals Tab (right) */}
+        <button
+          type="button"
+          onClick={() => setRole("Deal Seekers")}
+          className={`relative z-10 flex-1 text-xs font-semibold transition-colors ${
+            role === "Deal Seekers" ? "text-black" : "text-white"
+          }`}
+        >
+          For Individuals
         </button>
       </div>
     </div>
