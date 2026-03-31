@@ -74,7 +74,7 @@ export default function Action({ offer }: Props) {
 
                 <Link
                     href={offer.dealUrl}
-                    className="w-40 cursor-pointer flex justify-center items-center bg-[#006400] text-white font-bold py-2 px-8 rounded-sm"
+                    className="w-45 cursor-pointer flex justify-center items-center bg-[#006400] text-white font-bold py-2 px-8 rounded-sm"
                 >
                     {getActionText()}
                 </Link>

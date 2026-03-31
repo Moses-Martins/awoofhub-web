@@ -1,6 +1,7 @@
 "use client"
 import { ActivityError } from '@/components/activity/ActivityError';
 import ActivityList from '@/components/activity/ActivityList';
+import ActivityListSkeleton from '@/components/activity/ActivitySkeleton';
 import { useActivity } from '@/features/activity/useActivity';
 import { Spinner } from '@chakra-ui/react';
 import { useEffect, useMemo } from 'react';
@@ -30,9 +31,9 @@ export default function ActivityPage() {
     // Early returns make JSX cleaner
     if (isFetching && allActivities.length === 0) {
         return (
-            <section className="pt-14 px-6">
-                <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />
-            </section>
+            <section className="px-6 flex justify-center">
+                <ActivityListSkeleton number={5} />
+            </section> 
         );
     }
 
@@ -48,16 +49,15 @@ export default function ActivityPage() {
         );
     }
 
-
     return (
         <ErrorBoundary fallback={<ActivityError />}>
             <section className="p-6">
                 <ActivityList activities={allActivities} />
-                <div ref={ref} className="h-10 flex items-center justify-center mt-6">
+                <div ref={ref} className="h-10 flex items-center justify-center mt-2 sm:mt-6">
                     {isFetchingNextPage && (
                         <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />
                     )}
-                    {!hasNextPage && allActivities.length > 0 && <p className="text-center">No more Notifications</p>}
+                    {!hasNextPage && allActivities.length > 0 && <p className="text-center text-[14px] sm:text-[16px]">No more Notifications</p>}
                 </div>
             </section>
         </ErrorBoundary>

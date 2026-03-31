@@ -11,7 +11,7 @@
   --muted: #595858;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -23,6 +23,10 @@
   --font-mono: var(--font-geist-mono);
   --font-baloo: var(--font-geist-baloo);
   --font-montserrat: var(--font-geist-montserrat);
+
+  /* custom breakpoint */
+  --breakpoint-xs: 580px;
+  
 }
 
 body {

@@ -54,7 +54,7 @@ export default function RandomOffersPage() {
 
     return (
         <ErrorBoundary fallback={<OfferError />}>
-            <section className="p-6">
+            <section className="p-6 mb-15 lg:mb-0">
                 <OfferList offers={allOffers} />
                 <div ref={ref} className="h-10 flex items-center justify-center mt-6">
                     {isFetchingNextPage && (

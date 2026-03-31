@@ -1,20 +1,23 @@
 "use client"
 import { useRouter } from "next/navigation";
+import React from "react";
 
 interface Props {
     targetUserId: string;
+    children: React.ReactNode;
 }
 
-export default function ChatButton({ targetUserId }: Props) {
+export default function ChatWrapper({ targetUserId, children }: Props) {
     const router = useRouter();
 
-    const handleMessage = async () => {
+    const handleClick = (e: React.MouseEvent) => {
+        e.preventDefault(); 
         router.push(`/message/${targetUserId}`);
     };
 
     return (
-        <button className="bg-primary" onClick={handleMessage}>
-            Message
-        </button>
+        <div onClick={handleClick} className="cursor-pointer">
+            {children}
+        </div>
     );
 }

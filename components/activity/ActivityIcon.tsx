@@ -2,16 +2,12 @@ import { Bell } from 'lucide-react';
 
 function OfferCreatedNotificationIcon() {
     return (
-        <div className="bg-orange-50 p-3 rounded-full">
             <Bell className="w-6 h-6 text-orange-600" />
-        </div>
     );
 }
 function LikeNotificationIcon() {
     return (
-         <div className="bg-orange-50 p-3 rounded-full">
-            <Bell className="w-6 h-6 text-orange-600" />
-        </div>
+        <Bell className="w-6 h-6 text-orange-600" />
     );
 }
 
@@ -23,5 +19,9 @@ const ActivityIcons = {
 export type ActivityType = keyof typeof ActivityIcons;
 
 export function ActivityIcon({ type }: { type: ActivityType }) {
-    return <>{ActivityIcons[type]()}</>;
+    return <>
+        <div className="bg-orange-50 rounded-full">
+            {ActivityIcons[type]()}
+        </div>
+    </>;
 }

@@ -55,7 +55,7 @@ function SearchResults({ searchParams }: SearchProps) {
     }
 
     return (
-        <section className="pt-14 px-6">
+        <section className="pt-14 px-6 mb-15 lg:mb-0">
             {/* Offers List */}
             <OfferList offers={allOffers} />
 

@@ -81,7 +81,7 @@ export default function CollectionPage({ params }: Props) {
 
     return (
         <ErrorBoundary fallback={<OfferError />}>
-            <section className="p-6">
+            <section className="p-6 mb-15 lg:mb-0">
                 <FormControl className="w-50 h-20">
                     <InputLabel>Category</InputLabel>
 

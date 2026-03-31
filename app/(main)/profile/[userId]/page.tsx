@@ -1,5 +1,4 @@
 "use client"
-import ChatButton from "@/components/chat/ChatButton";
 import { useUserById } from "@/features/user/useUserById";
 import { use } from "react";
 
@@ -22,8 +21,8 @@ export default function ProfilePage({ params }: Props) {
     }
 
     return (
-        <section className="w-200 h-200 bg-gray-200">
-            <ChatButton targetUserId={user.id} />
+        <section>
+          
         </section>
     )
 }

@@ -21,8 +21,8 @@ export default function OfferPage({ params }: Props) {
   const { data: offer, isLoading } = useOffer({ id });
 
 
-   const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
-    categorySlug:  offer?.category?.slug ?? "", limit: 8,
+  const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
+    categorySlug: offer?.category?.slug ?? "", limit: 8,
   });
 
   const allOffers = useMemo(() => {
@@ -53,7 +53,7 @@ export default function OfferPage({ params }: Props) {
     );
   }
 
- 
+
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function OfferPage({ params }: Props) {
 
         <SingleOffer offer={offer} />
       </section>
-      <section className="p-8 mx-auto max-w-[1440px] pb-10">
+      <section className="p-8 mx-auto max-w-[1440px] pb-10 mb-15 lg:mb-0">
         <h3 className="text-2xl font-bold mb-6">
           Explore more offers like this
         </h3>
