@@ -16,8 +16,8 @@ export default function SingleOffer({ offer }: Props) {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-9 gap-10 pb-10">
-                <div className="md:col-span-4 flex flex-col items-center justify-center">
-                    <div className="bg-gray-100 rounded-2xl">
+                <div className="md:col-span-4 flex flex-col items-center justify-start">
+                    <div className="bg-gray-100 rounded-sm md:rounded-2xl">
                         <Image
                             src={offer.imageUrl}
                             alt="Logo"
@@ -28,15 +28,15 @@ export default function SingleOffer({ offer }: Props) {
                         />
                     </div>
 
-                    <div className="w-full mt-12 space-y-3">
-                        <ChatWrapper targetUserId={offer.business.id}>
-                            <div className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all">
-                                Message Seller
-                            </div>
-                        </ChatWrapper>
+                    <div className="w-full mt-4 xs:mt-8 md:mt-12 flex md:flex-col gap-3">
+                        <div className="w-4/5 md:w-full bg-orange-600 hover:bg-orange-700 text-white font-bold p-1 xs:py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all">
+                            <ChatWrapper targetUserId={offer.business.id}>
+                                Message
+                            </ChatWrapper>
+                        </div>
 
-                        <Link href="/report" className="w-full border border-red-500 text-red-500 text-sm font-bold py-3 rounded-lg flex items-center justify-center hover:text-white hover:bg-red-500 transition-colors">
-                            Report this offer
+                        <Link href="/report" className="w-1/5 md:w-full border border-red-500 text-red-500 text-xs xs:text-sm font-bold py-3 rounded-lg flex items-center justify-center hover:text-white hover:bg-red-500 transition-colors">
+                            Report
                         </Link>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ export default function SingleOffer({ offer }: Props) {
                 </div>
 
 
-                <div className="md:col-start-6 md:col-span-6 space-y-8">
+                <div className="md:col-start-6 lg:col-start-5 md:col-span-6 space-y-8">
                     <Comment offer={offer} />
                 </div>
             </div>

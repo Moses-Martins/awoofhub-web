@@ -77,8 +77,6 @@ export default function CollectionPage({ params }: Props) {
     }
 
 
-
-
     return (
         <ErrorBoundary fallback={<OfferError />}>
             <section className="p-6 mb-15 lg:mb-0">
@@ -104,7 +102,7 @@ export default function CollectionPage({ params }: Props) {
                     {isFetchingNextPage && (
                         <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />
                     )}
-                    {!hasNextPage && allOffers.length > 0 && <p className="text-center">No more offers</p>}
+                    {!hasNextPage && allOffers.length > 0 && <p className="text-center text-[14px] sm:text-[16px]">No more offers</p>}
                 </div>
             </section>
         </ErrorBoundary>

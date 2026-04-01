@@ -13,7 +13,7 @@ interface Props {
 export default function OfferInfo({ offer }: Props) {
     return (
         <>
-            <h1 className="text-3xl font-bold mb-1">
+            <h1 className="text-xl xs:text-2xl md:text-3xl font-bold mb-1">
                 {offer.title}
             </h1>
 

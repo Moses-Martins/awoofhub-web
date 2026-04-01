@@ -16,8 +16,8 @@ export default function ChatWrapper({ targetUserId, children }: Props) {
     };
 
     return (
-        <div onClick={handleClick} className="cursor-pointer">
+        <button onClick={handleClick} className="cursor-pointer">
             {children}
-        </div>
+        </button>
     );
 }

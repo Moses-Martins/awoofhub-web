@@ -55,7 +55,7 @@ export default function ReviewChart({ offer }: Props) {
                 </p>
             </div>
 
-            <BarChart className="border border-gray-200 rounded-lg" width={400} height={250} data={chartData} layout="vertical" margin={{ right: 50 }}>
+            <BarChart className="border border-gray-200 rounded-lg" width={300} height={250} data={chartData} layout="vertical" margin={{ right: 50 }}>
                 <XAxis type="number" hide />
                 <YAxis dataKey="rating" type="category" tickLine={false} axisLine={false} />
                 <Tooltip />
