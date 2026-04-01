@@ -12,7 +12,7 @@ interface Props {
 export default function OfferCard({ offer }: Props) {
   return (
 
-    <div key={offer.id} className="bg-white w-[174px] h-[286px] sm:w-[300px] sm:h-[450px] md:w-[174px] md:h-[286px] lg:w-[300px] lg:h-[450px] rounded-xl shadow-sm border border-gray-100 p-2 sm:p-5 flex flex-col group hover:shadow-md transition-shadow">
+    <div key={offer.id} className="bg-white w-[174px] h-[286px] sm:w-[300px] sm:h-[450px] md:w-[174px] md:h-[286px] lg:w-[300px] lg:h-[450px] rounded-xl shadow-sm border border-gray-100 p-2 sm:p-5 md:p-2 lg:p-5 flex flex-col group hover:shadow-md transition-shadow">
 
       {/* Card Image & Wishlist */}
       <div className="relative mb-3 sm:mb-6 md:mb-3 lg:mb-6 mt-5 flex justify-center items-center h-25 sm:h-48 md:h-25 lg:h-48 bg-white">

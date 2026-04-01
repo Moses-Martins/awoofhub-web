@@ -9,9 +9,6 @@ export default function MobileBottomMenu() {
     const pathname = usePathname();
 
 
-
-
-
     return (
         <div className="fixed bottom-0 left-0 right-0 z-10 flex items-center border-t border-gray-300 bg-white lg:hidden pb-3">
 
@@ -32,7 +29,7 @@ export default function MobileBottomMenu() {
             <div className="flex-1">
                 <Link
                     href={currentUser ? '/message' : '/login'}
-                    className={`flex flex-col items-center justify-center pt-3 ${pathname === '/message' ? 'text-primary border-t' : 'text-gray-700'}`}
+                    className={`flex flex-col items-center justify-center pt-3 ${pathname.startsWith('/message') ? 'text-primary border-t' : 'text-gray-700'}`}
                 >
                     <div className="text-[20px] relative">
                         <FiMessageCircle />
