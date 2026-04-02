@@ -18,8 +18,8 @@ export default function Banner() {
         </div>
 
         {/* Right Side: Image */}
-        <div className="absolute right-4 md:right-12 lg:right-16 bottom-0 h-full flex items-end overflow-hidden">
-          <div className="absolute inset-0 bg-white opacity-30 blur-2xl rounded-full"></div>
+        <div className="absolute right-4 md:right-12 lg:right-16 bottom-0 h-full flex items-end overflow-hidden rounded-full">
+          <div className="absolute inset-0 bg-white opacity-20 blur-2xl"></div>
           <Image
             src="/BannerImage.png"
             alt="Banner Image"

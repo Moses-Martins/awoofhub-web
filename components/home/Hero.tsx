@@ -20,15 +20,15 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="bg-white px-6 py-12 md:px-14 lg:py-24">
-      <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center gap-12">
+    <section className="bg-white px-6 py-6 sm:py-12 md:px-14 lg:py-24">
+      <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start gap-12">
         
         {/* Left Content Side */}
-        <div className="w-full md:w-1/2 space-y-6">
+        <div className="w-full md:w-1/2 space-y-3 sm:space-y-6">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-100 rounded-full shadow-sm">
-            <span className="w-3 h-3 bg-orange-600 rounded-full animate-pulse"></span>
-            <span className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
+          <div className="inline-flex items-center gap-2 px-2 py-1 xs:px-3 xs:py-2 bg-gray-50 border border-gray-100 rounded-full shadow-sm">
+            <span className="w-2 h-2 xs:w-3 xs:h-3 bg-orange-600 rounded-full animate-pulse"></span>
+            <span className="text-[10px] xs:text-xs md:text-[10px] lg:text-xs font-semibold text-orange-600 uppercase tracking-wide">
               The Marketplace Where Deals Find You
             </span>
           </div>
@@ -46,10 +46,10 @@ export default function Hero() {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="w-full md:w-40 py-3 border-2 border-orange-600 text-orange-600 font-bold rounded-lg hover:bg-orange-50 transition-colors">
+            <button className="w-full md:w-40 py-3 border-1 border-orange-600 text-orange-600 text-sm sm:text-base font-bold rounded-sm hover:bg-orange-50 transition-colors">
               Post an Offer
             </button>
-            <button className="w-full md:w-56 py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-shadow shadow-lg shadow-orange-200">
+            <button className="w-full md:w-56 py-3 bg-orange-600 text-white font-bold rounded-sm text-sm sm:text-base hover:bg-orange-700 transition-shadow shadow-orange-200">
               Browse Active Offers
             </button>
           </div>
@@ -57,7 +57,7 @@ export default function Hero() {
 
         {/* Right Image Carousel */}
         <div className="w-full md:w-1/2 relative flex justify-center">
-          <div className="relative w-[200px] h-[170px] md:w-[500px] md:h-[400px] lg:w-[742px] lg:h-[514px]">
+          <div className="relative h-[170px] w-full md:w-[500px] md:h-[400px] lg:w-[742px] lg:h-[400px]">
             {heroImages.map((image, index) => (
               <Image
                 key={index}

@@ -20,8 +20,8 @@ export default function CategorySection({ category }: Props) {
 
     return (
         <section id={category.id} className="pb-16 px-6 md:px-12">
-            <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold">
+            <div className="flex justify-between items-baseline mb-3 sm:mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold">
                     {category.name}
                 </h3>
 
@@ -30,7 +30,7 @@ export default function CategorySection({ category }: Props) {
                     className="group inline-flex items-center gap-2 text-orange-600 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                     aria-label={`View all offers in ${category.name}`}
                 >
-                    <span>View all</span>
+                    <span className="text-xs sm:text-sm font-bold">View all</span>
                     <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
             </div>

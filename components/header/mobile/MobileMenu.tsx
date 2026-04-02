@@ -54,7 +54,7 @@ export default function MobileMenu() {
 
                         <Link
                             href="/signup"
-                            className="px-3 py-3 rounded-sm bg-primary text-white font-semibold text-[15px] sm:text-[18px] hover:bg-secondary transition-colors shadow-md"
+                            className="px-3 py-2 rounded-sm bg-primary text-white font-semibold text-[15px] sm:text-[18px] hover:bg-secondary transition-colors shadow-md"
                         >
                             Sign Up
                         </Link>

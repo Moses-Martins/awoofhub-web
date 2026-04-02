@@ -14,7 +14,7 @@ export default function ExploreOffers() {
         <section className="bg-gray-50">
             <div className="pb-16 px-6 md:px-12 max-w-[1440px] mx-auto">
                 <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl md:text-2xl font-bold">
+                    <h3 className="text-xl md:text-2xl font-bold mt-3 sm:mt-5">
                         Explore Offers
                     </h3>
 
