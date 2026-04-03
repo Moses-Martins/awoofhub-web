@@ -6,11 +6,11 @@ import { FiBell, FiHeart, FiHome, FiMessageCircle } from "react-icons/fi";
 
 export default function MobileBottomMenu() {
     const { data: currentUser } = useUser();
-    const pathname = usePathname();
+    const pathname = usePathname()
 
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-10 flex items-center border-t border-gray-300 bg-white lg:hidden pb-3">
+        <div className="fixed bottom-0 left-0 right-0 z-[99] flex items-center border-t border-gray-300 bg-white lg:hidden pb-3">
 
             {/* Home */}
             <div className="flex-1">
