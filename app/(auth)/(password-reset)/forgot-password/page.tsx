@@ -2,23 +2,29 @@
 
 import { Button } from "@/components/button/Button";
 import { InputField } from "@/components/form/InputField";
-import { Lock, Mail } from "lucide-react";
+import { useForgotPassword } from "@/features/auth/useForgotPassword";
+import { EmailData } from "@/types/auth";
+import { Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-type ForgotPasswordData = { email: string };
-
 export default function ForgotPasswordPage() {
     const router = useRouter();
-    const { register, handleSubmit, formState } = useForm<ForgotPasswordData>();
+    const onSuccess = () => {
+        const redirect = "/forgot-password/sent/";
+        router.push(redirect);
+    }
+    const { register, handleSubmit, formState } = useForm<EmailData>();
+    const { submit, isPending } = useForgotPassword({
+        onSuccess
+    })
 
-    const onSubmit = (data: ForgotPasswordData) => {
-        // TODO: call forgot password API
-        router.push(`/forgot-password/sent?email=${encodeURIComponent(data.email)}`);
+    const onSubmit = (data: EmailData) => {
+        submit(data)
     };
 
     return (
-        <div className="w-full max-w-sm bg-[#FF5700] rounded-2xl p-8 text-white text-center shadow-xl">
+        <div className="w-full max-w-sm bg-orange-400 rounded-2xl p-8 text-white text-center shadow-xl">
 
             {/* Lock icon */}
             <div className="flex justify-center mb-4">
@@ -35,16 +41,17 @@ export default function ForgotPasswordPage() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-left [&_input]:!bg-transparent [&_input]:!border-white [&_input]:!rounded-lg [&_input]:!text-white [&_input]:placeholder-white [&_svg]:text-white [&_svg]:stroke-white">
                 <InputField
                     label="Enter Email address"
-                    placeholder="you@gmail.com"
                     type="email"
-                    icon={<Mail size={18} />}
-                    labelClassName="!text-white"
-                    errorClassName="text-yellow-300"
                     {...register("email", { required: "Email is required" })}
                     error={formState.errors["email"]}
                 />
 
-                <Button type="submit" variant="outline">
+                <Button
+                    isLoading={isPending}
+                    isDisabled={isPending}
+                    type="submit"
+                    variant="outline"
+                >
                     Send Reset Link
                 </Button>
 

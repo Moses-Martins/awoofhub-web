@@ -18,7 +18,7 @@ export default function ExploreOffers() {
                         Explore Offers
                     </h3>
 
-                    <Link
+                    <Link 
                         href={`/offers/`}
                         className="group inline-flex items-center gap-2 text-orange-600 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                     >

@@ -39,8 +39,8 @@ export default function ResetPasswordSuccessPage() {
                 </p>
             </div>
 
-            <Button type="button" onClick={() => router.push("/")}>
-                Proceed to homepage
+            <Button type="button" onClick={() => router.push("/login")}>
+                Proceed to Log In
             </Button>
         </div>
     );

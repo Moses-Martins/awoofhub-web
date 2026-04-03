@@ -15,11 +15,20 @@ export default function RoleToggle() {
         {/* Sliding Background Indicator */}
         <div
           className={`absolute h-[calc(100%-8px)] w-[calc(50%-4px)] bg-white rounded-sm transition-all duration-300 ease-in-out shadow-sm ${
-            role === "Deal Seekers" ? "translate-x-full" : "translate-x-0"
+            role === "Business" ? "translate-x-full" : "translate-x-0"
           }`}
         />
 
-        {/* For Business owners Tab (left) */}
+        <button
+          type="button"
+          onClick={() => setRole("Individual")}
+          className={`relative z-10 flex-1 text-xs font-semibold transition-colors ${
+            role === "Individual" ? "text-black" : "text-white"
+          }`}
+        >
+          For Individuals
+        </button>
+
         <button
           type="button"
           onClick={() => setRole("Business")}
@@ -27,19 +36,9 @@ export default function RoleToggle() {
             role === "Business" ? "text-black" : "text-white"
           }`}
         >
-          For Business owners
+          For Business
         </button>
-
-        {/* For Individuals Tab (right) */}
-        <button
-          type="button"
-          onClick={() => setRole("Deal Seekers")}
-          className={`relative z-10 flex-1 text-xs font-semibold transition-colors ${
-            role === "Deal Seekers" ? "text-black" : "text-white"
-          }`}
-        >
-          For Individuals
-        </button>
+        
       </div>
     </div>
   );

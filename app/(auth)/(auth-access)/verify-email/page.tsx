@@ -4,15 +4,12 @@ import { Button } from "@/components/button/Button";
 import { Seo } from "@/components/seo/Seo";
 import { Mail } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
 function VerifyEmailContent() {
-    const searchParams = useSearchParams();
-    const email = searchParams.get("email") ?? "";
 
     return (
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-6 px-3">
             <Seo title="Check your inbox" />
 
             {/* Heading */}
@@ -21,9 +18,9 @@ function VerifyEmailContent() {
                     Check your <span className="text-[#FF5700]">inbox!</span>
                 </h1>
                 <p className="text-sm text-gray-500">
-                    We&apos;ve sent a verification link to the email
+                    We&apos;ve sent a verification link to your mail
                 </p>
-                <p className="text-sm font-semibold text-gray-800">{email}</p>
+
             </div>
 
             {/* Mail icon */}

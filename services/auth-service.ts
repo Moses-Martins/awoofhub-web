@@ -1,6 +1,6 @@
 import { apiClient } from "@/lib/api-client";
 import { ApiResponse } from "@/types/api-response";
-import { LoginData, SignupData } from "@/types/auth";
+import { EmailData, LoginData, ResetPasswordData, SignupData } from "@/types/auth";
 import { User } from "@/types/user";
 
 
@@ -13,7 +13,21 @@ export async function loginService(payload: LoginData): Promise<ApiResponse<User
 
 // Register
 export async function signupService(payload: SignupData): Promise<ApiResponse<User>> {
-  const res: ApiResponse<User> = await apiClient.post('/auth/registration/', payload)
+  const res: ApiResponse<User> = await apiClient.post('/auth/signup/', payload)
+  
+  return res;
+}
+
+
+export async function forgotPasswordService(payload: EmailData): Promise<ApiResponse<any>> {
+  const res: ApiResponse<any> = await apiClient.post('/auth/forgot-password/', payload)
+  
+  return res;
+}
+
+
+export async function resetPasswordService(payload: ResetPasswordData): Promise<ApiResponse<any>> {
+  const res: ApiResponse<any> = await apiClient.post('/auth/reset-password/', payload)
   
   return res;
 }

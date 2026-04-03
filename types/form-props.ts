@@ -1,5 +1,5 @@
 export type SignupFormProps = {
-    onSuccess: (email: string) => void;
+    onSuccess: () => void;
 };
 
 

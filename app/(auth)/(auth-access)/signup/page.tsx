@@ -12,8 +12,8 @@ export default function SignupPage() {
   const { role } = useContext(RoleContext);
   const router = useRouter();
 
-  const onSuccess = (email: string) => {
-    router.push(`/verify-email?email=${encodeURIComponent(email)}`);
+  const onSuccess = () => {
+    router.push(`/verify-email/`);
   };
 
   return (
@@ -22,7 +22,7 @@ export default function SignupPage() {
 
       <RoleToggle />
 
-      {role === "Deal Seekers" && <IndividualSignup onSuccess={onSuccess} />}
+      {role === "Individual" && <IndividualSignup onSuccess={onSuccess} />}
       {role === "Business" && <BusinessSignup onSuccess={onSuccess} />}
     </div>
   );

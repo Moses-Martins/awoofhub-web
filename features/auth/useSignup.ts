@@ -1,7 +1,7 @@
 import { signupService } from "@/services/auth-service";
 import { SignupData } from '@/types/auth';
 import { User } from '@/types/user';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const signup = async (data: SignupData): Promise<User> => {
     const result = await signupService(data);
@@ -9,14 +9,17 @@ export const signup = async (data: SignupData): Promise<User> => {
 };
 
 type UseSignupOptions = {
-    onSuccess?: (email: string) => void;
+    onSuccess?: (user: User) => void;
 };
 
 export const useSignup = ({ onSuccess }: UseSignupOptions = {}) => {
+    const queryClient = useQueryClient();
+    
     const { mutate: submit, isPending } = useMutation({
         mutationFn: signup,
         onSuccess: (data) => {
-            onSuccess?.(data.email);
+            queryClient.setQueryData(['auth-user'], data);
+            onSuccess?.(data);
         },
     });
     return { submit, isPending };

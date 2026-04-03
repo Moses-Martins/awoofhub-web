@@ -1,18 +1,18 @@
 "use client";
 
-import { Seo } from "@/components/seo/Seo";
 import Spinner from "@/components/loading/Loading";
+import { Seo } from "@/components/seo/Seo";
 import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function EmailVerifiedPage() {
     const router = useRouter();
-    const [step, setStep] = useState<"loading" | "verified">("loading");
+    const [step, setStep] = useState<"loading" | "verified">("verified");
 
     // Step 1 → Step 2 after 2.5s
     useEffect(() => {
-        const t = setTimeout(() => setStep("verified"), 2500);
+        const t = setTimeout(() => setStep("loading"), 2500);
         return () => clearTimeout(t);
     }, []);
 

@@ -2,23 +2,56 @@
 
 import { Button } from "@/components/button/Button";
 import { InputField } from "@/components/form/InputField";
+import { useResetPassword } from "@/features/auth/useResetPassword";
 import { Lock } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-type ResetPasswordData = {
+
+export interface ResetPasswordTempData {
+    token: string;
     password: string;
     confirmPassword: string;
 };
 
-export default function ResetPasswordPage() {
-    const router = useRouter();
-    const { register, handleSubmit, formState, watch } = useForm<ResetPasswordData>();
 
-    const onSubmit = () => {
-        // TODO: call reset password API with token from URL
-        router.push("/reset-password/success");
+export default function ResetPasswordPage() {
+
+    const searchParams = useSearchParams();
+    const token = searchParams.get("token")?.toString()
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!token) {
+            router.replace("/forgot-password");
+        }
+    }, [token, router]);
+
+
+    const onSuccess = () => {
+        const redirect = "/reset-password/success";
+        router.push(redirect);
+    }
+
+    const { submit, isPending } = useResetPassword({
+        onSuccess
+    })
+
+    const { register, handleSubmit, formState, getValues } = useForm<ResetPasswordTempData>();
+
+    const onSubmit = (data: ResetPasswordTempData) => {
+        if (!token) return;
+        const { confirmPassword, ...resetData } = data;
+
+        submit({
+            ...resetData,
+            token
+        });
     };
+
+    if (!token) return null;
 
     return (
         <div className="w-full max-w-sm bg-[#FF5700] rounded-2xl p-8 text-white text-center shadow-xl">
@@ -36,31 +69,39 @@ export default function ResetPasswordPage() {
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-left [&_input]:bg-transparent [&_input]:!border-white [&_input]:!rounded-lg [&_input]:!text-white [&_input::placeholder]:text-white [&_input]:placeholder-white [&_svg]:text-white [&_svg]:stroke-white [&_.chakra-input__right-element_button]:bg-transparent [&_.chakra-input__right-element_button]:shadow-none [&_.chakra-input__right-element_button:hover]:bg-transparent">
+
                 <InputField
                     label="Enter New Password"
-                    placeholder="New password"
                     type="password"
-                    labelClassName="!text-white"
-                    errorClassName="text-yellow-300"
-                    {...register("password", { required: "Password is required" })}
-                    error={formState.errors["password"]}
+                    compulsory={true}
+                    placeholder="New password"
+                    icon={<Lock size={18} color={"gray"} />}
+                    {...register('password', {
+                        required: 'Password field cannot be empty',
+                    })}
+                    error={formState.errors['password']}
                 />
 
                 <InputField
                     label="Confirm Password"
-                    placeholder="Confirm password"
                     type="password"
-                    labelClassName="!text-white"
-                    errorClassName="text-yellow-300"
-                    {...register("confirmPassword", {
-                        required: "Please confirm your password",
-                        validate: (val) =>
-                            val === watch("password") || "Passwords do not match",
+                    compulsory={true}
+                    placeholder="Confirm password"
+                    icon={<Lock size={18} color={"gray"} />}
+                    {...register('confirmPassword', {
+                        required: 'Confirm Password field cannot be empty',
+                        validate: (value) =>
+                            value === getValues('password') || 'Passwords do not match',
                     })}
-                    error={formState.errors["confirmPassword"]}
+                    error={formState.errors['confirmPassword']}
                 />
 
-                <Button type="submit" variant="outline">
+                <Button
+                    isLoading={isPending}
+                    isDisabled={isPending}
+                    type="submit"
+                    variant="outline"
+                >
                     Reset Password
                 </Button>
 

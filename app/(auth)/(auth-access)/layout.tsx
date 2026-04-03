@@ -18,7 +18,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 
             {/* Centered form card */}
             <div className="flex-1 flex items-center justify-center">
-                <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl px-10 py-8">
+                <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl px-1 sm:px-10 py-8">
                     {children}
                 </div>
             </div>
