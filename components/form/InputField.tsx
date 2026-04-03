@@ -24,7 +24,7 @@ export type InputFieldProps = {
   error?: FieldError;
   icon?: React.ReactNode;
   placeholder?: string;
-  compulsory?: boolean
+  compulsory?: boolean;
 } & Partial<
   ReturnType<UseFormRegister<Record<string, unknown>>>
 >;
@@ -61,9 +61,14 @@ export const InputField = forwardRef(
           />
         ) : type === 'password' ? (
           <InputGroup>
+            {icon && (
+              <InputLeftElement pointerEvents="none" className="mx-3 my-5">
+                {icon}
+              </InputLeftElement>
+            )}
             <Input
               pr="4.5rem"
-              className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg font-baloo"
+              className={`mt-2 w-full px-3 py-2 ${icon ? 'pl-12' : ''} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg font-baloo`}
               type={show ? 'text' : 'password'}
               placeholder={placeholder}
               {...inputProps}

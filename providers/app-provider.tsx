@@ -1,23 +1,18 @@
 'use client';
-import Header from '@/components/header/Header';
 import { Notifications } from '@/components/notifications/Notifications';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactNode } from 'react';
-import ErrorBoundaryProvider from './core/error-boundary-provider';
-import ReactQueryProvider from './core/react-query-provider';
+import ReactQueryProvider from './react-query-provider';
 
 export default function AppProvider({ children }: { children: ReactNode }) {
+        
     return (
         <>
             <Notifications />
-            <ErrorBoundaryProvider>
-                <ReactQueryProvider>
-                    <ReactQueryDevtools initialIsOpen={false} />
-                    <Header />
+            <ReactQueryProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
                     {children}
-                </ReactQueryProvider>
-            </ErrorBoundaryProvider>
+            </ReactQueryProvider>
         </>
-
     );
-}
+} 

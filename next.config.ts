@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'awoofhub-media-bucket.s3.eu-north-1.amazonaws.com',
+        hostname: 'pub-24c34059b34943d1a950bfdb90169a52.r2.dev',
         port: '',
         pathname: '/**',
       },

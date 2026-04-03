@@ -18,7 +18,7 @@ export const Notifications = () => {
       right="0"
       zIndex="1"
     >
-      <Flex gap="4" direction="column-reverse">
+      <Flex gap="4" direction="column-reverse"> 
         {notifications.map((notification) => (
           <NotificationToast
             key={notification.id}

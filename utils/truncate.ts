@@ -8,9 +8,4 @@ export const firstFiveLetters = (word: string): string => {
   return word.slice(0, 5) + '...';
 };
 
-export const cardTitleSlicer = (word: string): string => {
-  if (word.length <= 41) return word;
-
-  return word.slice(0, 41) + '...';
-};
 

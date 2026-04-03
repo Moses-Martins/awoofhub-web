@@ -1,7 +1,7 @@
 "use client"
 import { useWishlist } from "@/features/wishlist/useWishlist";
 import Link from 'next/link';
-import OfferList from "../offer/OfferList";
+import OfferList from "../offers/OfferList";
 
 
 export default function WishlistOffers() {
@@ -10,7 +10,7 @@ export default function WishlistOffers() {
     if (data && data.length > 0) {
 
         return (
-            <section className="pt-14 px-6">
+            <section className="pt-5 sm:pt-14 px-3 sm:px-6">
                 <OfferList offers={data.map(w => w.offer)} />
             </section>
         );

@@ -26,11 +26,18 @@ export interface Offer {
     description: string;
     price: string;
     imageUrl: string;
+    termsAndConditions: string;
+    value: string;
+    dealUrl: string;
+    couponCode?: string;
     business: {
         id: string;
+        name: string;
     };
     category: {
         id: string;
+        name: string;
+        slug: string;
     };
     location: string;
     approvalStatus: "pending" | "approved" | "rejected";
@@ -40,5 +47,6 @@ export interface Offer {
     endDate: string;
     avgRating: number,
     reviewCount: number,
+    ratingDistribution: {}
 };
 
