@@ -22,7 +22,6 @@ export interface UpdateOfferData {
 export interface Offer {
     id: string;
     title: string;
-    highlight: string;
     description: string;
     price: string;
     imageUrl: string;

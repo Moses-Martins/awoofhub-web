@@ -44,7 +44,7 @@ export const LoginForm = ({
 
                 <InputField
                     label="Email Address"
-                    placeholder="debby@lookgoodcosmestics.com"
+                    placeholder="johndebby@email.com"
                     compulsory={true}
                     type="email"
                     icon={<Mail size={18} color={"gray"} />}
@@ -57,7 +57,7 @@ export const LoginForm = ({
                     type="password"
                     compulsory={true}
                     icon={<Lock size={18} color={"gray"} />}
-                    placeholder="Enter your password"
+                    placeholder="***************"
                     {...register('password', {
                         required: 'Password field cannot be empty',
                     })}

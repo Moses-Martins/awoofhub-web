@@ -76,7 +76,7 @@ export const IndividualSignup = ({ onSuccess }: SignupFormProps) => {
                     label="Password"
                     type="password"
                     compulsory={true}
-                    placeholder="Enter your password"
+                    placeholder="***************"
                     icon={<Lock size={18} color={"gray"} />}
                     {...register('password', {
                         required: 'Password field cannot be empty',
@@ -88,7 +88,7 @@ export const IndividualSignup = ({ onSuccess }: SignupFormProps) => {
                     label="Confirm Password"
                     type="password"
                     compulsory={true}
-                    placeholder="Confirm your password"
+                    placeholder="***************"
                     icon={<Lock size={18} color={"gray"} />}
                     {...register('confirmPassword', {
                         required: 'Confirm Password field cannot be empty',

@@ -62,7 +62,7 @@ const NotificationToast = ({
 
   return (
     <Box
-      w={{ base: 'full', sm: 'md' }}
+      w="300px"
       boxShadow="md"
       color="white"
       {...notificationVariants[type]}

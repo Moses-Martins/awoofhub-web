@@ -32,7 +32,7 @@ export default function OfferCard({ offer }: Props) {
           {offer.title}
         </h4>
         <p className="text-gray-500 text-xs sm:text-sm md:text-xs lg:text-sm mb-1 sm:mb-4 md:mb-1 lg:mb-4 line-clamp-2">
-          {offer.highlight}
+          {offer.description}
         </p>
 
         {/* Rating */}
