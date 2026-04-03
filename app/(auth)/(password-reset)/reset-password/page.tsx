@@ -75,7 +75,7 @@ function ResetPassword() {
                     label="Enter New Password"
                     type="password"
                     compulsory={true}
-                    placeholder="New password"
+                    placeholder="***************"
                     icon={<Lock size={18} color={"gray"} />}
                     {...register('password', {
                         required: 'Password field cannot be empty',
@@ -87,7 +87,7 @@ function ResetPassword() {
                     label="Confirm Password"
                     type="password"
                     compulsory={true}
-                    placeholder="Confirm password"
+                    placeholder="***************"
                     icon={<Lock size={18} color={"gray"} />}
                     {...register('confirmPassword', {
                         required: 'Confirm Password field cannot be empty',

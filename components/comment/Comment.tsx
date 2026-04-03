@@ -1,9 +1,11 @@
 import { useComment } from "@/features/comment/useComment";
 import { useWriteComment } from "@/features/comment/useWriteComment";
+import { useUser } from "@/features/user/useUser";
 import { commentData } from "@/types/comment";
 import { Offer } from "@/types/offer";
 import { Button, FormControl, FormHelperText, Input, InputGroup, InputRightElement, Spinner } from '@chakra-ui/react';
 import { Send } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import CommentContainer from "./CommentContainer";
 
@@ -15,8 +17,13 @@ export default function Comment({ offer }: Props) {
     const { writeComment, isPending } = useWriteComment({ id: offer.id })
     const { data: comments, isLoading } = useComment({ id: offer.id })
     const { register, reset, handleSubmit, formState: { errors } } = useForm<commentData>();
+    const { data: currentUser } = useUser();
+    const router = useRouter();
 
     const onSubmit = (data: commentData) => {
+        if (!currentUser) {
+            return router.push('/login');
+        }
         writeComment(data)
         reset()
     };

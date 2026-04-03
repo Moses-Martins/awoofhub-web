@@ -38,7 +38,7 @@ export default function Action({ offer }: Props) {
     };
 
     return (
-        <div className="flex items-start justify-around py-6 my-6 border-t border-b border-gray-300">
+        <div className="flex items-start  flex-wrap space-y-5 justify-around py-6 my-6 border-t border-b border-gray-300">
 
             <div className="flex flex-col items-center gap-2">
                 <span className="text-sm font-bold text-gray-800">Expiring</span>
