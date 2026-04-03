@@ -1,5 +1,6 @@
+"use client"
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from "react";
+import { Suspense, useCallback } from "react";
 import { IoMdClose } from "react-icons/io";
 import { IoSearchSharp } from "react-icons/io5";
 
@@ -10,7 +11,7 @@ interface Props {
     onClose?: () => void;
 }
 
-export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }: Props) {
+function ExpandableSearchContent({ isOverlay, isOpen, onOpen, onClose }: Props) {
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -36,7 +37,7 @@ export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }:
                     placeholder="Search for Offers"
                     className="w-full outline-none text-[16px]"
                     autoFocus={isOpen}
-                    defaultValue={searchParams.get("q")?.toString()}
+                    defaultValue={searchParams.get("q") ?? ""}
                     onChange={(e) => handleChange(e.target.value)}
                 />
 
@@ -47,7 +48,6 @@ export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }:
         );
     }
 
-    // Normal icon button
     return (
         <button
             onClick={onOpen}
@@ -58,3 +58,11 @@ export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }:
     );
 }
 
+
+export default function ExpandableSearch(props: Props) {
+    return (
+        <Suspense fallback={null}>
+            <ExpandableSearchContent {...props} />
+        </Suspense>
+    );
+}

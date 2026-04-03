@@ -3,9 +3,10 @@
 import { Button } from "@/components/button/Button";
 import { InputField } from "@/components/form/InputField";
 import { useResetPassword } from "@/features/auth/useResetPassword";
+import { Spinner } from "@chakra-ui/react";
 import { Lock } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 
@@ -16,7 +17,7 @@ export interface ResetPasswordTempData {
 };
 
 
-export default function ResetPasswordPage() {
+function ResetPassword() {
 
     const searchParams = useSearchParams();
     const token = searchParams.get("token")?.toString()
@@ -115,4 +116,18 @@ export default function ResetPasswordPage() {
             </form>
         </div>
     );
+}
+
+
+
+export default function ResetPasswordPage() { 
+    return (
+    <Suspense
+          fallback={
+            <div className="pt-14 flex justify-center"><Spinner size="xl" /></div>
+          }
+        >
+          <ResetPassword />
+        </Suspense>
+    )
 }
