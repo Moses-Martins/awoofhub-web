@@ -44,7 +44,7 @@ export default function OfferInfo({ offer }: Props) {
                     <div className="flex items-center text-gray-400 text-sm gap-1">
                         <MapPin color="#ffa600" size={18} /> {offer.location}
                     </div>
-                    <WishlistButton style="" size={40} offerId={offer.id} />
+                    <WishlistButton size="text-[27px] sm:text-[32px] lg:text-[35px]" offerId={offer.id} />
                 </div>
             </section>
 

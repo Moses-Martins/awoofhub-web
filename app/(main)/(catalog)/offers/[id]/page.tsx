@@ -57,7 +57,7 @@ export default function OfferPage({ params }: Props) {
 
   return (
     <>
-      <section className="p-8 mx-auto max-w-[1440px] bg-white text-gray-800 border-b border-gray-300 pb-30">
+      <section className="p-4 sm:p-8 mx-auto max-w-[1440px] bg-white text-gray-800 border-b border-gray-300 pb-30">
         <div className="mx-auto flex justify-between items-center mb-7 md:mb-10">
           <nav className="flex items-center text-sm text-gray-500 gap-2"> 
             <Link href={`/categories/${offer.category.slug}`}>{offer.category.name}</Link> <ChevronRight size={14} />
@@ -68,7 +68,7 @@ export default function OfferPage({ params }: Props) {
 
         <SingleOffer offer={offer} />
       </section>
-      <section className="p-8 mx-auto max-w-[1440px] pb-10 mb-15 lg:mb-0">
+      <section className="p-4 sm:p-8 bg-white mx-auto max-w-[1440px] pb-10 mb-15 lg:mb-0">
         <h3 className="text-xl xs:text-2xl md:text-3xl font-bold mb-6">
           Explore more offers like this
         </h3>
