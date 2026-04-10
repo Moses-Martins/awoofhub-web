@@ -16,5 +16,5 @@ export interface Comment {
     },
     offer: Offer
     createdAt: string;
-};
+}; 
 

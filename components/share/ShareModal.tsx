@@ -79,11 +79,10 @@ export default function ShareModal({ offerId }: Props) {
                                 <BsTwitterX size={35} /> Twitter
                             </button>
 
-
                         </div>
 
                         <button
-                            className="cursor-pointer mt-6 bg-red-500 p-2 w-full text-white font-medium"
+                            className="cursor-pointer rounded-md mt-6 bg-primary p-2 w-full text-white font-medium"
                             onClick={() => setOpen(false)}
                         >
                             Close

@@ -1,8 +1,10 @@
 import { useReview } from "@/features/reviews/useReview";
+import { useUser } from "@/features/user/useUser";
 import { Offer } from "@/types/offer";
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import Rating from "@mui/material/Rating";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -10,8 +12,9 @@ interface Props {
 }
 
 export default function Review({ offer }: Props) {
+    const router = useRouter();
     const { review, submitReview } = useReview(offer.id);
-
+    const { data: currentUser } = useUser();
     const [value, setValue] = useState<number | null>(0);
 
     useEffect(() => {
@@ -26,6 +29,10 @@ export default function Review({ offer }: Props) {
                 name="controlled"
                 value={value}
                 onChange={(event, newValue) => {
+                    if (!currentUser) {
+                        return router.push('/login');
+                    }
+                    
                     setValue(newValue);
 
                     if (newValue) {
