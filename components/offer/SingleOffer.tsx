@@ -17,14 +17,14 @@ export default function SingleOffer({ offer }: Props) {
         <>
             <div className="grid grid-cols-1 md:grid-cols-9 gap-10 pb-10">
                 <div className="md:col-span-4 flex flex-col items-center justify-start">
-                    <div className="bg-gray-100 rounded-sm md:rounded-2xl">
+                    <div className="bg-gray-100 rounded-sm md:rounded-2xl w-full">
                         <Image
                             src={offer.imageUrl}
                             alt="Logo"
                             width={500}
                             height={500}
                             priority
-                            className="w-full h-auto"
+                            className="w-full aspect-[10/9]"
                         />
                     </div>
 

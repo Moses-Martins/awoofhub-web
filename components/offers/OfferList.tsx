@@ -12,6 +12,6 @@ export default function OfferList({ offers }: Props) {
         <OfferCard offer={offer} key={offer.id} />
       ))}
     </div>
-  ); 
+  );
 };
 

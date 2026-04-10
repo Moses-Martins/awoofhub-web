@@ -20,25 +20,24 @@ apiClient.interceptors.response.use(
         const status = error.response?.status;
         const message = error.response?.data?.message || error.message;
 
-        if (status === 401) {
-            if (!originalRequest._retry) {
-                originalRequest._retry = true;
+        if (status === 401 && !originalRequest._retry) {
 
-                try {
-                    if (!isRefreshing) {
-                        isRefreshing = true;
-                        await refreshTokenService();
-                        isRefreshing = false;
-                    }
+            originalRequest._retry = true;
 
-                    return apiClient(originalRequest);
-                } catch (err) {
+            try {
+
+                if (!isRefreshing) {
+                    isRefreshing = true;
+                    await refreshTokenService();
                     isRefreshing = false;
-                    return Promise.reject(err);
                 }
-            }
+                return apiClient(originalRequest);
 
-            return Promise.reject(error);
+            } catch (err) {
+                isRefreshing = false;
+                return Promise.reject(err);
+
+            }
         }
 
         notificationsStore.getState().showNotification({
