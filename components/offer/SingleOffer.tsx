@@ -24,7 +24,7 @@ export default function SingleOffer({ offer }: Props) {
                             width={500}
                             height={500}
                             priority
-                            className="w-full aspect-[10/9]"
+                            className="w-full aspect-[10/9] p-10 "
                         />
                     </div>
 
