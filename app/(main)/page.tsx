@@ -6,6 +6,7 @@ import FeaturedOffers from "@/components/home/FeaturedOffers";
 import Hero from "@/components/home/Hero";
 
 export default function Home() {
+
   return (
     <>
       <Hero />
