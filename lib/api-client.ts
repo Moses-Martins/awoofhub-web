@@ -12,6 +12,7 @@ export const apiClient = axios.create({
 });
 
 let isRefreshing = false;
+
 apiClient.interceptors.response.use(
     (response) => response.data,
 
@@ -19,25 +20,29 @@ apiClient.interceptors.response.use(
         const originalRequest = error.config;
         const status = error.response?.status;
         const message = error.response?.data?.message || error.message;
+        const isAuthRoute =
+            originalRequest.url?.includes('/auth/') &&
+            !originalRequest.url?.includes('/auth/refresh');
 
-        if (status === 401 && !originalRequest._retry) {
+        if (status === 401 && !isAuthRoute) {
+            if (!originalRequest._retry) {
+                originalRequest._retry = true;
 
-            originalRequest._retry = true;
+                try {
+                    if (!isRefreshing) {
+                        isRefreshing = true;
+                        await refreshTokenService();
+                        isRefreshing = false;
+                    }
 
-            try {
-
-                if (!isRefreshing) {
-                    isRefreshing = true;
-                    await refreshTokenService();
+                    return apiClient(originalRequest);
+                } catch (err) {
                     isRefreshing = false;
+                    return Promise.reject(err);
                 }
-                return apiClient(originalRequest);
-
-            } catch (err) {
-                isRefreshing = false;
-                return Promise.reject(err);
-
             }
+
+            return Promise.reject(error);
         }
 
         notificationsStore.getState().showNotification({

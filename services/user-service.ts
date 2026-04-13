@@ -1,9 +1,17 @@
 import { apiClient } from "@/lib/api-client";
 import { ApiResponse } from "@/types/api-response";
-import { User } from "@/types/user";
+import { UpdateUserData, User } from "@/types/user";
 
 export async function getUserByIdService(id: string): Promise<ApiResponse<User>> {
   const res: ApiResponse<User> = await apiClient.get(`/users/${id}`)
+
+  return res;
+}
+
+
+// Login
+export async function updateUserService(payload: UpdateUserData): Promise<ApiResponse<User>> {
+  const res: ApiResponse<User> = await apiClient.patch('/users/update/', payload)
 
   return res;
 }

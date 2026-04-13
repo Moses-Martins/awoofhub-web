@@ -32,6 +32,16 @@ async function getOffersByCategory(id: string, page: number, limit: number): Pro
 }
 
 
+async function getOffersByUserId(userId: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+  const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/user/id/${userId}`, {
+    params: { page, limit },
+  })
+
+  return res;
+}
+
+
+
 async function getOffersByCategorySlug(slug: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/category/slug/${slug}`, {
     params: { page, limit },
@@ -83,6 +93,7 @@ const OfferService = {
   getAllOffers,
   getOfferById,
   getOffersByCategory,
+  getOffersByUserId,
   getOffersByCategorySlug,
   getRandomOffers,
   searchOffers,

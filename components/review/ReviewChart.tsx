@@ -1,7 +1,7 @@
 "use client"
 import { Offer } from "@/types/offer";
 import Rating from "@mui/material/Rating";
-import { Bar, BarChart, LabelList, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, LabelList, XAxis, YAxis } from "recharts";
 
 
 interface Props {
@@ -58,7 +58,6 @@ export default function ReviewChart({ offer }: Props) {
             <BarChart className="border border-gray-200 rounded-lg" width={300} height={250} data={chartData} layout="vertical" margin={{ right: 50 }}>
                 <XAxis type="number" hide />
                 <YAxis dataKey="rating" type="category" tickLine={false} axisLine={false} />
-                <Tooltip />
                 <Bar dataKey="value" fill="#FFA41C" radius={6}>
                     <LabelList dataKey="value" position="right" fontSize={12} fill="#302f2f" stroke="#302f2f" strokeWidth={0.5} formatter={(label: any) => (label != null ? `${label}%` : "")} />
                 </Bar>

@@ -87,8 +87,8 @@ export default function DesktopMenu() {
                             <div className="w-10 h-10 rounded-full overflow-hidden">
                                 {currentUser.profileImageUrl ? (
                                     <Image
-                                        width={40}
-                                        height={40}
+                                        width={500}
+                                        height={500}
                                         src={currentUser.profileImageUrl}
                                         alt={currentUser.name}
                                         className="w-full h-full object-contain"
@@ -108,7 +108,7 @@ export default function DesktopMenu() {
                                 <ul className="flex flex-col">
                                     {/* Standard Items */}
                                     {[
-                                        { label: 'Profile', icon: <FiUser />, href: '/profile' },
+                                        { label: 'Profile', icon: <FiUser />, href: `/profile/${currentUser.id}` },
                                         { label: 'Help & Support', icon: <FiHelpCircle />, href: '/help' },
                                         { label: 'Switch account', icon: <GoArrowSwitch />, href: '/switch' },
                                     ].map((item, idx) => (

@@ -2,15 +2,17 @@
 import { LoginForm } from '@/components/login/LoginForm';
 import { Seo } from '@/components/seo/Seo';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 
-export default function LoginPage() {
+function Login() {
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const onSuccess = () => {
-    const redirect = "/";
+    const redirect = searchParams.get("redirect") || "/";
     router.push(redirect);
   }
 
@@ -20,4 +22,13 @@ export default function LoginPage() {
       <LoginForm onSuccess={onSuccess} />
     </div>
   )
+}
+
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <Login />
+    </Suspense>
+  );
 }
