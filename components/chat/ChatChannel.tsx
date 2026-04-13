@@ -27,7 +27,7 @@ export default function ChatChannel({ open, openSidebar }: ChatChannelProps) {
                 <Window>
                     <CustomChannelHeader openSidebar={openSidebar} />
                     <MessageList />
-                    <MessageInput />
+                    <MessageInput maxRows={5} />
                 </Window>
             </Channel>
         </div>
