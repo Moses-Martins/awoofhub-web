@@ -1,5 +1,6 @@
 'use client'
 import { useLogout } from "@/features/auth/useLogout";
+import { useMessageCount } from "@/features/chat/useUnreadCount";
 import { useUser } from "@/features/user/useUser";
 import { capitalizeFirstLetter, firstFiveLetters } from "@/utils/truncate";
 import Image from 'next/image';
@@ -19,6 +20,7 @@ export default function DesktopMenu() {
     const [isOpenDropdown, setIsOpenDropdown] = useState(false);
     const dropdownRef = useRef<HTMLLIElement>(null);
 
+    const { data: messageCount } = useMessageCount()
 
     const { data: currentUser } = useUser();
 
@@ -56,8 +58,13 @@ export default function DesktopMenu() {
                 <>
                     {/* Message */}
                     <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
-                        <Link href="/message">
+                        <Link href="/message" className="relative">
                             <HiOutlineEnvelope size={28} />
+                            {!!messageCount && messageCount > 0 && (
+                                <div className="absolute -top-1 -right-2 w-6 h-6 bg-red-500 text-white text-[12px] font-bold flex items-center justify-center rounded-full border-2 border-white">
+                                    {messageCount > 99 ? '99+' : messageCount}
+                                </div>
+                            )}
                         </Link>
                     </li>
 
@@ -91,7 +98,7 @@ export default function DesktopMenu() {
                                         height={500}
                                         src={currentUser.profileImageUrl}
                                         alt={currentUser.name}
-                                        className="w-full h-full object-contain"
+                                        className="w-full h-full object-cover"
                                     />
                                 ) : (
                                     <div className="bg-green-500 text-white flex items-center justify-center w-full h-full">

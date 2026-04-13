@@ -1,7 +1,7 @@
 import { Offer } from "@/types/offer";
 import Image from 'next/image';
 import Link from "next/link";
-import ChatWrapper from "../chat/ChatButton";
+import ChatButton from "../chat/ChatButton";
 import Comment from "../comment/Comment";
 import ReviewChart from "../review/ReviewChart";
 import BusinessLink from "./BusinessLink";
@@ -30,9 +30,9 @@ export default function SingleOffer({ offer }: Props) {
 
                     <div className="w-full mt-4 xs:mt-8 md:mt-12 flex md:flex-col gap-3">
                         <div className="w-4/5 md:w-full bg-orange-600 hover:bg-orange-700 text-white font-bold p-1 xs:py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all">
-                            <ChatWrapper targetUserId={offer.business.id}>
+                            <ChatButton targetUserId={offer.business.id}>
                                 Message
-                            </ChatWrapper>
+                            </ChatButton>
                         </div>
 
                         <Link href="/report" className="w-1/5 md:w-full border border-red-500 text-red-500 text-xs xs:text-sm font-bold py-3 rounded-lg flex items-center justify-center hover:text-white hover:bg-red-500 transition-colors">

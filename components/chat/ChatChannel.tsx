@@ -4,12 +4,12 @@ import { Channel, ChannelHeader, ChannelHeaderProps, MessageInput, MessageList, 
 
 
 interface ChatChannelProps {
-  open: boolean;
-  openSidebar: () => void;
+    open: boolean;
+    openSidebar: () => void;
 }
 
 export default function ChatChannel({ open, openSidebar }: ChatChannelProps) {
-    
+
     const { channel } = useChatContext();
     if (!channel) {
         return (
@@ -46,7 +46,7 @@ function CustomChannelHeader({
 }: CustomChannelHeaderProps) {
     return <div className="flex items-center gap-3">
         <div className="h-full p-2 md:hidden">
-            <button onClick={openSidebar}>
+            <button className="cursor-pointer" onClick={openSidebar}>
                 <ArrowLeft className="size-5" />
             </button>
         </div>

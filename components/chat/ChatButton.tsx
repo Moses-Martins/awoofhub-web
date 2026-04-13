@@ -7,7 +7,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-export default function ChatWrapper({ targetUserId, children }: Props) {
+export default function ChatButton({ targetUserId, children }: Props) {
     const router = useRouter();
 
     const handleClick = (e: React.MouseEvent) => {

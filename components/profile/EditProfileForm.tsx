@@ -74,7 +74,7 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                 <div className="relative h-32 w-32">
                     <div className="h-full w-full rounded-full border-4 border-gray-200 overflow-hidden bg-gray-100 flex items-center justify-center">
                         {photoUrl ? (
-                             <Image width={500} height={500} src={photoUrl} alt="profile" className="w-full h-full object-contain" />
+                             <Image width={500} height={500} src={photoUrl} alt="profile" className="w-full h-full object-cover" />
                         ) : (
                             <div className="bg-green-500 text-white text-[70px] font-semibold flex items-center justify-center w-full h-full">
                                 {capitalizeFirstLetter(currentUser?.name || "User")}

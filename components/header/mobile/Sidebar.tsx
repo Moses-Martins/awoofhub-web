@@ -35,7 +35,7 @@ export default function Sidebar({ user, isOpen, onClose }: Props) {
                             height={500}
                             src={user.profileImageUrl}
                             alt={user.name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                         />
                     ) : (
                         <div className="bg-green-500 text-white flex items-center justify-center w-full h-full">
