@@ -67,14 +67,14 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
 
 
     return (
-        <div className="mt-5 mb-10 mx-auto w-full max-w-2xl">
+        <div className="mt-5 mb-30 lg:mb-10 mx-auto w-full max-w-2xl">
 
             {/* Photo Upload Section */}
             <div className="flex flex-col items-center mb-8">
                 <div className="relative h-32 w-32">
                     <div className="h-full w-full rounded-full border-4 border-gray-200 overflow-hidden bg-gray-100 flex items-center justify-center">
                         {photoUrl ? (
-                             <Image width={40} height={40} src={photoUrl} alt="profile" className="w-full h-full object-contain" />
+                             <Image width={500} height={500} src={photoUrl} alt="profile" className="w-full h-full object-contain" />
                         ) : (
                             <div className="bg-green-500 text-white text-[70px] font-semibold flex items-center justify-center w-full h-full">
                                 {capitalizeFirstLetter(currentUser?.name || "User")}
@@ -117,14 +117,18 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                             message: 'Name must be less than 50 characters',
                         },
                     })}
-                    error={formState.errors['name']}
+                    error={formState.errors['name']} 
                 />
-
                 <InputField
                     label="Bio"
-                    type="text"
+                    type="textarea"
                     icon={<FiFileText size={18} color="gray" />}
-                    {...register('bio')}
+                    {...register('bio', {
+                        maxLength: {
+                            value: 200,
+                            message: 'Bio must be less than 200 characters',
+                        },
+                    })}
                     error={formState.errors['bio']}
                 />
 

@@ -31,8 +31,8 @@ export default function Sidebar({ user, isOpen, onClose }: Props) {
                 <div className="mx-auto my-7 w-20 h-20 rounded-full overflow-hidden">
                     {user.profileImageUrl ? (
                         <Image
-                            width={40}
-                            height={40}
+                            width={500}
+                            height={500}
                             src={user.profileImageUrl}
                             alt={user.name}
                             className="w-full h-full object-contain"
@@ -52,7 +52,7 @@ export default function Sidebar({ user, isOpen, onClose }: Props) {
                         { label: 'Switch account', icon: <GoArrowSwitch />, href: '/switch' },
                     ].map((item, idx) => (
                         <li key={idx} className="border-b border-muted/10 last:border-none">
-                            <Link href={item.href} className="flex items-center gap-4 px-4 sm:px-6 py-4 hover:bg-primary/5 transition-colors">
+                            <Link href={item.href} onClick={onClose} className="flex items-center gap-4 px-4 sm:px-6 py-4 hover:bg-primary/5 transition-colors">
                                 <span className="text-primary text-xl">{item.icon}</span>
                                 <span className="text-foreground text-lg sm:text-[20px] font-light">{item.label}</span>
                             </Link>

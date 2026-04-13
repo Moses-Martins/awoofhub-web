@@ -14,7 +14,7 @@ export default function AboutPage({ params }: Props) {
     if (!user) return null
 
     return (
-        <div className="mt-2 mb-10">
+        <div className="mt-2 mb-25 lg:mb-10 px-5">
             <About profile={user} />
         </div>
     );

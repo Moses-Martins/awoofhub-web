@@ -19,7 +19,7 @@ export default function EditProfilePage() {
     }
 
     return (
-        <div className="flex bg-white">
+        <div className="flex bg-white px-5">
             <Seo title="Edit Profile" />
             <EditProfileForm onSuccess={onSuccess} />
         </div>

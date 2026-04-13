@@ -55,7 +55,8 @@ export const InputField = forwardRef(
         {type === 'textarea' ? (
           <Textarea
             bg=" #F6F7F8"
-            rows={8}
+            className={`mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base sm:text-lg font-baloo`}
+            rows={3}
             {...inputProps}
             ref={ref}
           />
