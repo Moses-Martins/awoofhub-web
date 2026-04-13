@@ -91,7 +91,7 @@ export default function DesktopMenu() {
                                         height={500}
                                         src={currentUser.profileImageUrl}
                                         alt={currentUser.name}
-                                        className="w-full h-full object-contain"
+                                        className="w-full h-full object-cover"
                                     />
                                 ) : (
                                     <div className="bg-green-500 text-white flex items-center justify-center w-full h-full">

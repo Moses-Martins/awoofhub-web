@@ -52,7 +52,7 @@ export default function ProfileHeader({ isOwnProfile, profile }: Props) {
                                 height={500}
                                 src={profile.profileImageUrl}
                                 alt={profile.name}
-                                className="w-full h-full object-contain"
+                                className="w-full h-full object-cover"
                             />
                         ) : (
                             <div className="bg-green-500 text-white text-[70px] font-semibold flex items-center justify-center w-full h-full">
