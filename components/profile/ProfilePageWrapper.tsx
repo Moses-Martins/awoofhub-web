@@ -3,6 +3,7 @@
 import { useUser } from "@/features/user/useUser";
 import { useUserById } from "@/features/user/useUserById";
 import { ReactNode } from "react";
+import Loading from "../loading/Loading";
 import ProfileHeader from "./ProfileHeader";
 
 
@@ -16,7 +17,7 @@ export default function ProfilePageWrapper({ userId, children }: Props) {
   const { data: user, isLoading } = useUserById({ id: userId });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />
   }
 
   if (!user) {

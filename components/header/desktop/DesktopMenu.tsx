@@ -113,7 +113,7 @@ export default function DesktopMenu() {
                                         { label: 'Switch account', icon: <GoArrowSwitch />, href: '/switch' },
                                     ].map((item, idx) => (
                                         <li key={idx} className="border-b border-muted/10 last:border-none">
-                                            <Link href={item.href} className="flex items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors">
+                                            <Link href={item.href} onClick={() => handleCloseDropDown()} className="flex items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors">
                                                 <span className="text-primary text-xl">{item.icon}</span>
                                                 <span className="text-foreground text-[20px] font-light">{item.label}</span>
                                             </Link>
