@@ -1,11 +1,15 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const heroImages = [
-  { src: "/HeroImage.png", alt: "Happy shoppers with bags" },
+  { src: "/HeroImage8.jpeg", alt: "Save money on offers" },
   { src: "/HeroImage2.jpg", alt: "Exclusive deals" },
   { src: "/HeroImage3.jpg", alt: "Save money on offers" },
+  { src: "/HeroImage4.jpeg", alt: "Save money on offers" },
+  { src: "/HeroImage5.jpeg", alt: "Save money on offers" },
+  { src: "/HeroImage6.jpeg", alt: "Save money on offers" },
+  { src: "/HeroImage7.jpeg", alt: "Save money on offers" },
 ];
 
 export default function Hero() {
@@ -22,7 +26,6 @@ export default function Hero() {
   return (
     <section className="px-6 py-6 sm:py-12 md:px-14 lg:py-24">
       <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start gap-12">
-        
         {/* Left Content Side */}
         <div className="w-full md:w-1/2 space-y-3 sm:space-y-6">
           {/* Badge */}
@@ -84,7 +87,6 @@ export default function Hero() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
