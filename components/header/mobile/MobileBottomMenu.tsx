@@ -1,4 +1,5 @@
 "use client"
+import { useMessageCount } from "@/features/chat/useUnreadCount";
 import { useUser } from "@/features/user/useUser";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -7,7 +8,7 @@ import { FiBell, FiHeart, FiHome, FiMessageCircle } from "react-icons/fi";
 export default function MobileBottomMenu() {
     const { data: currentUser } = useUser();
     const pathname = usePathname()
-
+    const { data: messageCount } = useMessageCount()
 
     return (
         <div className="fixed bottom-0 left-0 right-0 z-[99] flex items-center border-t border-gray-300 bg-white lg:hidden pb-3">
@@ -29,11 +30,16 @@ export default function MobileBottomMenu() {
             <div className="flex-1">
                 <Link
                     href={currentUser ? '/message' : '/login'}
-                    className={`flex flex-col items-center justify-center pt-3 ${pathname.startsWith('/message') ? 'text-primary border-t' : 'text-gray-700'}`}
+                    className={`flex flex-col items-center justify-center pt-3 relative ${pathname.startsWith('/message') ? 'text-primary border-t' : 'text-gray-700'}`}
                 >
                     <div className="text-[20px] relative">
                         <FiMessageCircle />
                     </div>
+                    {!!messageCount && messageCount > 0 && (
+                        <div className="absolute -top-1 right-4 w-6 h-6 bg-red-500 text-white text-[12px] font-bold flex items-center justify-center rounded-full border-2 border-white">
+                            {messageCount > 99 ? '99+' : messageCount}
+                        </div>
+                    )}
                     <span className="text-[14px]">Message</span>
                 </Link>
             </div>
