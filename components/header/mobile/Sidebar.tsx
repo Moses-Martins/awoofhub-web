@@ -47,7 +47,7 @@ export default function Sidebar({ user, isOpen, onClose }: Props) {
                 <ul className="flex flex-col">
                     {/* Standard Items */}
                     {[
-                        { label: 'Profile', icon: <FiUser />, href: '/profile' },
+                        { label: 'Profile', icon: <FiUser />, href: `/profile/${user.id}` },
                         { label: 'Help & Support', icon: <FiHelpCircle />, href: '/help' },
                         { label: 'Switch account', icon: <GoArrowSwitch />, href: '/switch' },
                     ].map((item, idx) => (

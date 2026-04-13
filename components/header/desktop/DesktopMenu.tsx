@@ -108,7 +108,7 @@ export default function DesktopMenu() {
                                 <ul className="flex flex-col">
                                     {/* Standard Items */}
                                     {[
-                                        { label: 'Profile', icon: <FiUser />, href: '/profile' },
+                                        { label: 'Profile', icon: <FiUser />, href: `/profile/${currentUser.id}` },
                                         { label: 'Help & Support', icon: <FiHelpCircle />, href: '/help' },
                                         { label: 'Switch account', icon: <GoArrowSwitch />, href: '/switch' },
                                     ].map((item, idx) => (

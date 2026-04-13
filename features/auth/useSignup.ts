@@ -3,7 +3,7 @@ import { SignupData } from '@/types/auth';
 import { User } from '@/types/user';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const signup = async (data: SignupData): Promise<User> => {
+export const signup = async (data: SignupData): Promise<any> => {
     const result = await signupService(data);
     return result.data;
 };
@@ -18,7 +18,6 @@ export const useSignup = ({ onSuccess }: UseSignupOptions = {}) => {
     const { mutate: submit, isPending } = useMutation({
         mutationFn: signup,
         onSuccess: (data) => {
-            queryClient.setQueryData(['auth-user'], data);
             onSuccess?.(data);
         },
     });

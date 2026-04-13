@@ -54,7 +54,7 @@ export const InputField = forwardRef(
           </FormLabel>}
         {type === 'textarea' ? (
           <Textarea
-            bg="white"
+            bg=" #F6F7F8"
             rows={8}
             {...inputProps}
             ref={ref}
@@ -67,6 +67,7 @@ export const InputField = forwardRef(
               </InputLeftElement>
             )}
             <Input
+              bg=" #F6F7F8"
               pr="4.5rem"
               className={`mt-2 w-full px-3 py-2 ${icon ? 'pl-12' : ''} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base sm:text-lg font-baloo`}
               type={show ? 'text' : 'password'}
@@ -88,7 +89,7 @@ export const InputField = forwardRef(
               </InputLeftElement>
             )}
             <Input
-              bg="white"
+              bg="#F6F7F8"
               type={type}
               placeholder={placeholder}
               className={`mt-2 w-full px-3 py-2 ${icon ? 'pl-12' : ''} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base sm:text-lg font-baloo`}

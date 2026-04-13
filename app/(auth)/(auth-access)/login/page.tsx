@@ -2,15 +2,16 @@
 import { LoginForm } from '@/components/login/LoginForm';
 import { Seo } from '@/components/seo/Seo';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 
 export default function LoginPage() {
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const onSuccess = () => {
-    const redirect = "/";
+    const redirect = searchParams.get("redirect") || "/";
     router.push(redirect);
   }
 

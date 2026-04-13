@@ -7,3 +7,9 @@ export type LoginFormProps = {
     onSuccess: () => void;
 };
 
+
+
+export type EditProfileFormProps = {
+    onSuccess: () => void;
+};
+

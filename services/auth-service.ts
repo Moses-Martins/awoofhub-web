@@ -12,8 +12,8 @@ export async function loginService(payload: LoginData): Promise<ApiResponse<User
 }
 
 // Register
-export async function signupService(payload: SignupData): Promise<ApiResponse<User>> {
-  const res: ApiResponse<User> = await apiClient.post('/auth/signup/', payload)
+export async function signupService(payload: SignupData): Promise<ApiResponse<any>> {
+  const res: ApiResponse<any> = await apiClient.post('/auth/signup/', payload)
   
   return res;
 }
