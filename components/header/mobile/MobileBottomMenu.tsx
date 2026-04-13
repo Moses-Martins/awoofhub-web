@@ -10,6 +10,10 @@ export default function MobileBottomMenu() {
     const pathname = usePathname()
     const { data: messageCount } = useMessageCount()
 
+    const isInsideChannel = pathname.includes('/message/') && pathname !== '/message';
+
+    if (isInsideChannel) return null;
+
     return (
         <div className="fixed bottom-0 left-0 right-0 z-[99] flex items-center border-t border-gray-300 bg-white lg:hidden pb-3">
 
