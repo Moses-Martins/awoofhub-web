@@ -10,7 +10,7 @@ interface ChatProps {
 
 export default function Chat({open, openSidebar}: ChatProps) {
     return (
-        <main className="relative w-full overflow-hidden shadow-sm h-[calc(100dvh-80px)]">
+        <main className="relative w-full overflow-hidden shadow-sm h-[calc(100dvh-80px)] md:h-[calc(100vh-137px)] lg:h-[calc(100dvh-80px)]">
             <div className="absolute bottom-0 top-0 flex w-full">
                 
                 <ChatSidebar
