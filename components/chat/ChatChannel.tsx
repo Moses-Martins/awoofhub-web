@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ArrowLeft, MessageSquareIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Channel, ChannelHeader, ChannelHeaderProps, MessageInput, MessageList, useChatContext, Window } from "stream-chat-react";
-
 
 interface ChatChannelProps {
     open: boolean;
@@ -9,6 +9,13 @@ interface ChatChannelProps {
 }
 
 export default function ChatChannel({ open, openSidebar }: ChatChannelProps) {
+
+    const router = useRouter();
+
+    const handleMessageClick = (event: React.BaseSyntheticEvent, user: any) => {
+        const userId = user.id;
+        router.push(`/profile/${userId}`);
+    };
 
     const { channel } = useChatContext();
     if (!channel) {
@@ -26,14 +33,13 @@ export default function ChatChannel({ open, openSidebar }: ChatChannelProps) {
             <Channel>
                 <Window>
                     <CustomChannelHeader openSidebar={openSidebar} />
-                    <MessageList />
+                    <MessageList onUserClick={handleMessageClick} />
                     <MessageInput maxRows={5} />
                 </Window>
             </Channel>
         </div>
     )
 }
-
 
 
 interface CustomChannelHeaderProps extends ChannelHeaderProps {
