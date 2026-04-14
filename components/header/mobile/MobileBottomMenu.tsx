@@ -10,14 +10,11 @@ export default function MobileBottomMenu() {
     const pathname = usePathname()
     const { data: messageCount } = useMessageCount()
 
-    const isInsideChannel = pathname.includes('/message/') && pathname !== '/message';
-
-    if (isInsideChannel) return null;
+    const isInsideChannel = pathname.includes('/message/') && pathname !== '/message'
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-[99] flex items-center border-t border-gray-300 bg-white lg:hidden pb-3">
+        <div className={`fixed bottom-0 left-0 right-0 z-[99] flex items-center border-t border-gray-300 bg-white lg:hidden pb-3 ${isInsideChannel ? 'hidden md:flex' : ''}`}>
 
-            {/* Home */}
             <div className="flex-1">
                 <Link
                     href="/"
@@ -61,7 +58,6 @@ export default function MobileBottomMenu() {
                 </Link>
             </div>
 
-            {/* Wishlist */}
             <div className="flex-1">
                 <Link
                     href={currentUser ? '/wishlist' : '/login'}
@@ -76,6 +72,4 @@ export default function MobileBottomMenu() {
         </div>
     )
 };
-
-
 
