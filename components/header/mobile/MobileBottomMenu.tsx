@@ -1,5 +1,5 @@
 "use client"
-import { useMessageCount } from "@/features/chat/useUnreadCount";
+import { useMessageCount } from "@/features/chat/useMessageCount";
 import { useUser } from "@/features/user/useUser";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

@@ -49,3 +49,37 @@ export interface Offer {
     ratingDistribution: {}
 };
 
+export interface Stats {
+  totalAds: number;
+  activeAds: number
+  pendingAds: number;
+  rejectedAds: number;
+  expiredAds: number;
+}
+
+export interface CategoryData {
+  name: string;
+  value: number;
+}
+
+export interface OffersByMonthData {
+  month: string; // e.g., "2026-03"
+  [category: string]: any;
+}
+
+export interface ExpiringOffers {
+  "1-3 days": number;
+  "4-7 days": number;
+  "7+ days": number;
+}
+
+export interface BusinessDashboard {
+  stats: Stats;
+  topOffers: Offer[];
+  charts: {
+    categoryPie: CategoryData[];
+    offersByMonth: OffersByMonthData[];
+    expiringOffers: ExpiringOffers;
+  };
+}
+

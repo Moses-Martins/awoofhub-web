@@ -1,6 +1,6 @@
 import { apiClient } from "@/lib/api-client";
 import { ApiResponse } from "@/types/api-response";
-import { EmailData, LoginData, ResetPasswordData, SignupData } from "@/types/auth";
+import { EmailData, LoginData, ResetPasswordData, SignupData, VerifyEmailData } from "@/types/auth";
 import { User } from "@/types/user";
 
 
@@ -28,6 +28,12 @@ export async function forgotPasswordService(payload: EmailData): Promise<ApiResp
 
 export async function resetPasswordService(payload: ResetPasswordData): Promise<ApiResponse<any>> {
   const res: ApiResponse<any> = await apiClient.post('/auth/reset-password/', payload)
+  
+  return res;
+}
+
+export async function verifyEmailService(payload: VerifyEmailData): Promise<ApiResponse<any>> {
+  const res: ApiResponse<any> = await apiClient.post('/auth/verify-email/', payload)
   
   return res;
 }

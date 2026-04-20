@@ -4,7 +4,7 @@ import { InputField } from '@/components/form/InputField';
 import { API_URL } from "@/config/constants";
 import { RoleContext } from '@/context/RoleContext';
 import { useLogin } from '@/features/auth/useLogin';
-import { LoginData, SignupData } from '@/types/auth';
+import { LoginData } from '@/types/auth';
 import { LoginFormProps } from '@/types/form-props';
 import { Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
@@ -19,7 +19,7 @@ export const LoginForm = ({
 
     const { setRole } = useContext(RoleContext);
 
-    const { register, handleSubmit, formState } = useForm<SignupData>();
+    const { register, handleSubmit, formState } = useForm<LoginData>();
 
     const onSubmit = (data: LoginData) => {
         login.submit(data);

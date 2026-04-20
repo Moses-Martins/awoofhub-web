@@ -1,6 +1,6 @@
 'use client'
 import { useLogout } from "@/features/auth/useLogout";
-import { useMessageCount } from "@/features/chat/useUnreadCount";
+import { useMessageCount } from "@/features/chat/useMessageCount";
 import { useUser } from "@/features/user/useUser";
 import { capitalizeFirstLetter, firstFiveLetters } from "@/utils/truncate";
 import Image from 'next/image';
