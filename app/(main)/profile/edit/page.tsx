@@ -15,7 +15,7 @@ export default function EditProfilePage() {
         if (!currentUser?.id) return;        
 
         const redirect = `/profile/${currentUser.id}`;
-        router.push(redirect);
+        router.push(redirect); 
     }
 
     return (

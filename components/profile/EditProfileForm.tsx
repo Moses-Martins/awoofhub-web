@@ -10,9 +10,10 @@ import { UpdateUserData } from '@/types/user';
 import { capitalizeFirstLetter } from '@/utils/truncate';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { FiCamera, FiFileText, FiGlobe, FiMapPin, FiUser } from 'react-icons/fi';
+import { Controller, useForm } from 'react-hook-form';
+import { FiCamera, FiFileText, FiGlobe, FiUser } from 'react-icons/fi';
 import { ImSpinner2 } from 'react-icons/im';
+import { GoogleAutocompleteNew } from '../form/AutoComplete';
 
 export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
     const { data: currentUser } = useUser();
@@ -22,7 +23,7 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
 
-    const { register, handleSubmit, formState, reset, setValue, watch } = useForm<UpdateUserData>();
+    const { register, handleSubmit, formState, control, reset, setValue, watch } = useForm<UpdateUserData>();
 
     const photoUrl = watch('profileImageUrl');
 
@@ -60,7 +61,7 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                 bio: currentUser.bio || '',
                 address: currentUser.address || '',
                 website: currentUser.website || '',
-                profileImageUrl: currentUser.profileImageUrl || '', 
+                profileImageUrl: currentUser.profileImageUrl || '',
             });
         }
     }, [currentUser, reset]);
@@ -74,7 +75,7 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                 <div className="relative h-32 w-32">
                     <div className="h-full w-full rounded-full border-4 border-gray-200 overflow-hidden bg-gray-100 flex items-center justify-center">
                         {photoUrl ? (
-                             <Image width={500} height={500} src={photoUrl} alt="profile" className="w-full h-full object-cover" />
+                            <Image width={500} height={500} src={photoUrl} alt="profile" className="w-full h-full object-cover" />
                         ) : (
                             <div className="bg-green-500 text-white text-[70px] font-semibold flex items-center justify-center w-full h-full">
                                 {capitalizeFirstLetter(currentUser?.name || "User")}
@@ -117,7 +118,7 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                             message: 'Name must be less than 50 characters',
                         },
                     })}
-                    error={formState.errors['name']} 
+                    error={formState.errors['name']}
                 />
                 <InputField
                     label="Bio"
@@ -132,7 +133,7 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                     error={formState.errors['bio']}
                 />
 
-                 <InputField
+                <InputField
                     label="Website"
                     type="text"
                     icon={<FiGlobe size={18} color="gray" />}
@@ -145,12 +146,20 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                     error={formState.errors['website']}
                 />
 
-                <InputField
-                    label="Address"
-                    type="text"
-                    icon={<FiMapPin size={18} color="gray" />}
-                    {...register('address')}
-                    error={formState.errors['address']}
+                <Controller
+                    name="address"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                        <GoogleAutocompleteNew
+                            label="Address"
+                            error={fieldState.error}
+                            // field.value will be the string from currentUser.address initially
+                            value={field.value}
+                            // This sends the formattedAddress string back to React Hook Form
+                            onPlaceSelect={field.onChange}
+                            compulsory={false}
+                        />
+                    )}
                 />
 
                 <div className="flex w-60 gap-3 mt-10">
