@@ -63,7 +63,7 @@ export const InputField = forwardRef(
         ) : type === 'password' ? (
           <InputGroup>
             {icon && (
-              <InputLeftElement pointerEvents="none" className="mx-3 my-5">
+              <InputLeftElement pointerEvents="none" className="mx-3 my-5.5">
                 {icon}
               </InputLeftElement>
             )}
@@ -85,7 +85,7 @@ export const InputField = forwardRef(
         ) : (
           <InputGroup>
             {icon && (
-              <InputLeftElement pointerEvents="none" className="mx-3 my-5">
+              <InputLeftElement pointerEvents="none" className="mx-3 my-5.5">
                 {icon}
               </InputLeftElement>
             )}

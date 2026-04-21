@@ -5,49 +5,62 @@ import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { debounce } from 'lodash';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-setOptions({
-    key: NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
-});
 
 export const GoogleAutocompleteNew = ({ label, error, compulsory, onPlaceSelect, value }: any) => {
-    const [inputValue, setInputValue] = useState('');
+
+    useEffect(() => {
+        setOptions({
+            key: NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
+        });
+    }, []);
+
     const [options, setOptionsList] = useState<readonly any[]>([]);
-    const [sessionToken, setSessionToken] = useState<any>(null);
+    const [sessionToken, setSessionToken] = useState<google.maps.places.AutocompleteSessionToken | null>(null);
+    const [inputValue, setInputValue] = useState('');
+
+    const placesLib = useRef<google.maps.PlacesLibrary | null>(null);
 
     useEffect(() => {
         const setup = async () => {
-            // 2. Using the new importLibrary syntax you found
-            const { AutocompleteSessionToken } = await importLibrary("places") as google.maps.PlacesLibrary;
-            setSessionToken(new AutocompleteSessionToken());
+            const lib = await importLibrary("places") as google.maps.PlacesLibrary;
+            placesLib.current = lib;
+            setSessionToken(new placesLib.current.AutocompleteSessionToken());
         };
         setup();
     }, []);
 
-    useEffect(() => {
-        if (value && typeof value === 'string') {
-            setInputValue(value);
-        }
-    }, [value]);
-
     const fetchSuggestions = useMemo(
         () =>
             debounce(async (input: string) => {
-                if (!input || !sessionToken) return;
+                if (!input || !placesLib.current || !sessionToken) {
+                    setOptionsList([]);
+                    return;
+                }
 
-                // 3. Import the library using the new method
-                const { AutocompleteSuggestion } = await importLibrary("places") as google.maps.PlacesLibrary;
+                const { AutocompleteSuggestion } = placesLib.current;
 
-                const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
-                    input,
-                    sessionToken,
-                });
-
-                setOptionsList(suggestions);
+                try {
+                    const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+                        input,
+                        sessionToken,
+                    });
+                    setOptionsList(suggestions);
+                } catch (err) {
+                    console.error("Autocomplete error:", err);
+                }
             }, 400),
         [sessionToken]
     );
+
+    useEffect(() => {
+        setInputValue(value || '');
+    }, [value]);
+
+    useEffect(() => {
+        return () => fetchSuggestions.cancel();
+    }, [fetchSuggestions]);
 
     useEffect(() => {
         fetchSuggestions(inputValue);
@@ -63,38 +76,30 @@ export const GoogleAutocompleteNew = ({ label, error, compulsory, onPlaceSelect,
 
             <Autocomplete
                 options={options}
-                value={value || ''}
+                value={value || null}
+                inputValue={inputValue}
+                onInputChange={(e, val) => setInputValue(val)}
                 getOptionLabel={(option) => {
                     if (typeof option === 'string') return option;
-
-                    if (option?.placePrediction?.text?.text) {
-                        return option.placePrediction.text.text;
-                    }
-
-                    return "";
+                    return option?.placePrediction?.text?.text || "";
                 }}
                 filterOptions={(x) => x}
                 autoComplete
                 includeInputInList
-                clearOnBlur
-                noOptionsText="No locations found"
                 onChange={async (event, newValue) => {
-                    if (newValue) {
+                    if (newValue && newValue.placePrediction) {
                         const place = newValue.placePrediction.toPlace();
-
-                        await place.fetchFields({
-                            fields: ['formattedAddress']
-                        });
-
-                        if (typeof onPlaceSelect === 'function') {
-                            onPlaceSelect(place.formattedAddress);
-                        }
+                        await place.fetchFields({ fields: ['formattedAddress'] });
+                        onPlaceSelect(place.formattedAddress);
                     } else {
                         onPlaceSelect("");
                     }
                 }}
-                onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                  // This styles the dropdown menu
+                slotProps={{
+                    paper: {
+                        className: "!font-baloo !text-lg",
+                    },
                 }}
                 renderInput={(params) => (
                     <TextField
@@ -105,21 +110,19 @@ export const GoogleAutocompleteNew = ({ label, error, compulsory, onPlaceSelect,
                             input: {
                                 ...params.InputProps,
                                 disableUnderline: true,
-                                className: `
-                  !mt-2 !w-full !px-3 !py-2 !bg-[#F6F7F8] 
-                  !border ${error ? '!border-red-500' : '!border-gray-300'} 
-                  !rounded-md !shadow-sm !font-baloo !text-lg
-                  focus-within:!ring-0 focus-within:!border-orange-500
-                `,
+                               className: `!mt-2 !w-full !px-3 !py-[9px] !bg-[#F6F7F8] !border ${error ? '!border-red-500' : '!border-gray-300'} !rounded-md !shadow-sm !font-baloo !text-lg focus-within:!border-orange-500
+                                [&_.MuiAutocomplete-endAdornment]:!px-3`,
                             },
                             htmlInput: {
                                 ...params.inputProps,
-                                className: "!font-baloo !text-lg !outline-none",
+                                className: "!font-baloo !text-lg !placeholder-gray-400 !pr-8 !py-0",
                             },
                         }}
+                        className="[&_svg]:!fill-gray-500"
                     />
                 )}
             />
+
             {error && <FormHelperText className="text-red-500">{error.message}</FormHelperText>}
         </FormControl>
     );
