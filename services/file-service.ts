@@ -1,7 +1,7 @@
 import { apiClient } from "@/lib/api-client";
 import { ApiResponse } from "@/types/api-response";
 
-async function uploadSingle(file: File): Promise<ApiResponse<string>> {
+async function uploadSinglePhoto(file: File): Promise<ApiResponse<string>> {
 
     const formData = new FormData();
     
@@ -18,7 +18,7 @@ async function uploadSingle(file: File): Promise<ApiResponse<string>> {
 
 
 const FileService = {
-    uploadSingle
+    uploadSinglePhoto
 };
 
 export default FileService;

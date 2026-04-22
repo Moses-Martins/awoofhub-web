@@ -123,7 +123,7 @@ export const GoogleAutocompleteNew = ({ label, error, compulsory, onPlaceSelect,
                 )}
             />
 
-            {error && <FormHelperText className="text-red-500">{error.message}</FormHelperText>}
+            {error && <FormHelperText className="text-red-500 text-left text-xs mt-1">{error.message}</FormHelperText>}
         </FormControl>
     );
 };

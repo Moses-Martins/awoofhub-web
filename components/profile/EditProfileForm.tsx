@@ -1,7 +1,7 @@
 "use client"
 import { Button } from '@/components/button/Button';
 import { InputField } from '@/components/form/InputField';
-import { useUpdateUserPhoto } from '@/features/upload/useUpdateProfilePhoto';
+import { useUploadSinglePhoto } from '@/features/upload/useUpdateProfilePhoto';
 import { useUpdateUser } from '@/features/user/useUpdateUser';
 import { useUser } from '@/features/user/useUser';
 import { notificationsStore } from '@/store/notifications/notifications';
@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from '@/utils/truncate';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { FiCamera, FiFileText, FiGlobe, FiUser } from 'react-icons/fi';
+import { FiCamera, FiGlobe, FiUser } from 'react-icons/fi';
 import { ImSpinner2 } from 'react-icons/im';
 import { GoogleAutocompleteNew } from '../form/AutoComplete';
 
@@ -19,7 +19,7 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
     const { data: currentUser } = useUser();
     const updateUser = useUpdateUser({ onSuccess });
 
-    const { uploadPhoto, isPending: isUploading } = useUpdateUserPhoto();
+    const { uploadPhoto, isPending: isUploading } = useUploadSinglePhoto();
     const fileInputRef = useRef<HTMLInputElement>(null);
 
 
@@ -123,7 +123,6 @@ export const EditProfileForm = ({ onSuccess }: EditProfileFormProps) => {
                 <InputField
                     label="Bio"
                     type="textarea"
-                    icon={<FiFileText size={18} color="gray" />}
                     {...register('bio', {
                         maxLength: {
                             value: 200,

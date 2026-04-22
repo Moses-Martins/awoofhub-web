@@ -21,6 +21,7 @@ import {
 export type InputFieldProps = {
   type?: 'text' | 'email' | 'password' | 'textarea';
   label?: string;
+  textAreaRows?: number;
   error?: FieldError;
   icon?: React.ReactNode;
   placeholder?: string;
@@ -37,6 +38,7 @@ export const InputField = forwardRef(
       error,
       icon,
       placeholder,
+      textAreaRows=3,
       compulsory,
       ...inputProps
     } = props;
@@ -56,7 +58,7 @@ export const InputField = forwardRef(
           <Textarea
             bg=" #F6F7F8"
             className={`mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base sm:text-lg font-baloo`}
-            rows={3}
+            rows={textAreaRows}
             {...inputProps}
             ref={ref}
           />

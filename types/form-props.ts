@@ -13,3 +13,9 @@ export type EditProfileFormProps = {
     onSuccess: () => void;
 };
 
+
+export type CreateOfferFormProps = {
+    onSuccess: () => void;
+};
+
+
