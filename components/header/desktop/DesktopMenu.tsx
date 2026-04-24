@@ -20,9 +20,8 @@ export default function DesktopMenu() {
     const [isOpenDropdown, setIsOpenDropdown] = useState(false);
     const dropdownRef = useRef<HTMLLIElement>(null);
 
-    const { data: messageCount } = useMessageCount()
-
     const { data: currentUser } = useUser();
+    const { data: messageCount } = useMessageCount() // It needs to be below useUser() unless it keeps refreshing.
 
     const router = useRouter();
 

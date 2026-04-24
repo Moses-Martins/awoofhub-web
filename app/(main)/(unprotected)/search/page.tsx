@@ -1,14 +1,13 @@
 "use client";
 
+import { OfferError } from "@/components/offers/OfferError";
+import OfferList from "@/components/offers/OfferList";
+import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
+import { useSearchOffers } from "@/features/offers/useSearchOffers";
 import { Spinner } from "@chakra-ui/react";
 import { Suspense, use, useEffect, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useInView } from "react-intersection-observer";
-
-import { OfferError } from "@/components/offers/OfferError";
-import OfferList from "@/components/offers/OfferList";
-import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
-import { useSearchedOffers } from "@/features/offers/useSearchedOffers";
 
 interface SearchProps {
     searchParams: Promise<{ q: string | undefined }>;
@@ -17,7 +16,7 @@ interface SearchProps {
 function SearchResults({ searchParams }: SearchProps) {
     const { q } = use(searchParams) ?? { q: "" };
 
-    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useSearchedOffers({ query: q ?? "", limit: 8 });
+    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useSearchOffers({ query: q ?? "", limit: 8 });
 
     const [ref, inView] = useInView();
 

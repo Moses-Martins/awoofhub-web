@@ -62,7 +62,7 @@ export const GoogleAutocompleteNew = ({ label, error, compulsory, onPlaceSelect,
         return () => fetchSuggestions.cancel();
     }, [fetchSuggestions]);
 
-    useEffect(() => {
+    useEffect(() => { 
         fetchSuggestions(inputValue);
     }, [inputValue, fetchSuggestions]);
 

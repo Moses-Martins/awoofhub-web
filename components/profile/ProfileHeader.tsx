@@ -84,7 +84,7 @@ export default function ProfileHeader({ isOwnProfile, profile }: Props) {
                             )}
                         </div>
 
-                        <Tabs />
+                        <Tabs user={profile} />
                     </div>
 
                 </div>

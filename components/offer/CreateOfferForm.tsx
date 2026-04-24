@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { useCategory } from "@/features/category/useCategories";
+import { useCategory } from "@/features/category/useCategory";
 import { useCreateOffer } from "@/features/offers/useCreateOffer";
 import { useUploadSinglePhoto } from "@/features/upload/useUpdateProfilePhoto";
 

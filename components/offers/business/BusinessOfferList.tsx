@@ -8,7 +8,7 @@ interface Props {
 
 export default function BusinessOfferList({ offers }: Props) {
   return (
-    <table className="w-full text-left shadow-sm">
+    <table className="w-full min-w-[1283px] text-left shadow-sm">
       <TableHeader />
       <tbody>
         {offers.map((offer) => (

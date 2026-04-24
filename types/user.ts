@@ -3,7 +3,7 @@ export interface User {
   email: string;
   name: string;
   profileImageUrl: string | null;
-  role: "user" | "admin" | "business";
+  role: "user" | "business";
   bio: string | null;
   address: string | null;
   website: string | null;

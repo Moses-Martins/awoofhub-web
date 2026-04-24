@@ -13,6 +13,7 @@ import {
   Users,
   XCircle
 } from 'lucide-react';
+import Link from "next/link";
 
 
 export default function BusinessDashboard() {
@@ -51,14 +52,12 @@ export default function BusinessDashboard() {
           <div className="p-6 flex justify-between items-center border-b border-gray-50">
             <h2 className="text-lg font-bold">Top Rated Offers</h2>
             <div className="flex items-center gap-4">
-              <button className="text-[#FF5C00] text-sm font-bold underline underline-offset-4">View all</button>
+              <Link href="/business/offers/" className="text-[#FF5C00] text-sm font-bold underline underline-offset-4">View all</Link>
             </div>
           </div>
-
           <div className="overflow-x-auto">
-            <BusinessOfferList offers={data.topOffers} /> 
+            <BusinessOfferList offers={data.topOffers} />
           </div>
-
         </div>
 
         <div className="flex justify-between flex-wrap gap-4">

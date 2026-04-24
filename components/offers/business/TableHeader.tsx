@@ -7,7 +7,7 @@ export default function TableHeader() {
         <th className="px-3 py-4 font-bold">Date Created</th>
         <th className="px-3 py-4 text-center font-bold">Rating</th>
         <th className="px-3 py-4 font-bold">Reviews</th>
-        <th className="px-3 py-4 text-center font-bold">Ends In</th>
+        <th className="px-3 py-4 text-center font-bold">Ends On</th>
         <th className="px-3 py-4 text-center font-bold">Status</th>
         <th className="px-3 py-4 text-center font-bold">Expiry Status</th>
         <th className="px-3 py-4 text-center font-bold">Actions</th>

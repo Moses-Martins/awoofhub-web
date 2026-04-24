@@ -1,16 +1,16 @@
 "use client";
 
+import BusinessOfferList from "@/components/offers/business/BusinessOfferList";
 import { OfferError } from "@/components/offers/OfferError";
-import OfferList from "@/components/offers/OfferList";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
-import { useCategory } from "@/features/category/useCategories";
-import { useOffersByCategorySlug } from "@/features/offers/useOffersByCategorySlug";
+import { useBusinessCategory } from "@/features/category/useBusinessCategory";
+import { useBusinessOffersByCategorySlug } from "@/features/offers/useBusinessOffersByCategorySlug";
 import { Spinner } from "@chakra-ui/react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { use, useEffect, useMemo, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useInView } from "react-intersection-observer";
@@ -27,18 +27,20 @@ export default function CollectionPage({ params }: Props) {
 
     const [ref, inView] = useInView();
 
-    const { data: categories } = useCategory();
+    const { data: categories } = useBusinessCategory();
 
-    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
+    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useBusinessOffersByCategorySlug({
         categorySlug: slug, limit: 8,
     });
+
+    if ((error as any)?.response?.status === 404) {
+        return notFound();
+    }
 
     const allOffers = useMemo(() => {
         return data?.pages.flatMap((page) => page.data) ?? [];
     }, [data]);
 
-
-    // Trigger next page load when in view
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
@@ -52,7 +54,7 @@ export default function CollectionPage({ params }: Props) {
         if (newSlug === currentSlug) return;
 
         setCurrentSlug(newSlug);
-        router.push(`/categories/${newSlug}`);
+        router.push(`business/categories/${newSlug}`);
     };
 
     // Early returns make JSX cleaner
@@ -96,8 +98,9 @@ export default function CollectionPage({ params }: Props) {
                     </Select>
                 </FormControl>
 
-                {/* Offers List */}
-                <OfferList offers={allOffers} />
+                <div className="overflow-x-auto">
+                    <BusinessOfferList offers={allOffers} />
+                </div>
                 <div ref={ref} className="h-10 flex items-center justify-center mt-6">
                     {isFetchingNextPage && (
                         <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />

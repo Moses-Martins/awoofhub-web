@@ -12,6 +12,7 @@ export const useUser = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['auth-user'],
         queryFn: () => getAuthUser(),
+        retry: false,
     });
     
     return { data, isLoading };

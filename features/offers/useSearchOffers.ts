@@ -10,14 +10,14 @@ type GetSearchOffersOptions = {
     limit: number,
 };
 
-export const getSearchedOffers = ({ query, page = 1, limit }: GetSearchOffersOptions): Promise<ApiResponse<Offer[]>> => {
+export const getSearchOffers = ({ query, page = 1, limit }: GetSearchOffersOptions): Promise<ApiResponse<Offer[]>> => {
     return OfferService.searchOffers(query, page, limit);
 };
 
-export const useSearchedOffers = ({ query, limit = 8 }: GetSearchOffersOptions) => {
+export const useSearchOffers = ({ query, limit = 8 }: GetSearchOffersOptions) => {
     const {  data, isFetchingNextPage, isFetching, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
         queryKey: ['offers', query, limit],
-        queryFn: ({ pageParam = 1 }) => getSearchedOffers({ query, page: pageParam, limit }),
+        queryFn: ({ pageParam = 1 }) => getSearchOffers({ query, page: pageParam, limit }),
 
         getNextPageParam: (lastPage) => {
             if (!lastPage.meta) return undefined;

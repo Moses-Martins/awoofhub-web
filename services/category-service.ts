@@ -8,8 +8,14 @@ async function createCategory(payload: CreateCategoryData): Promise<ApiResponse<
   return res;
 }
 
-async function getAllCategories(): Promise<ApiResponse<Category[]>> {
+async function getAllCategory(): Promise<ApiResponse<Category[]>> {
   const res: ApiResponse<Category[]> = await apiClient.get('/category/')
+
+  return res;
+}
+
+async function getAllBusinessCategory(): Promise<ApiResponse<Category[]>> {
+  const res: ApiResponse<Category[]> = await apiClient.get('/category/business/')
 
   return res;
 }
@@ -24,7 +30,8 @@ async function getCategoryById(id: string): Promise<ApiResponse<Category>> {
 
 const CategoryService = {
   createCategory,
-  getAllCategories,
+  getAllCategory,
+  getAllBusinessCategory,
   getCategoryById,
 };
 

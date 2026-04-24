@@ -1,5 +1,5 @@
 'use client'
-import { useCategory } from "@/features/category/useCategories";
+import { useCategory } from "@/features/category/useCategory";
 import { useEffect, useState } from "react";
 import Loading from "../loading/Loading";
 import CategorizedOffers from "./CategorizedOffers";

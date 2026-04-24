@@ -7,8 +7,8 @@ import { FiBell, FiHeart, FiHome, FiMessageCircle } from "react-icons/fi";
 
 export default function MobileBottomMenu() {
     const { data: currentUser } = useUser();
+    const { data: messageCount } = useMessageCount() // It needs to be below useUser() unless it keeps refreshing.
     const pathname = usePathname()
-    const { data: messageCount } = useMessageCount()
 
     const isInsideChannel = pathname.includes('/message/') && pathname !== '/message'
 

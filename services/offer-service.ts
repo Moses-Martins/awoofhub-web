@@ -49,6 +49,13 @@ async function getOffersByCategorySlug(slug: string, page: number, limit: number
   return res;
 }
 
+async function getBusinessOffersByCategorySlug(slug: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+  const res: ApiResponse<Offer[]> = await apiClient.get(`/offers/business/category/slug/${slug}`, {
+    params: { page, limit },
+  })
+
+  return res;
+}
 
 async function getRandomOffers(page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/', {
@@ -60,6 +67,14 @@ async function getRandomOffers(page: number, limit: number): Promise<ApiResponse
 
 async function searchOffers(query: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
   const res: ApiResponse<Offer[]> = await apiClient.get('/offers/search/', {
+    params: { query, page, limit },
+  })
+
+  return res;
+}
+
+async function searchBusinessOffers(query: string, page: number, limit: number): Promise<ApiResponse<Offer[]>> {
+  const res: ApiResponse<Offer[]> = await apiClient.get('/offers/business/search/', {
     params: { query, page, limit },
   })
 
@@ -100,9 +115,11 @@ const OfferService = {
   getOffersByCategory,
   getOffersByUserId,
   getOffersByCategorySlug,
+  getBusinessOffersByCategorySlug,
   getBusinessDashboard,
   getRandomOffers,
   searchOffers,
+  searchBusinessOffers,
   filterOffers,
   updateOffer,
   deleteOffer,
