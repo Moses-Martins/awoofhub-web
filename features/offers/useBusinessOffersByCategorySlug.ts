@@ -2,46 +2,33 @@
 import OfferService from '@/services/offer-service';
 import { ApiResponse } from '@/types/api-response';
 import { Offer } from '@/types/offer';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 
 type GetOffersByCategoryOptions = {
     categorySlug: string,
-    page?: number,
+    page: number,
     limit: number,
 };
 
-export const getBusinessOffersByCategorySlug = ({ categorySlug, page = 1, limit }: GetOffersByCategoryOptions): Promise<ApiResponse<Offer[]>> => {
+export const getBusinessOffersByCategorySlug = ({ categorySlug, page, limit }: GetOffersByCategoryOptions): Promise<ApiResponse<Offer[]>> => {
     return OfferService.getBusinessOffersByCategorySlug(categorySlug, page, limit);
 };
 
-export const useBusinessOffersByCategorySlug = ({ categorySlug, limit = 8 }: GetOffersByCategoryOptions) => {
+export const useBusinessOffersByCategorySlug = ({ categorySlug, page, limit = 10 }: GetOffersByCategoryOptions) => {
 
-    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
-        queryKey: ["business", 'offers', categorySlug, limit],
-        queryFn: ({ pageParam = 1 }) => getBusinessOffersByCategorySlug({ categorySlug, page: pageParam, limit }),
-
-        getNextPageParam: (lastPage) => {
-            if (!lastPage.meta) return undefined;
-
-            const currentPage = Number(lastPage.meta.page);
-            const totalPages = Number(lastPage.meta.totalPages);
-
-            return currentPage < totalPages ? currentPage + 1 : undefined;
-        },
-        initialPageParam: 1,
+    const { data, isFetching, isError, error } = useQuery({
+        queryKey: ["business", 'offers', categorySlug, page, limit],
+        queryFn: () => getBusinessOffersByCategorySlug({ categorySlug, page, limit }),
         enabled: !!categorySlug,
-
     });
 
     return {
         data,
         isFetching,
-        fetchNextPage,
-        hasNextPage,
         isError,
-        error,
-        isFetchingNextPage
+        error
     };
+
 };
 

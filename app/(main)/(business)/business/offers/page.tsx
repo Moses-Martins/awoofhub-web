@@ -1,69 +1,33 @@
 "use client"
 
-import BusinessOfferList from "@/components/offers/business/BusinessOfferList";
+import BusinessOfferInfiniteList from "@/components/offers/business/BusinessOfferInfiniteList";
 import { OfferError } from "@/components/offers/OfferError";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import { useBusinessCategory } from "@/features/category/useBusinessCategory";
-import { useOffersByUserId } from "@/features/offers/useoffersByUserId";
+import { useOffersByBusinessId } from "@/features/offers/useOffersByBusinessId";
 import { useUser } from "@/features/user/useUser";
-import { Spinner } from "@chakra-ui/react";
 import Link from "next/link";
-import { useEffect, useMemo } from "react";
+import { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { useInView } from "react-intersection-observer";
 
 export default function BusinessOffersPage() {
 
-    const [ref, inView] = useInView();
+    const [page, setPage] = useState(1);
 
     const { data: user } = useUser();
 
     const { data: Categories, isLoading: isCategoryLoading } = useBusinessCategory()
 
 
-    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByUserId({
-        userId: user?.id ?? "", limit: 8,
+    const { data, isFetching, isError, error } = useOffersByBusinessId({
+        businessId: user?.id ?? "", page, limit: 5,
     });
 
-
-    const allOffers = useMemo(() => {
-        return data?.pages.flatMap((page) => page.data) ?? [];
-    }, [data]);
-
-
-    // Trigger next page load when in view
-    useEffect(() => {
-        if (inView && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-        }
-    }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
-
-
-    // Early returns make JSX cleaner
-    if (isFetching && allOffers.length === 0) {
-        return (
-            <section className="pt-14 px-6">
-                <OfferListSkeleton number={4} />
-            </section>
-        );
-    }
-
-    if (isError) {
-        return <div>{error?.message}</div>
-    }
-
-    if (!allOffers.length) {
-        return (
-            <section className="pt-14 px-6">
-                <p className="text-center text-gray-500">No offers found.</p>
-            </section>
-        );
-    }
-
+    const offers = data?.data ?? [];
 
     return (
         <ErrorBoundary fallback={<OfferError />}>
-            <section className="p-6 pt-4 mb-15 lg:mb-0 bg-white">
+            <section className="p-6 pt-4 mb-15 lg:mb-0 bg-white min-h-screen">
                 <div className="flex flex-col gap-2 items-center mb-8">
                     <h2 className="text-primary font-bold text-2xl py-2 mb-2 md:mb-0">
                         Categories
@@ -92,14 +56,16 @@ export default function BusinessOffersPage() {
                         )}
                     </div>
                 </div>
-                <div className="overflow-x-auto">
-                    <BusinessOfferList offers={allOffers} />
-                </div>
-                <div ref={ref} className="h-10 flex items-center justify-center mt-6">
-                    {isFetchingNextPage && (
-                        <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />
+                <div className="overflow-x-auto min-h-[300px]">
+                    {isFetching && !data ? (
+                        <OfferListSkeleton number={4} />
+                    ) : isError ? (
+                        <div>{error?.message}</div>
+                    ) : offers.length === 0 ? (
+                        <p className="text-center text-gray-500">No offers found.</p>
+                    ) : (
+                        <BusinessOfferInfiniteList data={data} page={page} setPage={setPage} />
                     )}
-                    {!hasNextPage && allOffers.length > 0 && <p className="text-center text-[14px] sm:text-[16px]">No more offers</p>}
                 </div>
             </section>
         </ErrorBoundary>

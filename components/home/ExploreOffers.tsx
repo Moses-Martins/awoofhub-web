@@ -28,7 +28,7 @@ export default function ExploreOffers() {
                 </div>
 
                 <ErrorBoundary fallback={<OfferError />}>
-                    {isFetching && <OfferListSkeleton number={4} />}
+                    {isFetching && <OfferListSkeleton number={8} />}
                     {!isFetching && data.length === 0 && (
                         <p className="text-gray-500">No offers available.</p>
                     )}

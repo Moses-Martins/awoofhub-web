@@ -1,20 +1,17 @@
 "use client";
 
 import { OfferError } from "@/components/offers/OfferError";
-import OfferList from "@/components/offers/OfferList";
+import OfferInfiniteList from "@/components/offers/OfferInfiniteList";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import { useCategory } from "@/features/category/useCategory";
 import { useOffersByCategorySlug } from "@/features/offers/useOffersByCategorySlug";
-import { Spinner } from "@chakra-ui/react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { notFound, useRouter } from "next/navigation";
-import { use, useEffect, useMemo, useState } from "react";
+import { use, useMemo, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { useInView } from "react-intersection-observer";
-
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -25,11 +22,9 @@ export default function CollectionPage({ params }: Props) {
 
     const router = useRouter();
 
-    const [ref, inView] = useInView();
-
     const { data: categories } = useCategory();
 
-    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
+    const { data, isFetching, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
         categorySlug: slug, limit: 8,
     });
 
@@ -40,15 +35,7 @@ export default function CollectionPage({ params }: Props) {
     const allOffers = useMemo(() => {
         return data?.pages.flatMap((page) => page.data) ?? [];
     }, [data]);
-
-
-    useEffect(() => {
-        if (inView && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-        }
-    }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
-
-
+  
     const [currentSlug, setCurrentSlug] = useState(slug);
 
     const handleCategoryChange = (newSlug: string) => {
@@ -57,28 +44,6 @@ export default function CollectionPage({ params }: Props) {
         setCurrentSlug(newSlug);
         router.push(`/categories/${newSlug}`);
     };
-
-    // Early returns make JSX cleaner
-    if (isFetching && allOffers.length === 0) {
-        return (
-            <section className="pt-14 px-6">
-                <OfferListSkeleton number={4} />
-            </section>
-        );
-    }
-
-    if (isError) {
-        return <div>{error?.message}</div>
-    }
-
-    if (!allOffers.length) {
-        return (
-            <section className="pt-14 px-6">
-                <p className="text-center text-gray-500">No offers found.</p>
-            </section>
-        );
-    }
-
 
     return (
         <ErrorBoundary fallback={<OfferError />}>
@@ -99,14 +64,19 @@ export default function CollectionPage({ params }: Props) {
                     </Select>
                 </FormControl>
 
-                {/* Offers List */}
-                <OfferList offers={allOffers} />
-                <div ref={ref} className="h-10 flex items-center justify-center mt-6">
-                    {isFetchingNextPage && (
-                        <Spinner className="mt-5 w-17 h-17 text-primary" data-testid="loading" />
-                    )}
-                    {!hasNextPage && allOffers.length > 0 && <p className="text-center text-[14px] sm:text-[16px]">No more offers</p>}
-                </div>
+                {isLoading && <OfferListSkeleton number={4} />}
+                {!isLoading && !isFetching && allOffers.length === 0 && (
+                    <p className="text-gray-500 text-center">No offers available.</p>
+                )}
+                {isError && <div>{error?.message}</div>}
+                {!isLoading && allOffers.length > 0 &&
+                    <OfferInfiniteList
+                        offers={allOffers}
+                        hasNextPage={hasNextPage}
+                        isFetchingNextPage={isFetchingNextPage}
+                        fetchNextPage={fetchNextPage}
+                    />
+                }
             </section>
         </ErrorBoundary>
     );

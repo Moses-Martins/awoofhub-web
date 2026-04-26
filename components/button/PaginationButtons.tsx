@@ -1,26 +1,20 @@
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 interface PaginationProps {
-  totalItems: number;
-  itemsPerPage: number;
+  totalPages: number; 
   currentPage: number;
   onPageChange: (page: number) => void;
 }
 
 
-export default function PaginationButtons({  totalItems, itemsPerPage, currentPage, onPageChange }: PaginationProps) {
-
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+export default function PaginationButtons({ totalPages, currentPage, onPageChange }: PaginationProps) {
   
-  const start = (currentPage - 1) * itemsPerPage + 1;
-  const end = Math.min(currentPage * itemsPerPage, totalItems);
-
   const btnClass = "p-2 rounded-full text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent transition-colors";
 
   return (
-    <div className="flex items-center gap-6 text-sm text-gray-700 font-medium select-none">
+    <div className="flex justify-end bg-primary-light items-center gap-6 text-sm text-gray-700 font-medium select-none">
       
-      <span>{start}–{end} of {totalItems}</span>
+      <span>Page {currentPage} of {totalPages}</span>
 
       <div className="flex items-center gap-1">
         <button 

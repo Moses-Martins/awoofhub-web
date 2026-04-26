@@ -1,15 +1,14 @@
 'use client';
 
-import { User } from '@/types/user';
 import { usePathname } from 'next/navigation';
 import { TabButton } from '../tabButton/TabButton';
 
 
 interface Props {
-    user: User;
+  isOwnBusiness: boolean;
 }
 
-export default function Tabs({user}: Props) {
+export default function Tabs({ isOwnBusiness }: Props) {
   const pathname = usePathname();
 
   const segments = pathname.split('/').filter(Boolean);
@@ -22,7 +21,7 @@ export default function Tabs({user}: Props) {
   ];
 
   const visibleTabs = allTabs.filter(tab => {
-    if (user.role === 'business' && tab.businessHidden) {
+    if (isOwnBusiness && tab.businessHidden) {
       return false;
     }
     return true;
