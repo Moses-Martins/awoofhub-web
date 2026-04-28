@@ -11,7 +11,7 @@ interface Props {
   offer: Offer;
 }
 
-function ExpiryBadge({ isExpired }: { isExpired: boolean }) {
+export function ExpiryBadge({ isExpired }: { isExpired: boolean }) {
   const config = {
     active: "bg-blue-50 text-blue-600 border-blue-100",
     expired: "bg-gray-50 text-gray-500 border-gray-200",
@@ -27,7 +27,7 @@ function ExpiryBadge({ isExpired }: { isExpired: boolean }) {
       ) : (
         <>
           <Clock className="w-3 h-3" />
-          Live
+          Valid
         </>
       )}
     </div>
@@ -59,7 +59,7 @@ export default function OfferRow({ offer }: Props) {
     const target = e.target as HTMLElement;
     if (target.closest('.action-cell')) return;
 
-    router.push(`business/offers/${offer.id}`);
+    router.push(`offers/${offer.id}`);
   };
 
   const isExpired = new Date(offer.endDate) < new Date();
@@ -126,7 +126,7 @@ export default function OfferRow({ offer }: Props) {
 
       {/* Status */}
       <td className="px-3 py-5 text-xs">
-        <StatusBadge status={offer.approvalStatus} />
+        <StatusBadge status={offer.moderationStatus} />
       </td>
 
       <td className="px-3 py-5 text-xs">

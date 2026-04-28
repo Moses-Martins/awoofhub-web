@@ -16,9 +16,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import { DatePickerField } from "../date/DatePickerField";
-import { GoogleAutocompleteNew } from "../form/AutoComplete";
-import { InputField } from "../form/InputField";
+import { DatePickerField } from "../../date/DatePickerField";
+import { GoogleAutocompleteNew } from "../../form/AutoComplete";
+import { InputField } from "../../form/InputField";
 
 import { FiGlobe } from "react-icons/fi";
 

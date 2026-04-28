@@ -1,6 +1,6 @@
 "use client"
-import SingleOffer from "@/components/offer/SingleOffer";
-import SingleOfferSkeleton from "@/components/offer/SingleOfferSkeleton";
+import SingleOffer from "@/components/offer/user/SingleOffer";
+import SingleOfferSkeleton from "@/components/offer/user/SingleOfferSkeleton";
 import OfferList from "@/components/offers/OfferList";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import ShareModal from "@/components/share/ShareModal";
@@ -36,7 +36,7 @@ export default function OfferPage({ params }: Props) {
     }
   }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
 
-  // Early returns make JSX cleaner
+
   if (isLoading) {
     return (
       <section className="pt-14 px-6">

@@ -1,6 +1,6 @@
 "use client"
 import { useUser } from '@/features/user/useUser';
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 import { ReactNode } from 'react';
 
 export type Props = {
@@ -12,7 +12,7 @@ export default function RoleLayoutAdapter({ children }: Props) {
 
 
     return (
-        <div className={clsx(User?.role === "business" ? "lg:ml-13" : "" )}>
+        <div className={cn(User?.role === "business" ? "lg:ml-13" : "" )}>
             {children}
         </div>
     );

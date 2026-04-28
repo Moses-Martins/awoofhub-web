@@ -1,5 +1,5 @@
 "use client"
-import { CreateOfferForm } from "@/components/offer/CreateOfferForm";
+import { CreateOfferForm } from "@/components/offer/business/CreateOfferForm";
 import { useRouter } from "next/navigation";
 
 export default function CreateOffersPage() {

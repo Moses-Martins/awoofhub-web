@@ -25,7 +25,6 @@ export interface Offer {
   id: string;
   title: string;
   description: string;
-  price: string;
   imageUrl: string;
   termsAndConditions: string;
   value: string;
@@ -41,9 +40,9 @@ export interface Offer {
     slug: string;
   };
   location: string;
-  approvalStatus: "pending" | "approved" | "rejected";
+  moderationStatus: "pending" | "approved" | "rejected";
   adminNote: string | null;
-  approvedAt: string | null;
+  statusUpdatedAt: string | null;
   createdAt: string;
   endDate: string;
   avgRating: number,

@@ -1,7 +1,7 @@
 import { Offer } from "@/types/offer";
 import { CheckCircle2 } from "lucide-react";
-import AlertButton from "../alert/Alert";
-import Review from "../review/Review";
+import AlertButton from "../../alert/Alert";
+import Review from "../../review/Review";
 import BusinessLink from "./BusinessLink";
 
 interface Props {

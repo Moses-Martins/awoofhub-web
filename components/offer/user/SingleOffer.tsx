@@ -1,9 +1,9 @@
 import { Offer } from "@/types/offer";
 import Image from 'next/image';
 import Link from "next/link";
-import ChatButton from "../chat/ChatButton";
-import Comment from "../comment/Comment";
-import ReviewChart from "../review/ReviewChart";
+import ChatButton from "../../chat/ChatButton";
+import Comment from "../../comment/Comment";
+import ReviewChart from "../../review/ReviewChart";
 import BusinessLink from "./BusinessLink";
 import OfferInfo from "./OfferInfo";
 import TrustSection from "./TrustSection";
