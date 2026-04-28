@@ -38,8 +38,8 @@ export default function BusinessDashboard() {
 
   return (
     <>
-      <section className="max-w-[1440px] mx-auto p-8 text-gray-900">
-        <div className="flex flex-wrap gap-4 mb-8">
+      <section className="max-w-[1440px] mx-auto py-8 px-4 text-gray-900">
+        <div className="flex flex-wrap gap-4 mb-6">
           <StatsCard label="Total Ads" value={data.stats.totalAds} icon={Box} iconBg="bg-indigo-100" />
           <StatsCard label="Active Ads" value={data.stats.activeAds} icon={TrendingUp} iconBg="bg-green-100" />
           <StatsCard label="Pending Ads" value={data.stats.pendingAds} icon={Users} iconBg="bg-yellow-100" />

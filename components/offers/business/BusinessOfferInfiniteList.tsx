@@ -16,7 +16,7 @@ export default function BusinessOfferInfiniteList({ data, page, setPage }: Props
 
   return (
     <>
-      <div className="overflow-x-auto min-h-[455px]">
+      <div className="overflow-x-auto min-h-[455px] rounded-lg">
         <table className="w-full min-w-[1283px] text-left shadow-sm">
           <TableHeader />
           <tbody>

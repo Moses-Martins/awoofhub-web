@@ -1,24 +1,14 @@
 "use client";
 import { useWishlist } from "@/features/wishlist/useWishlist";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import OfferList from "../offers/OfferList";
-import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import OfferList from "../offers/OfferList";
 
 export default function WishlistOffers() {
   const { data } = useWishlist();
-  const router = useRouter();
 
   return (
     <>
-      <button
-        onClick={() => router.back()}
-        className="flex items-center mt-4 ml-4 md:ml-6 hover:opacity-70 transition-opacity"
-      >
-        <ArrowLeft size={20} />
-      </button>
-
       {data && data.length > 0 ? (
         <section className="pt-2 pb-24 md:pb-10 px-3 sm:px-6">
           <OfferList offers={data.map((w) => w.offer)} />

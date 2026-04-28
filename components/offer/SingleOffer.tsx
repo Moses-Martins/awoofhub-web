@@ -29,11 +29,11 @@ export default function SingleOffer({ offer }: Props) {
                     </div>
 
                     <div className="w-full mt-4 xs:mt-8 md:mt-12 flex md:flex-col gap-3">
-                        <div className="w-4/5 md:w-full bg-orange-600 hover:bg-orange-700 text-white font-bold p-1 xs:py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all">
-                            <ChatButton targetUserId={offer.business.id}>
+                        <ChatButton targetUserId={offer.business.id}>
+                            <div className="w-4/5 md:w-full bg-orange-600 hover:bg-orange-700 text-white font-bold p-1 xs:py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all">
                                 Message
-                            </ChatButton>
-                        </div>
+                            </div>
+                        </ChatButton>
 
                         <Link href="/report" className="w-1/5 md:w-full border border-red-500 text-red-500 text-xs xs:text-sm font-bold py-3 rounded-lg flex items-center justify-center hover:text-white hover:bg-red-500 transition-colors">
                             Report

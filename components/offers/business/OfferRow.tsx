@@ -59,7 +59,7 @@ export default function OfferRow({ offer }: Props) {
     const target = e.target as HTMLElement;
     if (target.closest('.action-cell')) return;
 
-    router.push(`/offers/${offer.id}`);
+    router.push(`business/offers/${offer.id}`);
   };
 
   const isExpired = new Date(offer.endDate) < new Date();

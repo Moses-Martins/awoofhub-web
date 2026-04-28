@@ -27,7 +27,7 @@ export default function BusinessOffersPage() {
 
     return (
         <ErrorBoundary fallback={<OfferError />}>
-            <section className="p-6 pt-4 mb-15 lg:mb-0 bg-white min-h-screen">
+            <section className="p-6 pt-4 mb-15 lg:mb-0 bg-white min-h-screen max-w-[1440px] mx-auto">
                 <div className="flex flex-col gap-2 items-center mb-8">
                     <h2 className="text-primary font-bold text-2xl py-2 mb-2 md:mb-0">
                         Categories
