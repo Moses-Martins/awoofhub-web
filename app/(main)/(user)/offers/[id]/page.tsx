@@ -1,6 +1,6 @@
 "use client"
+import Loading from "@/components/loading/Loading";
 import SingleOffer from "@/components/offer/user/SingleOffer";
-import SingleOfferSkeleton from "@/components/offer/user/SingleOfferSkeleton";
 import OfferList from "@/components/offers/OfferList";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import ShareModal from "@/components/share/ShareModal";
@@ -38,11 +38,7 @@ export default function OfferPage({ params }: Props) {
 
 
   if (isLoading) {
-    return (
-      <section className="pt-14 px-6">
-        <SingleOfferSkeleton />
-      </section>
-    );
+    return <Loading />
   }
 
   if (!offer) {

@@ -1,6 +1,6 @@
 "use client"
+import Loading from "@/components/loading/Loading";
 import SingleBusinessOffer from "@/components/offer/business/SingleBusinessOffer";
-import SingleOfferSkeleton from "@/components/offer/user/SingleOfferSkeleton";
 import ShareModal from "@/components/share/ShareModal";
 import { useOffer } from "@/features/offers/useOffer";
 import { ChevronRight } from "lucide-react";
@@ -17,11 +17,7 @@ export default function Page({ params }: Props) {
   const { data: offer, isLoading } = useOffer({ id });
 
   if (isLoading) {
-    return (
-      <section className="pt-14 px-6">
-        <SingleOfferSkeleton />
-      </section>
-    );
+    return <Loading />
   }
 
   if (!offer) {

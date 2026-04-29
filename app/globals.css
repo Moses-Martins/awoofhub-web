@@ -26,7 +26,8 @@
 }
 
 @theme {
-   --breakpoint-xs: 580px;
+  --breakpoint-xxs:450px;
+  --breakpoint-xs: 580px;
 }
 
 body {
@@ -44,7 +45,7 @@ body {
   h2,
   h3,
   h4,
-  h5{
+  h5 {
     @apply font-baloo font-medium;
   }
 
@@ -53,19 +54,17 @@ body {
   }
 }
 
-  
-   
+
+
 .str-chat {
   --str-chat__font-family: inherit !important;
   --str-chat__primary-color: var(--muted) !important;
   --str-chat__on-primary-color: var(--foreground) !important;
   --str-chat__active-primary-color: var(--foreground) !important;
 
-  --str-chat__primary-color-low-emphasis: color-mix(
-    in hsl,
-    var(--primary) 10%,
-    transparent
-  ) !important;
+  --str-chat__primary-color-low-emphasis: color-mix(in hsl,
+      var(--primary) 10%,
+      transparent) !important;
 
   --str-chat__background-color: var(--background) !important;
   --str-chat__secondary-background-color: var(--background) !important;
@@ -74,10 +73,8 @@ body {
   --str-chat__channel-preview-hover-background-color: var(--primary-light) !important;
   --str-chat__secondary-surface-color: #DBDBDB !important;
   --str-chat__own-message-bubble-color: var(--foreground) !important;
-  --str-chat__primary-surface-color: var(--primary-light) !important; 
-  --str-chat__primary-surface-color-low-emphasis: var(
-    --str-chat__primary-color-low-emphasis
-  ) !important; 
+  --str-chat__primary-surface-color: var(--primary-light) !important;
+  --str-chat__primary-surface-color-low-emphasis: var(--str-chat__primary-color-low-emphasis) !important;
 
   --str-chat__disabled-color: #DBDBDB !important;
   --str-chat__cta-button-border-radius: 0.5rem !important;
@@ -95,7 +92,7 @@ body {
   border-right: none !important;
 }
 
-.str-chat__channel-preview-messenger, 
+.str-chat__channel-preview-messenger,
 .str-chat__channel-preview {
   border-bottom: 1px solid #d8d8d8 !important;
 }
@@ -103,7 +100,3 @@ body {
 .str-chat__channel-list-react .str-chat__channel-list-messenger-react {
   padding-bottom: 0 !important;
 }
-
-
-
- 

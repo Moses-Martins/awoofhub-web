@@ -12,11 +12,13 @@ export interface User {
 };
 
 export interface UpdateUserData {
-  name: string;
-  profileImageUrl: string;
-  bio: string;
-  address: string;
-  website: string;
+  name?: string;
+  profileImageUrl?: string;
+  bio?: string;
+  address?: string;
+  website?: string;
+  role?: "user" | "business";
 };
+
 
 

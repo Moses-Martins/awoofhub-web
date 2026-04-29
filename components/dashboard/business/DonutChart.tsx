@@ -1,5 +1,5 @@
 import { CategoryData } from '@/types/offer';
-import { Legend, Pie, PieChart, Sector, Tooltip } from 'recharts';
+import { Legend, Pie, PieChart, ResponsiveContainer, Sector, Tooltip } from 'recharts';
 
 interface Props {
   data: CategoryData[];
@@ -15,28 +15,33 @@ export default function PieChartWithPaddingAngle({ data }: Props) {
   }));
 
   return (
-    <div className="bg-white p-2 rounded-2xl flex min-w-80">
-      <PieChart style={{ width: '100%', aspectRatio: 1 }}>
-        <Pie
-          data={chartData}
-          innerRadius="80%"
-          outerRadius="100%"
-          cornerRadius="50%"
-          paddingAngle={5}
-          dataKey="value"
-          shape={(props: any) => {
-            return <Sector {...props} fill={props.payload.fill} />;
-          }}
-        />
+    <div className="bg-white p-5 rounded-2xl flex flex-col border border-gray-100 shadow-sm flex-1 min-w-[300px] flex justify-center">
+      <h3 className="text-sm font-semibold text-center text-gray-700">
+        Category Distribution
+      </h3>
+      <ResponsiveContainer height={300} className="w-full">
+        <PieChart margin={{ top: 20 }}>
+          <Pie
+            data={chartData}
+            innerRadius="80%"
+            outerRadius="100%"
+            cornerRadius="50%"
+            paddingAngle={5}
+            dataKey="value"
+            shape={(props: any) => {
+              return <Sector {...props} fill={props.payload.fill} />;
+            }}
+          />
 
-        <Tooltip />
-        <Legend
-          layout="vertical"
-          align="right"
-          verticalAlign="middle"
-          wrapperStyle={{ fontSize: 14, paddingLeft: 20 }}
-        />
-      </PieChart>
+          <Tooltip />
+          <Legend
+            layout="vertical"
+            align="right"
+            verticalAlign="middle"
+            wrapperStyle={{ fontSize: 14, paddingLeft: 20 }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }

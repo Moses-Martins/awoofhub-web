@@ -1,9 +1,9 @@
 "use client"
 import BarsDataset from '@/components/dashboard/business/BarsDataset';
-import DashboardSkeleton from '@/components/dashboard/business/DashboardSkeleton';
 import DonutChart from '@/components/dashboard/business/DonutChart';
 import HorizontalBarChart from '@/components/dashboard/business/HorizontalBarChart';
 import StatsCard from '@/components/dashboard/business/StatsCard';
+import Loading from '@/components/loading/Loading';
 import BusinessOfferList from '@/components/offers/business/BusinessOfferList';
 import { useBusinessDashboard } from '@/features/offers/useBusinessDashboard';
 import {
@@ -19,13 +19,8 @@ import Link from "next/link";
 export default function BusinessDashboard() {
   const { data, isLoading } = useBusinessDashboard()
 
-
   if (isLoading) {
-    return (
-      <section className="pt-14 px-6">
-        <DashboardSkeleton />
-      </section>
-    );
+    return <Loading />
   }
 
   if (!data) {
@@ -38,7 +33,7 @@ export default function BusinessDashboard() {
 
   return (
     <>
-      <section className="max-w-[1440px] mx-auto py-8 px-4 text-gray-900">
+      <section className="max-w-[1440px] mx-auto py-8 px-4 text-gray-900 mb-[60px] lg:mb-[0]">
         <div className="flex flex-wrap gap-4 mb-6">
           <StatsCard label="Total Ads" value={data.stats.totalAds} icon={Box} iconBg="bg-indigo-100" />
           <StatsCard label="Active Ads" value={data.stats.activeAds} icon={TrendingUp} iconBg="bg-green-100" />
@@ -60,7 +55,7 @@ export default function BusinessDashboard() {
           </div>
         </div>
 
-        <div className="flex justify-between flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4">
           <DonutChart data={data.charts.categoryPie} />
           <BarsDataset data={data.charts.offersByMonth} />
           <HorizontalBarChart data={data.charts.expiringOffers} />

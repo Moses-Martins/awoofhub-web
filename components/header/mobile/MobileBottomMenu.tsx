@@ -28,7 +28,7 @@ export default function MobileBottomMenu() {
                                 <div className="text-[20px] relative">
                                     <SiSimpleanalytics />
                                 </div>
-                                <span className="text-[14px]">Dashboard</span>
+                                <span className="text-[12px] xxs:text-[14px]">Dashboard</span>
                             </Link>
                         </div>                       
 
@@ -40,7 +40,7 @@ export default function MobileBottomMenu() {
                                 <div className="text-[20px] relative">
                                     <TiThList />
                                 </div>
-                                <span className="text-[14px]">Offers</span>
+                                <span className="text-[12px] xxs:text-[14px]">Offers</span>
                             </Link>
                         </div>
 
@@ -52,7 +52,7 @@ export default function MobileBottomMenu() {
                                 <div className="text-[20px] relative">
                                      <MdAddBox />
                                 </div>
-                                <span className="text-[14px]">Create</span>
+                                <span className="text-[12px] xxs:text-[14px]">Create</span>
                             </Link>
                         </div>
 
@@ -69,7 +69,7 @@ export default function MobileBottomMenu() {
                                         {messageCount > 99 ? '99+' : messageCount}
                                     </div>
                                 )}
-                                <span className="text-[14px]">Message</span>
+                                <span className="text-[12px] xxs:text-[14px]">Message</span>
                             </Link>
                         </div>
 
@@ -81,7 +81,7 @@ export default function MobileBottomMenu() {
                                 <div className="text-[20px] relative">
                                     <FiBell />
                                 </div>
-                                <span className="text-[14px]">Notification</span>
+                                <span className="text-[12px] xxs:text-[14px]">Notification</span>
                             </Link>
                         </div>
                     </>

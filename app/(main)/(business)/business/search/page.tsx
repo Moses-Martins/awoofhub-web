@@ -1,8 +1,8 @@
 "use client";
 
-import BusinessOfferInfiniteList from "@/components/offers/business/BusinessOfferInfiniteList";
+import BusinessOfferPaginatedList from "@/components/offers/business/BusinessOfferPaginatedList";
+import BusinessOfferPaginatedListSkeleton from "@/components/offers/business/BusinessOfferPaginatedListSkeleton";
 import { OfferError } from "@/components/offers/OfferError";
-import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import { useSearchBusinessOffers } from "@/features/offers/useSearchBusinessOffer";
 import { Spinner } from "@chakra-ui/react";
 import { Suspense, use, useState } from "react";
@@ -25,13 +25,13 @@ function SearchResults({ searchParams }: SearchProps) {
         <section className="pt-6 px-6 mb-15 lg:mb-0 bg-white min-h-screen">
             <div className="overflow-x-auto min-h-[300px]">
                 {isFetching && !data ? (
-                    <OfferListSkeleton number={4} />
+                    <BusinessOfferPaginatedListSkeleton />
                 ) : isError ? (
                     <div>{error?.message}</div>
                 ) : offers.length === 0 ? (
                     <p className="text-center text-gray-500">No offers found.</p>
                 ) : (
-                    <BusinessOfferInfiniteList data={data} page={page} setPage={setPage} />
+                    <BusinessOfferPaginatedList data={data} page={page} setPage={setPage} />
                 )}
             </div>
         </section>

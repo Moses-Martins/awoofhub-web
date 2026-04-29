@@ -120,7 +120,7 @@ export default function OfferRow({ offer }: Props) {
       </td>
 
       {/* Ends */}
-      <td className="px-3 py-5 text-xs text-gray-500 text-nowrap">
+      <td className="px-3 py-5 text-xs text-gray-500 text-nowrap"> 
         {formatDateTime(offer.endDate)}
       </td>
 

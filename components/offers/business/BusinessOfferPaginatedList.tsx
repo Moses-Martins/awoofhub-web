@@ -10,7 +10,7 @@ interface Props {
   setPage: (page: number) => void;
 }
 
-export default function BusinessOfferInfiniteList({ data, page, setPage }: Props) {
+export default function BusinessOfferPaginatedList({ data, page, setPage }: Props) {
   const offers = data?.data ?? [];
   const total = data?.meta?.totalPages ?? 0;
 

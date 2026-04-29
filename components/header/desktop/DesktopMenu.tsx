@@ -115,8 +115,6 @@ export default function DesktopMenu() {
                                     <IoNotificationsOutline size={28} />
                                 </Link>
                             </li>
-
-
                         </>
                     )}
 
@@ -158,7 +156,7 @@ export default function DesktopMenu() {
                                     {[
                                         { label: 'Profile', icon: <FiUser />, href: `/profile/${currentUser.id}` },
                                         { label: 'Help & Support', icon: <FiHelpCircle />, href: '/help' },
-                                        { label: 'Switch account', icon: <GoArrowSwitch />, href: '/switch' },
+                                        { label: 'Account Type', icon: <GoArrowSwitch />, href: '/switch-account' },
                                     ].map((item, idx) => (
                                         <li key={idx} className="border-b border-muted/10 last:border-none">
                                             <Link href={item.href} onClick={() => toggleDropdown()} className="flex items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors">

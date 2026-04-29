@@ -1,8 +1,8 @@
 "use client";
 
-import BusinessOfferInfiniteList from "@/components/offers/business/BusinessOfferInfiniteList";
+import BusinessOfferPaginatedList from "@/components/offers/business/BusinessOfferPaginatedList";
+import BusinessOfferPaginatedListSkeleton from "@/components/offers/business/BusinessOfferPaginatedListSkeleton";
 import { OfferError } from "@/components/offers/OfferError";
-import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import { useBusinessCategory } from "@/features/category/useBusinessCategory";
 import { useBusinessOffersByCategorySlug } from "@/features/offers/useBusinessOffersByCategorySlug";
 import FormControl from "@mui/material/FormControl";
@@ -69,13 +69,13 @@ export default function CollectionPage({ params }: Props) {
 
                 <div className="overflow-x-auto min-h-[300px]">
                     {isFetching && !data ? (
-                        <OfferListSkeleton number={4} />
+                        <BusinessOfferPaginatedListSkeleton />
                     ) : isError ? (
                         <div>{error?.message}</div>
                     ) : offers.length === 0 ? (
                         <p className="text-center text-gray-500">No offers found.</p>
                     ) : (
-                        <BusinessOfferInfiniteList data={data} page={page} setPage={setPage} />
+                        <BusinessOfferPaginatedList data={data} page={page} setPage={setPage} />
                     )}
                 </div>
             </section>
