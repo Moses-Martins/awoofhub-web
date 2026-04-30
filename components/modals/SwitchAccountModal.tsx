@@ -18,8 +18,8 @@ export default function SwitchAccountModal({ targetRole }: Props) {
   const router = useRouter();
 
   const { submit, isPending } = useUpdateUser({
-    onSuccess: () => {
-      refreshTokenService()
+    onSuccess: async () => {
+      await refreshTokenService()
       setOpen(false);
       router.push('/');
     },

@@ -11,12 +11,10 @@ export default function BusinessMenu() {
     const { data: currentUser } = useUser();
     const pathname = usePathname()
 
-    const isInsideChannel = pathname.includes('/message/') && pathname !== '/message'
-
     return (
         <>
             {(currentUser?.role === "business") && (
-                <div className={`fixed top-0 z-[100] w-13 h-screen hidden lg:flex flex-col items-center justify-start pt-30 gap-8 border-2 border-gray-300 bg-white ${isInsideChannel ? 'hidden md:flex' : ''}`}>
+                <div className="fixed top-0 z-[100] w-13 h-screen hidden lg:flex flex-col items-center justify-start pt-30 gap-8 border-2 border-gray-300 bg-white">
 
                     <Link
                         href="/business/dashboard"
