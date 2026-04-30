@@ -52,7 +52,7 @@ export default function SwitchAccountPage() {
   const targetRole = isBusiness ? 'user' : 'business';
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 font-sans text-gray-900 mb-[80px] lg:mb-[0]">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 font-sans text-gray-900 mb-[80px] lg:mb-[30px]">
 
       {/* Header */}
       <div className="text-center max-w-lg mb-8">
@@ -99,10 +99,10 @@ export default function SwitchAccountPage() {
       </div>
 
   
-      <div className="flex gap-3 mt-8 w-100 justify-center">
+      <div className="flex gap-3 mt-8 w-80 sm:w-100 justify-center">
         <Button
           onClick={() => router.push('/')}
-          className="!bg-gray-200 !text-black !rounded-full"
+          className="!bg-gray-200 !text-black !rounded-2xl"
         >
           Cancel
         </Button>
