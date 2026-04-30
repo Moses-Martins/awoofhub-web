@@ -1,4 +1,5 @@
 'use client'
+import { useUser } from '@/features/user/useUser';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useCallback } from 'react';
 import { FiSearch } from 'react-icons/fi';
@@ -7,16 +8,21 @@ import { FiSearch } from 'react-icons/fi';
 function SearchInputContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { data } = useUser();
+
+  const isBusiness = data?.role === "business";
 
   const handleChange = useCallback(
     (term: string) => {
+      const basePath = isBusiness ? "/business/search" : "/search";
+
       if (term) {
-        router.replace(`/search?q=${encodeURIComponent(term)}`);
+        router.replace(`${basePath}?q=${encodeURIComponent(term)}`);
       } else {
-        router.replace("/search");
+        router.replace(basePath);
       }
     },
-    [router]
+    [router, isBusiness]
   );
 
   return (

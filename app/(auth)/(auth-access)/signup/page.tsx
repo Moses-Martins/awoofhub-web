@@ -13,7 +13,7 @@ export default function SignupPage() {
   const router = useRouter();
 
   const onSuccess = () => {
-    router.push(`/verify-email/`);
+    router.push(`/email-sent/`);
   };
 
   return (

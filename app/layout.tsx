@@ -1,8 +1,8 @@
 import AppProvider from "@/providers/app-provider";
 import type { Metadata } from "next";
 import { Baloo_2, Geist, Geist_Mono, Montserrat } from "next/font/google";
-import "./globals.css";
 import "stream-chat-react/dist/css/v2/index.css";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

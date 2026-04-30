@@ -8,8 +8,8 @@ import ProfileHeader from "./ProfileHeader";
 
 
 interface Props {
-    userId: string;
-    children: ReactNode
+  userId: string;
+  children: ReactNode
 }
 
 export default function ProfilePageWrapper({ userId, children }: Props) {
@@ -29,10 +29,12 @@ export default function ProfilePageWrapper({ userId, children }: Props) {
   }
 
   const isOwnProfile = currentUser?.id === user.id;
+  const isOwnBusiness = currentUser?.role === "business"
 
   return (
-    <>
+    <>     
       <ProfileHeader
+        isOwnBusiness={isOwnBusiness}
         isOwnProfile={isOwnProfile}
         profile={user}
       />

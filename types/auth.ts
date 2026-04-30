@@ -13,6 +13,11 @@ export interface ResetPasswordData {
   password: string;
 };
 
+
+export interface VerifyEmailData {
+  token: string;
+};
+
 export interface LoginData {
   email: string;
   password: string;

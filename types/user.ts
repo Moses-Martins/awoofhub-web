@@ -3,7 +3,7 @@ export interface User {
   email: string;
   name: string;
   profileImageUrl: string | null;
-  role: "user" | "admin" | "business";
+  role: "user" | "business";
   bio: string | null;
   address: string | null;
   website: string | null;
@@ -12,11 +12,13 @@ export interface User {
 };
 
 export interface UpdateUserData {
-  name: string;
-  profileImageUrl: string;
-  bio: string;
-  address: string;
-  website: string;
+  name?: string;
+  profileImageUrl?: string;
+  bio?: string;
+  address?: string;
+  website?: string;
+  role?: "user" | "business";
 };
+
 
 

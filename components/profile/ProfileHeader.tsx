@@ -13,11 +13,12 @@ import Tabs from './Tabs';
 
 
 interface Props {
+    isOwnBusiness: boolean;
     isOwnProfile: boolean;
     profile: User;
 }
 
-export default function ProfileHeader({ isOwnProfile, profile }: Props) {
+export default function ProfileHeader({ isOwnProfile, isOwnBusiness, profile }: Props) {
     const [isOpenDropdown, setIsOpenDropdown] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -61,7 +62,7 @@ export default function ProfileHeader({ isOwnProfile, profile }: Props) {
                         )}
                     </div>
 
-                    <div className="flex flex-col justify-between gap-2 flex-1 md:pt-4 w-full">
+                    <div className="flex flex-col justify-between gap-2 flex-1 md:pt-4 w-full md:min-h-[180px]">
 
                         <h1 className="text-xl lg:text-2xl font-bold text-gray-900">{profile.name}</h1>
 
@@ -79,12 +80,10 @@ export default function ProfileHeader({ isOwnProfile, profile }: Props) {
                                 <Link href="/profile/edit" className="bg-gray-200 hover:bg-gray-300 text-black px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                                     Edit Profile
                                 </Link>
-                            ) : (
-                                <ProfileActionButtons targetUserId={profile.id} />
-                            )}
+                            ) : isOwnBusiness ? null : ( <ProfileActionButtons targetUserId={profile.id} /> ) }
                         </div>
 
-                        <Tabs />
+                        <Tabs isOwnBusiness={isOwnBusiness} />
                     </div>
 
                 </div>

@@ -18,7 +18,7 @@ export const useOffers = ({ limit = 8 }: GetOffersOptions) => {
         queryKey: ['offers'],
         queryFn: ({ pageParam = 1 }) => getOffers({ page: pageParam, limit }),
 
-        getNextPageParam: (lastPage) => {
+        getNextPageParam: (lastPage) => { 
             if (!lastPage.meta) return undefined;
 
             const currentPage = Number(lastPage.meta.page);
