@@ -50,7 +50,7 @@ export default function OfferInfo({ offer }: Props) {
 
             <section className="text-sm leading-relaxed text-gray-600">
                 <h3 className="font-bold text-xl text-gray-900 mb-4">Details</h3>
-                <p className="mb-7">
+                <p className="mb-7 break-words">
                    {offer.description}
                 </p>
 

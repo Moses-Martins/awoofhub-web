@@ -174,6 +174,10 @@ export const CreateOfferForm = ({ onSuccess }: CreateOfferFormProps) => {
                     compulsory
                     {...register("value", {
                         required: "Value is required",
+                         maxLength: {
+                            value: 50,
+                            message: "Must not be more than 50 characters",
+                        },
                     })}
                     error={formState.errors.value}
                 />
