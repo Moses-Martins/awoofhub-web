@@ -2,6 +2,7 @@
 import { Button } from '@/components/button/Button';
 import { useUpdateUser } from '@/features/user/useUpdateUser';
 import { useUser } from '@/features/user/useUser';
+import { refreshTokenService } from '@/services/auth-service';
 import { ArrowRight, Building2, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -19,6 +20,7 @@ export default function SwitchAccountModal({ targetRole }: Props) {
   const { submit, isPending } = useUpdateUser({
     onSuccess: () => {
       setOpen(false);
+      refreshTokenService()
       router.push('/');
     },
   });
@@ -33,7 +35,7 @@ export default function SwitchAccountModal({ targetRole }: Props) {
     <>
       <Button
         onClick={() => setOpen(true)}
-        className="!rounded-full"
+        className="!rounded-2xl"
       >
         {isBusiness ? 'Switch to Personal' : 'Switch to Business'}
       </Button>
@@ -43,7 +45,7 @@ export default function SwitchAccountModal({ targetRole }: Props) {
 
           <div
             className="absolute inset-0 bg-black/30"
-            onClick={() => setOpen(false)}
+            onClick={() => setOpen(false)} 
           />
 
           <div className="relative bg-white w-full flex flex-col items-center max-w-[520px] rounded-3xl p-8 text-center z-10">

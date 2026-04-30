@@ -38,8 +38,6 @@ export default function DesktopMenu() {
         if (target instanceof Node && dropdownRef.current?.contains(target)) {
             return;
         }
-
-        if (!isOpenDropdown) return;
         setIsOpenDropdown(false);
     };
 
@@ -182,7 +180,7 @@ export default function DesktopMenu() {
 
 
             {!isLoggedIn && (
-                <li className="px-[10px] flex items-center  gap-4 text-[1.7rem] text-[var(--color-text-primary)]">
+                <li ref={dropdownRef} className="px-[10px] flex items-center  gap-4 text-[1.7rem] text-[var(--color-text-primary)]">
                     <Link
                         href="/login"
                         className="px-8 py-2 rounded-lg border border-primary text-primary font-semibold text-[18px] hover:bg-primary/5 transition-colors"
