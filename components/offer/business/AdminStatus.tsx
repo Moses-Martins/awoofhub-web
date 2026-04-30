@@ -36,17 +36,17 @@ export default function AdminStatus({ offer }: Props) {
         <section className="border-t border-b border-gray-300 py-6">
             <div className={`max-w-4xl p-6 mx-auto border-2 rounded-3xl ${config.container}`}>
 
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start gap-2 justify-between flex-col xxs:flex-row mb-6">
                     <div className="flex gap-4">
                         <div className="mt-1">
                             <RiAdminFill className={`w-8 h-8 ${config.iconColor}`} />
                         </div>
 
                         <div>
-                            <h2 className="text-2xl font-bold text-gray-900 leading-tight">
+                            <h2 className="text-base xss:text-2xl font-bold text-gray-900 leading-tight">
                                 Admin Moderation Status
                             </h2>
-                            <p className="text-gray-500 font-medium">
+                            <p className="text-gray-500 text-sm xss:text-base font-medium">
                                 {config.text} {offer.statusUpdatedAt && formatDateTime(offer.statusUpdatedAt)}
                             </p>
                         </div>

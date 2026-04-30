@@ -54,11 +54,11 @@ export default function BusinessOfferInfo({ offer }: Props) {
 
             <section className="text-sm leading-relaxed text-gray-600">
                 <h3 className="font-bold text-xl text-gray-900 mb-4">Details</h3>
-                <p className="mb-7">
+                <p className="mb-7 break-words">
                     {offer.description}
                 </p>
 
-                <div className="inline-block bg-orange-50 text-orange-600 text-lg font-bold px-4 py-1 rounded-md border border-orange-100">
+                <div className="inline-block bg-orange-50 text-orange-600 text-base sm:text-lg font-bold px-4 py-1 rounded-md border border-orange-100">
                     {offer.value}
                 </div>
             </section>
