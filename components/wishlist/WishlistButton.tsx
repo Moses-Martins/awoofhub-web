@@ -16,7 +16,7 @@ export default function WishlistButton({ offerId, size, position = "" }: Props) 
     const { toggleWishlist, isWishlisted: isFavorite, isLoading } = useToggleWishlist(offerId);
     const { data: currentUser } = useUser();
 
-    const handleWishlistChange = async () => { 
+    const handleWishlistChange = async () => {
         if (!currentUser) {
             return router.push('/login');
         }
@@ -27,7 +27,13 @@ export default function WishlistButton({ offerId, size, position = "" }: Props) 
 
     return (
         <button onClick={handleWishlistChange} disabled={isLoading} className={`cursor-pointer ${position}`}>
-            {isFavorite ? <MdFavorite className={`text-red-500 ${size}`} /> : <MdFavoriteBorder className={`text-[#59585880] ${size}`} />}
+            {isLoading ? (
+                <MdFavorite className={`text-gray-300 ${size}`} />
+            ) : isFavorite ? (
+                <MdFavorite className={`text-red-500 ${size}`} />
+            ) : (
+                <MdFavoriteBorder className={`text-[#59585880] ${size}`} />
+            )}
         </button>
     )
 }
