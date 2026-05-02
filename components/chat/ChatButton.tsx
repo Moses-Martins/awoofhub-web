@@ -16,7 +16,7 @@ export default function ChatButton({ targetUserId, children }: Props) {
     };
 
     return (
-        <button onClick={handleClick} className="cursor-pointer">
+        <button onClick={handleClick} className="cursor-pointer contents">
             {children}
         </button>
     );

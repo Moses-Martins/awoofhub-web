@@ -1,4 +1,4 @@
-import { User } from "stream-chat";
+import { User } from "@/types/user";
 
 export interface ActivityData {
     id: string;
