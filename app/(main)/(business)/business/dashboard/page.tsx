@@ -1,8 +1,8 @@
 "use client"
-import BarsDataset from '@/components/dashboard/business/BarsDataset';
-import DonutChart from '@/components/dashboard/business/DonutChart';
-import HorizontalBarChart from '@/components/dashboard/business/HorizontalBarChart';
-import StatsCard from '@/components/dashboard/business/StatsCard';
+import BarsDataset from '@/components/dashboard/BarsDataset';
+import DonutChart from '@/components/dashboard/DonutChart';
+import HorizontalBarChart from '@/components/dashboard/HorizontalBarChart';
+import StatsCard from '@/components/dashboard/StatsCard';
 import Loading from '@/components/loading/Loading';
 import BusinessOfferList from '@/components/offers/business/BusinessOfferList';
 import { useBusinessDashboard } from '@/features/offers/useBusinessDashboard';

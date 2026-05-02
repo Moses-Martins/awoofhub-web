@@ -2,7 +2,6 @@ export interface SignupData {
   email: string;
   password: string;
   name: string;
-  role: "user" | "business"
 };
 export interface EmailData {
   email: string;
@@ -22,3 +21,4 @@ export interface LoginData {
   email: string;
   password: string;
 };
+

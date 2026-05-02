@@ -2,12 +2,10 @@
 import { Button } from '@/components/button/Button';
 import { InputField } from '@/components/form/InputField';
 import { API_URL } from '@/config/constants';
-import { RoleContext } from '@/context/RoleContext';
 import { useSignup } from '@/features/auth/useSignup';
 import { SignupFormProps } from '@/types/form-props';
 import { Lock, Mail, User } from 'lucide-react';
 import Link from 'next/link';
-import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 
@@ -16,24 +14,18 @@ interface SignupFormData {
   password: string;
   confirmPassword: string;
   name: string;
-  role: "user" | "business"
 };
 
-export const IndividualSignup = ({ onSuccess }: SignupFormProps) => {
+export default function SignupForm({ onSuccess }: SignupFormProps) {
 
     const signup = useSignup({ onSuccess });
-    const { setRole } = useContext(RoleContext);
 
     // Initialize react-hook-form with validation rules
     const { register, handleSubmit, formState, getValues } = useForm<SignupFormData>();
 
     const onSubmit = (data: SignupFormData) => {
         const { confirmPassword, ...signupData } = data;
-
-        signup.submit({
-            ...signupData,
-            role: "user" as const,
-        });
+        signup.submit(signupData);
     };
 
     const handleGoogleLogin = () => {
@@ -138,13 +130,12 @@ export const IndividualSignup = ({ onSuccess }: SignupFormProps) => {
                 </Button>
 
 
-                <div className="text-center space-y-2 pb-17">
+                <div className="text-center space-y-2">
                     <p className="text-gray-600 text-sm">
                         Already have an account?{' '}
-                        <Link onClick={() => setRole("Individual")} href="/login" className="text-[#FF5700] font-semibold hover:underline">Log In</Link>
+                        <Link href="/login" className="text-[#FF5700] font-semibold hover:underline">Log In</Link>
                     </p>
                 </div>
-
             </form >
         </>
     );
