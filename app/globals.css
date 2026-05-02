@@ -104,3 +104,7 @@ body {
 .str-chat__quoted-message-preview {
   --str-chat__message-max-width: 100% !important;
 }
+
+.str-chat__quoted-message-preview {
+  width: 100% !important;
+}
