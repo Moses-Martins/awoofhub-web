@@ -29,7 +29,10 @@ export default function Protected({ role, children }: ProtectedProps) {
         return <Loading />;
     }
 
-    const canAccess = user.data && (!role || user.data.role === role);
+    const userRole = user.data?.role;
+
+    const canAccess = user.data && (role ? userRole === role : (userRole === 'user' || userRole === 'business')
+    );
 
     if (!canAccess) {
         return null;

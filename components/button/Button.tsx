@@ -23,7 +23,7 @@ export const Button = ({
   className = "font-roboto",
   ...props
 }: ButtonProps) => {
-  return (
+  return ( 
     <ChakraButton
       {...props}
       type={type}

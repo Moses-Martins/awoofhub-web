@@ -2,13 +2,11 @@
 import { Button } from '@/components/button/Button';
 import { InputField } from '@/components/form/InputField';
 import { API_URL } from "@/config/constants";
-import { RoleContext } from '@/context/RoleContext';
 import { useLogin } from '@/features/auth/useLogin';
 import { LoginData } from '@/types/auth';
 import { LoginFormProps } from '@/types/form-props';
 import { Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
-import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 
@@ -16,8 +14,6 @@ export const LoginForm = ({
     onSuccess,
 }: LoginFormProps) => {
     const login = useLogin({ onSuccess });
-
-    const { setRole } = useContext(RoleContext);
 
     const { register, handleSubmit, formState } = useForm<LoginData>();
 
@@ -83,7 +79,7 @@ export const LoginForm = ({
                     </Button>
                 </div>
 
-                 <div className="relative my-3 w-full">
+                 <div className="relative my-5 w-full">
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-gray-300"></div>
                     </div>
@@ -102,7 +98,7 @@ export const LoginForm = ({
                 <div className="text-center space-y-2">
                     <p className="text-gray-600 text-sm">
                         Don't have an account yet?{' '}
-                        <Link onClick={() => setRole("Individual")} href="/signup" className="text-[#FF5700] font-semibold hover:underline">Create one</Link>
+                        <Link href="/signup" className="text-[#FF5700] font-semibold hover:underline">Create one</Link>
                     </p>
                 </div>
 
