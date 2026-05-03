@@ -14,7 +14,7 @@ export function AboutItem({ field, value, Icon }: Props) {
                 <Icon className="h-5 w-5 stroke-gray-800" />
                 <p className="font-medium text-gray-800 text-sm lg:text-base">{field}</p>
             </div>
-            <p className="flex flex-1 items-center self-stretch rounded-r-3xl border border-gray-300 pl-4">
+            <p className="flex flex-1 items-center self-stretch rounded-r-3xl border border-gray-300 px-4 break-all">
                 <span className="font-semibold text-foreground text-sm lg:text-base">{value || 'Not set'}</span>
             </p>
         </div>

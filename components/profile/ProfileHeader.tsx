@@ -72,7 +72,7 @@ export default function ProfileHeader({ isOwnProfile, isOwnBusiness, profile }: 
                             </p>
                         }
 
-                        <p className="text-gray-600 text-sm lg:text-base leading-relaxed">
+                        <p className="text-gray-600 text-sm lg:text-base break-all">
                             {profile.bio || "No bio yet"}
                         </p>
                         <div className="flex mt-3 items-center gap-3">
