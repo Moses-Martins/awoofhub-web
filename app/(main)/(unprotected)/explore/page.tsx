@@ -9,7 +9,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 export default function RandomOffersPage() {
     const { data, isFetching, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useRandomInfiniteOffers({
-        limit: 8,
+        limit: 4,
     });
 
     const allOffers = useMemo(() => {
