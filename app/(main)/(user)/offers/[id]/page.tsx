@@ -1,9 +1,9 @@
 "use client"
 import Loading from "@/components/loading/Loading";
+import ShareModal from "@/components/modals/ShareModal";
 import SingleOffer from "@/components/offer/user/SingleOffer";
 import OfferList from "@/components/offers/OfferList";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
-import ShareModal from "@/components/share/ShareModal";
 import { useOffer } from "@/features/offers/useOffer";
 import { useRandomInfiniteOffers } from "@/features/offers/useRandomInfiniteOffers";
 import { Spinner } from "@chakra-ui/react";
@@ -22,7 +22,7 @@ export default function OfferPage({ params }: Props) {
   const { data: offer, isLoading } = useOffer({ id });
 
   const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useRandomInfiniteOffers({
-    limit: 8,
+    limit: 4,
   });
 
   const allOffers = useMemo(() => {
@@ -48,7 +48,6 @@ export default function OfferPage({ params }: Props) {
       </section>
     );
   }
-
 
 
   return (

@@ -14,7 +14,7 @@ export default function ShareModal({ offerId }: Props) {
     const [show, setShow] = useState(false);
 
     const url = typeof window !== "undefined"
-        ? `${window.location.origin}/post/${offerId}`
+        ? `${window.location.origin}/offers/${offerId}`
         : "";
 
     const copyLink = async () => {
@@ -23,7 +23,7 @@ export default function ShareModal({ offerId }: Props) {
         setTimeout(() => setShow(false), 2000);
         setOpen(false)
     };
-
+ 
     return (
         <>
             <div className="flex gap-4 text-sm text-gray-600">
