@@ -1,7 +1,8 @@
 "use client"
+import { useFilter } from '@/features/offers/useFilter';
 import { useUser } from '@/features/user/useUser';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useCallback } from "react";
+import { Suspense } from "react";
 import { IoMdClose } from "react-icons/io";
 import { IoSearchSharp } from "react-icons/io5";
 
@@ -34,8 +35,8 @@ function ExpandableSearchContent({ isOverlay, isOpen, onOpen, onClose }: Props) 
                     placeholder="Search for Offers"
                     className="w-full outline-none text-[16px]"
                     autoFocus={isOpen}
-                    defaultValue={searchParams.get("q") ?? ""}
-                    onChange={(e) => handleChange(e.target.value)}
+                    defaultValue={searchParams.get("search")?.toString()}
+                    onChange={(e) => updateFilter('search', e.target.value)}
                 />
 
                 <button onClick={onClose}>
