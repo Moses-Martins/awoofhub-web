@@ -5,7 +5,7 @@ import OfferList from "@/components/offers/OfferList";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
 import ShareModal from "@/components/share/ShareModal";
 import { useOffer } from "@/features/offers/useOffer";
-import { useOffersByCategorySlug } from "@/features/offers/useOffersByCategorySlug";
+import { useRandomInfiniteOffers } from "@/features/offers/useRandomInfiniteOffers";
 import { Spinner } from "@chakra-ui/react";
 import { ChevronRight } from "lucide-react";
 import Link from 'next/link';
@@ -21,8 +21,8 @@ export default function OfferPage({ params }: Props) {
   const [ref, inView] = useInView();
   const { data: offer, isLoading } = useOffer({ id });
 
-  const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByCategorySlug({
-    categorySlug: offer?.category?.slug ?? "", limit: 8,
+  const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useRandomInfiniteOffers({
+    limit: 8,
   });
 
   const allOffers = useMemo(() => {

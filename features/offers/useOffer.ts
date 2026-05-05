@@ -7,7 +7,7 @@ type GetOfferOptions = {
 };
 
 export const getOffer = async ({ id }: GetOfferOptions): Promise<Offer> => {
-    const result = await OfferService.getOfferById(id)
+    const result = await OfferService.offerById(id)
     return result.data;
 };
 

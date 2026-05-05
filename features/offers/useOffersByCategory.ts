@@ -11,7 +11,7 @@ type GetOffersByCategoryOptions = {
 };
 
 export const getOffersByCategory = async ({ categoryId, page, limit }: GetOffersByCategoryOptions): Promise<Offer[]> => {
-    const result = await OfferService.getOffersByCategory(categoryId, page, limit);
+    const result = await OfferService.offersByCategory(categoryId, page, limit);
     return result.data;
 };
 

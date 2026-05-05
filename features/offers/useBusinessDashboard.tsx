@@ -2,15 +2,15 @@ import OfferService from '@/services/offer-service';
 import { BusinessDashboard } from '@/types/offer';
 import { useQuery } from '@tanstack/react-query';
 
-export const getBusinessDashboard = async (): Promise<BusinessDashboard> => {
-    const result = await OfferService.getBusinessDashboard()
+export const GetBusinessDashboard = async (): Promise<BusinessDashboard> => {
+    const result = await OfferService.businessDashboard()
     return result.data;
 };
 
 export const useBusinessDashboard = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['dashboard'],
-        queryFn: () => getBusinessDashboard(),
+        queryFn: () => GetBusinessDashboard(),
         refetchInterval: 180000,
         staleTime: 60000,
     });

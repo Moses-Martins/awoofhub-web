@@ -10,7 +10,7 @@ type GetRandomOffersOptions = {
 };
 
 export const getRandomInfiteOffers = ({ page = 1, limit }: GetRandomOffersOptions): Promise<ApiResponse<Offer[]>> => {
-    return OfferService.getRandomOffers(page, limit);
+    return OfferService.randomOffers(page, limit);
 };
 
 export const useRandomInfiniteOffers = ({ limit = 8 }: GetRandomOffersOptions) => {
