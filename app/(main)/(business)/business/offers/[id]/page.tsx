@@ -1,7 +1,7 @@
 "use client"
 import Loading from "@/components/loading/Loading";
+import ShareModal from "@/components/modals/ShareModal";
 import SingleBusinessOffer from "@/components/offer/business/SingleBusinessOffer";
-import ShareModal from "@/components/share/ShareModal";
 import { useOffer } from "@/features/offers/useOffer";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
