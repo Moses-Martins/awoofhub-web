@@ -2,7 +2,7 @@
 import { OfferError } from "@/components/offers/OfferError";
 import OfferList from "@/components/offers/OfferList";
 import OfferListSkeleton from "@/components/offers/OfferListSkeleton";
-import { useOffersByUserId } from "@/features/offers/useoffersByUserId";
+import { useOffersByUser } from "@/features/offers/useoffersByUser";
 import { Spinner } from "@chakra-ui/react";
 import { use, useEffect, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -18,8 +18,8 @@ export default function ProfilePage({ params }: Props) {
 
     const [ref, inView] = useInView();
 
-    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByUserId({
-        userId, limit: 8,
+    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useOffersByUser({
+        userId, search: "", category: "", minRating: 0, createdFrom: "", createdTo: "", limit: 8
     });
 
     const allOffers = useMemo(() => {

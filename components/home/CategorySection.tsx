@@ -26,7 +26,7 @@ export default function CategorySection({ category }: Props) {
                 </h3>
 
                 <Link
-                    href={`/categories/${category.slug}`}
+                    href={`/offers?category=${category.slug}`}
                     className="group inline-flex items-center gap-2 text-orange-600 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                     aria-label={`View all offers in ${category.name}`}
                 >

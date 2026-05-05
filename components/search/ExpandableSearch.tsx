@@ -18,20 +18,10 @@ function ExpandableSearchContent({ isOverlay, isOpen, onOpen, onClose }: Props) 
     const { data } = useUser();
 
     const isBusiness = data?.role === "business";
+    const basePath = isBusiness ? "/business/offers" : "/offers";
 
-    const handleChange = useCallback(
-        (term: string) => {
-            const basePath = isBusiness ? "/business/search" : "/search";
+    const updateFilter = useFilter(basePath);
 
-            if (term) {
-                router.replace(`${basePath}?q=${encodeURIComponent(term)}`);
-            } else {
-                router.replace(basePath);
-            }
-        },
-        [router, isBusiness]
-    );
-    
 
     if (isOverlay) {
         return (
