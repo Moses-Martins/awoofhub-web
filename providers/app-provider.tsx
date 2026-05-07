@@ -7,7 +7,7 @@ import ReactQueryProvider from './react-query-provider';
 
 export default function AppProvider({ children }: { children: ReactNode }) {
     const pathname = usePathname();
-    const isAuthRoute = AUTH_PATHS.some((path) => pathname?.startsWith(path));
+    // const isAuthRoute = AUTH_PATHS.some((path) => pathname?.startsWith(path));
 
     return (
         <>
