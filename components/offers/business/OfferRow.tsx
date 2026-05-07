@@ -126,7 +126,7 @@ export default function OfferRow({ offer }: Props) {
 
       {/* Status */}
       <td className="px-3 py-5 text-xs">
-        <StatusBadge status={offer.moderationStatus} />
+        <StatusBadge status={offer.status} />
       </td>
 
       <td className="px-3 py-5 text-xs">
