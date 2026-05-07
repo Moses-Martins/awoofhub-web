@@ -99,11 +99,11 @@ function FilterResults({ searchParams }: FilterProps) {
               <MenuItem value="5">⭐⭐⭐⭐⭐ 5</MenuItem>
             </Select>
           </FormControl>
-
           {/* Date From */}
           <DatePicker
             label="From Date"
             value={createdFrom ? dayjs(createdFrom) : null}
+            maxDate={createdTo ? dayjs(createdTo) : undefined}
             onChange={(newValue: Dayjs | null) => {
               updateFilter(
                 "createdFrom",
@@ -120,6 +120,7 @@ function FilterResults({ searchParams }: FilterProps) {
           <DatePicker
             label="To Date"
             value={createdTo ? dayjs(createdTo) : null}
+            minDate={createdFrom ? dayjs(createdFrom) : undefined}
             onChange={(newValue: Dayjs | null) => {
               updateFilter(
                 "createdTo",
