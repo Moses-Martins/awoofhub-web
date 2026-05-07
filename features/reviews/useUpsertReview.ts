@@ -1,15 +1,14 @@
 "use client"
 import ReviewService from "@/services/review-service";
 import { ApiResponse } from "@/types/api-response";
-import { reviewData } from "@/types/review";
-import { Wishlist } from "@/types/wishlist";
+import { Review, reviewData } from "@/types/review";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type UpsertReviewOptions = {
     id: string;
 };
 
-export const UpsertReview = (offerId: string, data: reviewData): Promise<ApiResponse<Wishlist>> => {
+export const UpsertReview = (offerId: string, data: reviewData): Promise<ApiResponse<Review>> => {
     return ReviewService.upsertReview(offerId, data); 
 };
 

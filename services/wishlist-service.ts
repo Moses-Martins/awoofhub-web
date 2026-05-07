@@ -9,12 +9,10 @@ const throttle = pThrottle({
 	interval: 1000
 });
 
-
 const addToWishlist = throttle(async (id: string): Promise<ApiResponse<Wishlist>> => {
     const res: ApiResponse<Wishlist> = await apiClient.post(`/wishlist/${id}`);
     return res;
 });
-
 
 const removeFromWishlist = throttle(async (id: string): Promise<ApiResponse<any>>  => {
     const res: ApiResponse<Wishlist> = await apiClient.delete(`/wishlist/${id}`);
@@ -23,15 +21,15 @@ const removeFromWishlist = throttle(async (id: string): Promise<ApiResponse<any>
 
 async function getAllWishlist(): Promise<ApiResponse<Wishlist[]>> {
     const res: ApiResponse<Wishlist[]> = await apiClient.get('/wishlist/')
-
     return res;
 }
-
 
 const WishlistService = {
     addToWishlist,
     removeFromWishlist,
     getAllWishlist
 };
+
+
 
 export default WishlistService;

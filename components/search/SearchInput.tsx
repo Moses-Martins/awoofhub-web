@@ -1,23 +1,19 @@
 'use client'
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useCallback } from 'react';
+import { useFilter } from '@/features/offers/useFilter';
+import { useUser } from '@/features/user/useUser';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 
 function SearchInputContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const { data } = useUser();
 
-  const handleChange = useCallback(
-    (term: string) => {
-      if (term) {
-        router.replace(`/search?q=${encodeURIComponent(term)}`);
-      } else {
-        router.replace("/search");
-      }
-    },
-    [router]
-  );
+  const isBusiness = data?.role === "business";
+  const basePath = isBusiness ? "/business/offers" : "/offers";
+
+  const updateFilter = useFilter(basePath);
 
   return (
     <div className="hidden lg:flex items-center w-[434px] h-[46px] px-6 rounded-2xl border border-muted/30 bg-background-light">
@@ -27,8 +23,8 @@ function SearchInputContent() {
         aria-label="Search"
         className="w-full bg-transparent text-[16px] text-foreground placeholder:text-muted/60 focus:outline-none"
         type="search"
-        defaultValue={searchParams.get("q")?.toString()}
-        onChange={(e) => handleChange(e.target.value)}
+        defaultValue={searchParams.get("search")?.toString()}
+        onChange={(e) => updateFilter('search', e.target.value)}
       />
     </div>
   );

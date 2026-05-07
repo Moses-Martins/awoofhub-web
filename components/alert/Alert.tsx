@@ -22,23 +22,23 @@ export default function AlertButton({ businessId }: Props) {
         toggleAlert()
     }
 
-
     return (
         <button
             onClick={handleWishlistChange}
-            className={`cursor-pointer w-70  text-white py-2 rounded-sm flex items-center justify-center gap-2 font-bold transition-colors text-sm
+            className={`cursor-pointer   text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 font-medium transition-colors text-sm
             ${isSubscribed
                     ? "bg-[#FDBA6B] border-[orange-600]"
                     : "bg-orange-600"
                 }`}
         >
+
             {isSubscribed ? (
                 <>
                     <Bell size={15} /> Alert Set
                 </>
             ) : (
                 <>
-                    <Bell size={15} /> Set Alert to this Store
+                    <Bell size={15} /> Set Alert 
                 </>
             )}
         </button>

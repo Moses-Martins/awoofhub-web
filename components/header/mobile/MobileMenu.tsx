@@ -26,11 +26,11 @@ export default function MobileMenu() {
                                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden">
                                     {currentUser.profileImageUrl ? (
                                         <Image
-                                            width={40}
-                                            height={40}
+                                            width={500}
+                                            height={500}
                                             src={currentUser.profileImageUrl}
                                             alt={currentUser.name}
-                                            className="w-full h-full object-contain"
+                                            className="w-full h-full object-cover"
                                         />
                                     ) : (
                                         <div className="bg-green-500 text-white flex items-center justify-center w-full h-full">
@@ -54,7 +54,7 @@ export default function MobileMenu() {
 
                         <Link
                             href="/signup"
-                            className="px-3 py-1 rounded-xs bg-primary text-white font-semibold text-[15px] sm:text-[18px] hover:bg-secondary transition-colors shadow-md"
+                            className="px-3 py-2 rounded-sm bg-primary text-white font-semibold text-[15px] sm:text-[18px] hover:bg-secondary transition-colors shadow-md"
                         >
                             Sign Up
                         </Link>

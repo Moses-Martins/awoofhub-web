@@ -1,7 +1,6 @@
 import { Offer } from '@/types/offer';
 import { formatDate } from '@/utils/formatDate';
 import { CopyAll } from '@mui/icons-material'; // Or use any Lucide/Heroicon
-import Link from 'next/link';
 import { useState } from 'react';
 
 interface Props {
@@ -38,7 +37,7 @@ export default function Action({ offer }: Props) {
     };
 
     return (
-        <div className="flex items-start justify-around py-6 my-6 border-t border-b border-gray-300">
+        <div className="flex items-start  flex-wrap space-y-5 justify-around py-6 my-6 border-t border-b border-gray-300">
 
             <div className="flex flex-col items-center gap-2">
                 <span className="text-sm font-bold text-gray-800">Expiring</span>
@@ -72,12 +71,14 @@ export default function Action({ offer }: Props) {
                     Unlock
                 </span>
 
-                <Link
+                <a
                     href={offer.dealUrl}
-                    className="w-40 cursor-pointer flex justify-center items-center bg-[#006400] text-white font-bold py-2 px-8 rounded-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-45 cursor-pointer flex justify-center items-center bg-[#006400] text-white font-bold py-2 px-8 rounded-sm"
                 >
                     {getActionText()}
-                </Link>
+                </a>
             </div>
         </div>
     );

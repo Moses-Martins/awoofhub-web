@@ -1,5 +1,8 @@
+"use client"
+import { useFilter } from '@/features/offers/useFilter';
+import { useUser } from '@/features/user/useUser';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from "react";
+import { Suspense } from "react";
 import { IoMdClose } from "react-icons/io";
 import { IoSearchSharp } from "react-icons/io5";
 
@@ -10,20 +13,16 @@ interface Props {
     onClose?: () => void;
 }
 
-export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }: Props) {
+function ExpandableSearchContent({ isOverlay, isOpen, onOpen, onClose }: Props) {
     const searchParams = useSearchParams();
     const router = useRouter();
+    const { data } = useUser();
 
-    const handleChange = useCallback(
-        (term: string) => {
-            if (term) {
-                router.replace(`/search?q=${encodeURIComponent(term)}`);
-            } else {
-                router.replace("/search");
-            }
-        },
-        [router]
-    );
+    const isBusiness = data?.role === "business";
+    const basePath = isBusiness ? "/business/offers" : "/offers";
+
+    const updateFilter = useFilter(basePath);
+
 
     if (isOverlay) {
         return (
@@ -36,8 +35,8 @@ export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }:
                     placeholder="Search for Offers"
                     className="w-full outline-none text-[16px]"
                     autoFocus={isOpen}
-                    defaultValue={searchParams.get("q")?.toString()}
-                    onChange={(e) => handleChange(e.target.value)}
+                    defaultValue={searchParams.get("search")?.toString()}
+                    onChange={(e) => updateFilter('search', e.target.value)}
                 />
 
                 <button onClick={onClose}>
@@ -47,7 +46,6 @@ export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }:
         );
     }
 
-    // Normal icon button
     return (
         <button
             onClick={onOpen}
@@ -58,3 +56,11 @@ export default function ExpandableSearch({ isOverlay, isOpen, onOpen, onClose }:
     );
 }
 
+
+export default function ExpandableSearch(props: Props) {
+    return (
+        <Suspense fallback={null}>
+            <ExpandableSearchContent {...props} />
+        </Suspense>
+    );
+}

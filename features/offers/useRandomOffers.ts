@@ -10,7 +10,7 @@ type GetRandomOffersOptions = {
 };
 
 export const getRandomOffers = async ({ page, limit }: GetRandomOffersOptions): Promise<Offer[]> => {
-    const result = await OfferService.getRandomOffers(page, limit);
+    const result = await OfferService.randomOffers(page, limit);
     return result.data;
 };
 
@@ -27,4 +27,3 @@ export const  useRandomOffers = ({ page = 1, limit = 8 }: GetRandomOffersOptions
         isFetched
     };
 };
-

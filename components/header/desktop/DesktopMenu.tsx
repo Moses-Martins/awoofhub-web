@@ -1,13 +1,14 @@
 'use client'
 import { useLogout } from "@/features/auth/useLogout";
+import { useMessageCount } from "@/features/chat/useMessageCount";
 import { useUser } from "@/features/user/useUser";
 import { capitalizeFirstLetter, firstFiveLetters } from "@/utils/truncate";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
-import { FiHelpCircle, FiLogOut, FiUser } from "react-icons/fi";
+import { FiHelpCircle, FiHome, FiLogOut, FiUser } from "react-icons/fi";
 import { GoArrowSwitch } from "react-icons/go";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { IoNotificationsOutline } from "react-icons/io5";
@@ -19,13 +20,17 @@ export default function DesktopMenu() {
     const [isOpenDropdown, setIsOpenDropdown] = useState(false);
     const dropdownRef = useRef<HTMLLIElement>(null);
 
-
     const { data: currentUser } = useUser();
+    const { data: messageCount } = useMessageCount() // It needs to be below useUser() unless it keeps refreshing.
 
     const router = useRouter();
+    const pathname = usePathname()
 
     useEffect(() => {
         window.addEventListener('click', handleClickOutSide);
+        return () => {
+            window.removeEventListener('click', handleClickOutSide);
+        };
     }, []);
 
     const handleClickOutSide = (e: Event) => {
@@ -33,7 +38,6 @@ export default function DesktopMenu() {
         if (target instanceof Node && dropdownRef.current?.contains(target)) {
             return;
         }
-
         setIsOpenDropdown(false);
     };
 
@@ -44,36 +48,76 @@ export default function DesktopMenu() {
         },
     })
 
-    const handleCloseDropDown = () => {
-        setIsOpenDropdown(!isOpenDropdown);
+    const toggleDropdown = () => {
+        setIsOpenDropdown(prev => !prev);
     };
 
+    const isLoggedIn = !!currentUser;
+    const isBusiness = currentUser?.role === "business";
 
     return (
         <ul className="hidden lg:flex items-center list-none p-0 m-0">
 
-            {currentUser ? (
+            {isLoggedIn && (
                 <>
-                    {/* Message */}
-                    <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
-                        <Link href="/message">
-                            <HiOutlineEnvelope size={28} />
-                        </Link>
-                    </li>
+                    {isBusiness ? (
+                        <>
 
-                    <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
-                        <Link href="/wishlist">
-                            <PiHeart size={28} />
-                        </Link>
-                    </li>
+                            {/* Message */}
+                            <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
+                                <Link href="/message" className={`relative ${pathname === '/message' ? 'text-primary' : ''}`}>
+                                    <HiOutlineEnvelope size={28} />
+                                    {!!messageCount && messageCount > 0 && (
+                                        <div className="absolute -top-1 -right-2 w-6 h-6 bg-red-500 text-white text-[12px] font-bold flex items-center justify-center rounded-full border-2 border-white">
+                                            {messageCount > 99 ? '99+' : messageCount}
+                                        </div>
+                                    )}
+                                </Link>
+                            </li>
 
-                    <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
-                        <Link href="/notifications">
-                            <IoNotificationsOutline size={28} />
-                        </Link>
-                    </li>
+                            <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
+                                <Link href="/notifications" className={`${pathname === '/notifications' ? 'text-primary' : ''}`}>
+                                    <IoNotificationsOutline size={28} />
+                                </Link>
+                            </li>
 
-                    <li ref={dropdownRef} className="px-[10px] flex items-center text-[1.7rem] relative">
+                        </>
+                    ) : (
+                        <>
+                            <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
+                                <Link href="/" className={`${pathname === '/' ? 'text-primary' : ''}`}>
+                                    <FiHome size={26} />
+                                </Link>
+                            </li>
+
+                            {/* Message */}
+                            <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
+                                <Link href="/message" className={`relative ${pathname === '/message' ? 'text-primary' : ''}`}>
+                                    <HiOutlineEnvelope size={28} />
+                                    {!!messageCount && messageCount > 0 && (
+                                        <div className="absolute -top-1 -right-2 w-6 h-6 bg-red-500 text-white text-[12px] font-bold flex items-center justify-center rounded-full border-2 border-white">
+                                            {messageCount > 99 ? '99+' : messageCount}
+                                        </div>
+                                    )}
+                                </Link>
+                            </li>
+
+                            <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
+                                <Link href="/wishlist" className={`${pathname === '/wishlist' ? 'text-primary' : ''}`}>
+                                    <PiHeart size={28} />
+                                </Link>
+                            </li>
+
+                            <li className="px-[10px] flex items-center text-[1.7rem] relative group border-r border-gray-300">
+                                <Link href="/notifications" className={`${pathname === '/notifications' ? 'text-primary' : ''}`}>
+                                    <IoNotificationsOutline size={28} />
+                                </Link>
+                            </li>
+                        </>
+                    )}
+
+
+                    < li ref={dropdownRef} className="pl-[10px] flex items-center text-[1.7rem] relative">
                         <span className="mr-3 text-[1.4rem] font-medium">
                             {"Hi " + firstFiveLetters(currentUser.name)}
                         </span>
@@ -82,16 +126,16 @@ export default function DesktopMenu() {
                             role="button"
                             tabIndex={-1}
                             className="flex items-center gap-2 cursor-pointer"
-                            onClick={() => handleCloseDropDown()}
+                            onClick={() => toggleDropdown()}
                         >
                             <div className="w-10 h-10 rounded-full overflow-hidden">
                                 {currentUser.profileImageUrl ? (
                                     <Image
-                                        width={40}
-                                        height={40}
+                                        width={500}
+                                        height={500}
                                         src={currentUser.profileImageUrl}
                                         alt={currentUser.name}
-                                        className="w-full h-full object-contain"
+                                        className="w-full h-full object-cover"
                                     />
                                 ) : (
                                     <div className="bg-green-500 text-white flex items-center justify-center w-full h-full">
@@ -108,12 +152,12 @@ export default function DesktopMenu() {
                                 <ul className="flex flex-col">
                                     {/* Standard Items */}
                                     {[
-                                        { label: 'Profile', icon: <FiUser />, href: '/profile' },
+                                        { label: 'Profile', icon: <FiUser />, href: `/profile/${currentUser.id}` },
                                         { label: 'Help & Support', icon: <FiHelpCircle />, href: '/help' },
-                                        { label: 'Switch account', icon: <GoArrowSwitch />, href: '/switch' },
+                                        { label: 'Account Type', icon: <GoArrowSwitch />, href: '/switch-account' },
                                     ].map((item, idx) => (
                                         <li key={idx} className="border-b border-muted/10 last:border-none">
-                                            <Link href={item.href} className="flex items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors">
+                                            <Link href={item.href} onClick={() => toggleDropdown()} className="flex items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors">
                                                 <span className="text-primary text-xl">{item.icon}</span>
                                                 <span className="text-foreground text-[20px] font-light">{item.label}</span>
                                             </Link>
@@ -129,13 +173,13 @@ export default function DesktopMenu() {
                                     </li>
                                 </ul>
                             </div>
-
-
-
                         )}
                     </li>
                 </>
-            ) : (
+            )}
+
+
+            {!isLoggedIn && (
                 <li ref={dropdownRef} className="px-[10px] flex items-center  gap-4 text-[1.7rem] text-[var(--color-text-primary)]">
                     <Link
                         href="/login"

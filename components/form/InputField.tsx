@@ -21,12 +21,11 @@ import {
 export type InputFieldProps = {
   type?: 'text' | 'email' | 'password' | 'textarea';
   label?: string;
+  textAreaRows?: number;
   error?: FieldError;
   icon?: React.ReactNode;
   placeholder?: string;
   compulsory?: boolean;
-  labelClassName?: string;
-  errorClassName?: string;
 } & Partial<
   ReturnType<UseFormRegister<Record<string, unknown>>>
 >;
@@ -39,9 +38,8 @@ export const InputField = forwardRef(
       error,
       icon,
       placeholder,
+      textAreaRows=3,
       compulsory,
-      labelClassName,
-      errorClassName,
       ...inputProps
     } = props;
 
@@ -52,34 +50,31 @@ export const InputField = forwardRef(
     return (
       <FormControl>
         {label &&
-          <FormLabel className={`font-baloo text-lg ${labelClassName ?? ''}`}>
+          <FormLabel className="font-baloo text-lg">
             {label}
             {compulsory && <span className="text-red-500"> *</span>}
           </FormLabel>}
         {type === 'textarea' ? (
           <Textarea
-            bg="white"
-            rows={8}
+            bg=" #F6F7F8"
+            className={`mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base sm:text-lg font-baloo`}
+            rows={textAreaRows}
             {...inputProps}
             ref={ref}
           />
         ) : type === 'password' ? (
           <InputGroup>
             {icon && (
-              <InputLeftElement pointerEvents="none" className="mx-3 my-5">
+              <InputLeftElement pointerEvents="none" className="mx-3 my-5.5">
                 {icon}
               </InputLeftElement>
             )}
             <Input
+              bg=" #F6F7F8"
               pr="4.5rem"
-              className={`mt-2 w-full px-3 py-2 ${icon ? 'pl-12' : ''} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg font-baloo`}
+              className={`mt-2 w-full px-3 py-2 ${icon ? 'pl-12' : ''} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base sm:text-lg font-baloo`}
               type={show ? 'text' : 'password'}
               placeholder={placeholder}
-              sx={{
-                '&::-ms-reveal': { display: 'none' },
-                '&::-webkit-contacts-auto-fill-button': { display: 'none' },
-                '&::-webkit-credentials-auto-fill-button': { display: 'none' },
-              }}
               {...inputProps}
               ref={ref}
             />
@@ -92,22 +87,22 @@ export const InputField = forwardRef(
         ) : (
           <InputGroup>
             {icon && (
-              <InputLeftElement pointerEvents="none" className="mx-3 my-5">
+              <InputLeftElement pointerEvents="none" className="mx-3 my-5.5">
                 {icon}
               </InputLeftElement>
             )}
             <Input
-              bg="white"
+              bg="#F6F7F8"
               type={type}
               placeholder={placeholder}
-              className={`mt-2 w-full px-3 py-2 ${icon ? 'pl-12' : ''} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg font-baloo`}
+              className={`mt-2 w-full px-3 py-2 ${icon ? 'pl-12' : ''} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base sm:text-lg font-baloo`}
               {...inputProps}
               ref={ref}
             />
           </InputGroup>
         )}
         {error && (
-          <FormHelperText className={`text-left text-xs mt-1 ${errorClassName ?? 'text-red-500'}`}>
+          <FormHelperText className="text-red-500 text-left text-xs mt-1">
             {error.message}
           </FormHelperText>
         )}

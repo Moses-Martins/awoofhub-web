@@ -7,3 +7,10 @@ export async function getStreamChatToken(): Promise<string> {
     return res.data.token;
 }
 
+
+export async function getMessagesCountService(): Promise<ApiResponse<{unreadCount: number}>> {
+    const res: ApiResponse<{unreadCount: number}> = await apiClient.get("/chat/stats/")
+    return res;
+}
+
+

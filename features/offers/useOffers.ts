@@ -4,19 +4,24 @@ import { Offer } from '@/types/offer';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 
-type GetOffersOptions = {
+type GetSearchOffersOptions = {
+    search: string,
+    category: string,
+    minRating: number,
+    createdFrom: string,
+    createdTo: string,
     page?: number,
     limit: number,
 };
 
-export const getOffers = ({ page = 1, limit }: GetOffersOptions): Promise<ApiResponse<Offer[]>> => {
-    return OfferService.getAllOffers(page, limit);
+export const getOffers = ({ search, category, minRating, createdFrom, createdTo, page = 1, limit }: GetSearchOffersOptions): Promise<ApiResponse<Offer[]>> => {
+    return OfferService.offers(search, category, minRating, createdFrom, createdTo, page, limit);
 };
 
-export const useOffers = ({ limit = 8 }: GetOffersOptions) => {
-    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
-        queryKey: ['offers'],
-        queryFn: ({ pageParam = 1 }) => getOffers({ page: pageParam, limit }),
+export const useOffers = ({ search, category, minRating, createdFrom, createdTo, limit = 8 }: GetSearchOffersOptions) => {
+    const { data, isFetchingNextPage, isLoading, isFetching, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
+        queryKey: ['offers', search, category, minRating, createdFrom, createdTo, limit],
+        queryFn: ({ pageParam = 1 }) => getOffers({ search, category, minRating, createdFrom, createdTo, page: pageParam, limit }),
 
         getNextPageParam: (lastPage) => {
             if (!lastPage.meta) return undefined;
@@ -32,10 +37,13 @@ export const useOffers = ({ limit = 8 }: GetOffersOptions) => {
 
     return {
         data,
+        isFetching,
+        isLoading,
         fetchNextPage,
         hasNextPage,
-        isFetching,
-        isFetchingNextPage
+        isFetchingNextPage,
+        isError,
+        error
     };
 };
 

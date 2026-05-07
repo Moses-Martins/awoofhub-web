@@ -2,7 +2,7 @@
 @import "stream-chat-react/dist/css/v2/index.css";
 
 :root {
-  --background: #ffffff;
+  --background: #F6F7F8;
   --foreground: #171717;
   --primary: #FE4F04;
   --primary-light: #FDBA6B;
@@ -25,6 +25,21 @@
   --font-montserrat: var(--font-geist-montserrat);
 }
 
+@theme {
+  --breakpoint-xxs:450px;
+  --breakpoint-xs: 580px;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -40,11 +55,66 @@ body {
   h2,
   h3,
   h4,
-  h5{
+  h5 {
     @apply font-baloo font-medium;
   }
 
   header {
     @apply font-baloo font-medium;
   }
+}
+
+
+
+.str-chat {
+  --str-chat__font-family: inherit !important;
+  --str-chat__primary-color: var(--muted) !important;
+  --str-chat__on-primary-color: var(--foreground) !important;
+  --str-chat__active-primary-color: var(--foreground) !important;
+
+  --str-chat__primary-color-low-emphasis: color-mix(in hsl,
+      var(--primary) 10%,
+      transparent) !important;
+
+  --str-chat__background-color: var(--background) !important;
+  --str-chat__secondary-background-color: var(--background) !important;
+  --str-chat__message-textarea-background-color: var(--background) !important;
+  --str-chat__channel-preview-active-background-color: var(--primary-light) !important;
+  --str-chat__channel-preview-hover-background-color: var(--primary-light) !important;
+  --str-chat__secondary-surface-color: #DBDBDB !important;
+  --str-chat__own-message-bubble-color: var(--foreground) !important;
+  --str-chat__primary-surface-color: var(--primary-light) !important;
+  --str-chat__primary-surface-color-low-emphasis: var(--str-chat__primary-color-low-emphasis) !important;
+
+  --str-chat__disabled-color: #DBDBDB !important;
+  --str-chat__cta-button-border-radius: 0.5rem !important;
+}
+
+.str-chat__channel-preview__action-buttons {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+.str-chat-channel-list {
+  border-right: none !important;
+}
+
+.str-chat__channel-preview-messenger,
+.str-chat__channel-preview {
+  border-bottom: 1px solid #d8d8d8 !important;
+}
+
+.str-chat__channel-list-react .str-chat__channel-list-messenger-react {
+  padding-bottom: 0 !important;
+}
+
+.str-chat__quoted-message-preview {
+  --str-chat__message-max-width: 100% !important;
+}
+
+.str-chat__quoted-message-preview {
+  width: 100% !important;
 }

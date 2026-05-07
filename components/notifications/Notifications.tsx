@@ -14,7 +14,7 @@ export const Notifications = () => {
       as="section"
       p="4"
       position="fixed"
-      bottom="50"
+      className="bottom-[80px] md:bottom-[50px]"
       right="0"
       zIndex="1"
     >
@@ -62,7 +62,7 @@ const NotificationToast = ({
 
   return (
     <Box
-      w={{ base: 'full', sm: 'md' }}
+      w="300px"
       boxShadow="md"
       color="white"
       {...notificationVariants[type]}

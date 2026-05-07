@@ -6,5 +6,5 @@ export interface Wishlist {
         id: string,
     },
     offer: Offer
-};
+}; 
 

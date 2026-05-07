@@ -13,22 +13,22 @@ export default function ExploreOffers() {
     return (
         <section className="bg-gray-50">
             <div className="pb-16 px-6 md:px-12 max-w-[1440px] mx-auto">
-                <div className="flex justify-between items-center">
-                    <h3 className="text-2xl font-bold mb-6">
+                <div className="flex justify-between items-baseline mb-6">
+                    <h3 className="text-xl md:text-2xl font-bold mt-3 sm:mt-5">
                         Explore Offers
                     </h3>
 
-                    <Link
-                        href={`/offers/`}
+                    <Link 
+                        href={`/explore/`}
                         className="group inline-flex items-center gap-2 text-orange-600 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                     >
-                        <span>View all</span>
+                        <span className="text-xs sm:text-sm font-bold">View all</span>
                         <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
                     </Link>
                 </div>
 
                 <ErrorBoundary fallback={<OfferError />}>
-                    {isFetching && <OfferListSkeleton number={4} />}
+                    {isFetching && <OfferListSkeleton number={8} />}
                     {!isFetching && data.length === 0 && (
                         <p className="text-gray-500">No offers available.</p>
                     )}

@@ -10,13 +10,12 @@ type GetRandomOffersOptions = {
 };
 
 export const getRandomInfiteOffers = ({ page = 1, limit }: GetRandomOffersOptions): Promise<ApiResponse<Offer[]>> => {
-    return OfferService.getRandomOffers(page, limit);
+    return OfferService.randomOffers(page, limit);
 };
 
 export const useRandomInfiniteOffers = ({ limit = 8 }: GetRandomOffersOptions) => {
-    const { data, fetchNextPage, isFetched, hasNextPage, isFetching, isFetchingNextPage, isError, error } = useInfiniteQuery({
+    const { data, fetchNextPage, isLoading, isFetched, hasNextPage, isFetching, isFetchingNextPage, isError, error } = useInfiniteQuery({
         queryKey: ['offers', 'random', limit],
-        staleTime: 1000 * 60 * 5,
         queryFn: ({ pageParam = 1 }) => getRandomInfiteOffers({ page: pageParam, limit }),
 
         getNextPageParam: (lastPage) => {
@@ -34,6 +33,7 @@ export const useRandomInfiniteOffers = ({ limit = 8 }: GetRandomOffersOptions) =
     return {
         data,
         isFetched,
+        isLoading,
         fetchNextPage,
         hasNextPage,
         isFetching,
