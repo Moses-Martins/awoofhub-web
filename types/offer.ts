@@ -40,7 +40,7 @@ export interface Offer {
     slug: string;
   };
   location: string;
-  moderationStatus: "pending" | "approved" | "rejected";
+  status: "pending" | "approved" | "rejected";
   adminNote: string | null;
   statusUpdatedAt: string | null;
   createdAt: string;

@@ -30,7 +30,7 @@ const statusConfig = {
 
 export default function AdminStatus({ offer }: Props) {
 
-    const config = statusConfig[offer.moderationStatus] || statusConfig.pending;
+    const config = statusConfig[offer.status] || statusConfig.pending;
 
     return (
         <section className="border-t border-b border-gray-300 py-6">
@@ -53,7 +53,7 @@ export default function AdminStatus({ offer }: Props) {
                     </div>
 
                     <button className={`px-8 py-3 text-white font-bold rounded-lg text-sm ${config.button}`}>
-                        {offer.moderationStatus}
+                        {offer.status}
                     </button>
                 </div>
 
