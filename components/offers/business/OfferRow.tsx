@@ -111,7 +111,7 @@ export default function OfferRow({ offer }: Props) {
               color: '#ccc', // empty stars
             },
           }}
-        />
+        /> 
       </td>
 
       {/* Rating Count */}
